@@ -1,0 +1,396 @@
+[gd_scene load_steps=16 format=3 uid="uid://dtdrdlrakqwex"]
+
+[ext_resource type="Texture2D" uid="uid://cp4h8edu8rv34" path="res://assets/passengers/base_rig/foot.png" id="1_7lq8a"]
+[ext_resource type="Script" path="res://src/scripts/ragdoll_controller.gd" id="1_cts44"]
+[ext_resource type="Texture2D" uid="uid://wokr42qmd7vo" path="res://assets/passengers/base_rig/head.png" id="1_k52ng"]
+[ext_resource type="Texture2D" uid="uid://dj8f1jcpr6026" path="res://assets/passengers/base_rig/torso.png" id="1_nhr5l"]
+[ext_resource type="Texture2D" uid="uid://dtsipx3uhb5s7" path="res://assets/passengers/base_rig/legs.png" id="1_wnr4f"]
+[ext_resource type="Texture2D" uid="uid://di73onv6dtehy" path="res://assets/passengers/Shadow.png" id="2_paowq"]
+[ext_resource type="Script" path="res://src/scripts/limb.gd" id="2_rhjab"]
+[ext_resource type="Texture2D" uid="uid://qoc7ehgw0xyl" path="res://assets/passengers/base_rig/upperarm.png" id="3_lfc6n"]
+[ext_resource type="Texture2D" uid="uid://df0g0ddh4d3y4" path="res://assets/passengers/base_rig/b_legs.png" id="4_dipwx"]
+[ext_resource type="Texture2D" uid="uid://bx3c57snxjqy2" path="res://assets/passengers/base_rig/b_foot.png" id="4_k10bk"]
+[ext_resource type="Texture2D" uid="uid://wdbd3yc25rre" path="res://assets/passengers/base_rig/forearm.png" id="4_nf0l0"]
+[ext_resource type="Texture2D" uid="uid://jfhgabsqb076" path="res://assets/passengers/base_rig/hand.png" id="5_3g0f0"]
+
+[sub_resource type="Animation" id="Animation_lk81b"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Head:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(0.5, 2, 2, 0.5),
+"update": 0,
+"values": [0.0, -0.139626, 0.139626, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Torso:angular_velocity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -34906.6, -34.9066, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_b4hxx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Torso:angular_velocity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.349066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6bwm"]
+_data = {
+"Idle": SubResource("Animation_lk81b"),
+"RESET": SubResource("Animation_b4hxx")
+}
+
+[node name="BasePassenger" type="Node2D"]
+texture_filter = 1
+position = Vector2(0, -94)
+script = ExtResource("1_cts44")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(3, 106)
+texture = ExtResource("2_paowq")
+
+[node name="BUpperarm" type="RigidBody2D" parent="."]
+self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
+position = Vector2(23, -57)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="Upperarm" type="Sprite2D" parent="BUpperarm"]
+self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
+position = Vector2(-23, 31.71)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_lfc6n")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BUpperarm"]
+position = Vector2(-23, 31.71)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(9, -9, 9, 1, 3, 1, 3, 0, 4, 0, 4, -1, 3, -1, 3, -9, 4, -9, 4, -10, 5, -10, 5, -11, 7, -11, 7, -10, 8, -10, 8, -9)
+
+[node name="BForearm" type="RigidBody2D" parent="."]
+self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
+position = Vector2(23, -57)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="Forearm" type="Sprite2D" parent="BForearm"]
+self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
+position = Vector2(-23, 31.71)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("4_nf0l0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BForearm"]
+position = Vector2(-23, 31.71)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 1, 3, 2, 4, 2, 4, 8, 8, 8, 8, 1)
+
+[node name="BHand" type="RigidBody2D" parent="."]
+self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
+position = Vector2(23, -57)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="Hand" type="Sprite2D" parent="BHand"]
+self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
+position = Vector2(-23, 31.37)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("5_3g0f0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BHand"]
+position = Vector2(-23, 31.41)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 8, 3, 14, 4, 14, 4, 15, 7, 15, 7, 14, 8, 14, 8, 11, 9, 11, 9, 9, 8, 9, 8, 8)
+
+[node name="BFoot" type="RigidBody2D" parent="."]
+position = Vector2(-11, 73.71)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="BFoot" type="Sprite2D" parent="BFoot"]
+self_modulate = Color(0.74, 0.74, 0.74, 1)
+position = Vector2(9, -96)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("4_k10bk")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="BFoot"]
+position = Vector2(9, -96)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(8, 28, 8, 31, -2, 31, -2, 27, -1, 27, -1, 26, 3, 26, 3, 26, 6, 26, 6, 27, 7, 27, 7, 28)
+
+[node name="BLegs" type="RigidBody2D" parent="."]
+position = Vector2(-1.90735e-06, -22.29)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="BLegs" type="Sprite2D" parent="BLegs"]
+self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("4_dipwx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BLegs"]
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 26, -2, 26, -2, 19, -1, 19, -1, 18, -2, 18, -2, 9, 2, 9, 3, 9, 3, 8, 4, 8, 4, 7, 5, 7, 5, 20, 4, 20, 4, 21, 3, 21)
+
+[node name="Foot" type="RigidBody2D" parent="."]
+position = Vector2(3, 74)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="Foot" type="Sprite2D" parent="Foot"]
+position = Vector2(-2, -96.29)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("1_7lq8a")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Foot"]
+position = Vector2(-17, -96.29)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(8, 28, 8, 31, -2, 31, -2, 27, -1, 27, -1, 26, 3, 26, 3, 26, 6, 26, 6, 27, 7, 27, 7, 28)
+
+[node name="Legs" type="RigidBody2D" parent="."]
+position = Vector2(1, -22.29)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="Legs" type="Sprite2D" parent="Legs"]
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("1_wnr4f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Legs"]
+position = Vector2(-15, 0)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 26, -2, 26, -2, 19, -1, 19, -1, 18, -2, 18, -2, 7, -1, 7, -1, 8, 0, 8, 0, 9, 5, 9, 5, 20, 4, 20, 4, 21, 3, 21)
+
+[node name="Torso" type="RigidBody2D" parent="."]
+position = Vector2(-1, -25.29)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+linear_damp = 100.0
+angular_velocity = 0.349066
+script = ExtResource("2_rhjab")
+
+[node name="Torso" type="Sprite2D" parent="Torso"]
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("1_nhr5l")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 12, -3, 12, -3, 11, -4, 11, -4, 10, -6, 10, -6, 9, -7, 9, -7, -11, -3, -11, -3, -13, -1, -13, -1, -12, 1, -12, 1, -11, 4, -11, 6, -11, 6, -9, 7, -9, 7, -2, 6, -2, 6, 9, 5, 9, 5, 10, 4, 10, 4, 11, 3, 11)
+
+[node name="Upperarm" type="RigidBody2D" parent="."]
+position = Vector2(-26, -57)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="Upperarm" type="Sprite2D" parent="Upperarm"]
+position = Vector2(-23, 31.71)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_lfc6n")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Upperarm"]
+position = Vector2(-23, 31.71)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(9, -9, 9, 1, 3, 1, 3, 0, 4, 0, 4, -1, 3, -1, 3, -9, 4, -9, 4, -10, 5, -10, 5, -11, 7, -11, 7, -10, 8, -10, 8, -9)
+
+[node name="Forearm" type="RigidBody2D" parent="."]
+position = Vector2(-26, -57)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="Forearm" type="Sprite2D" parent="Forearm"]
+position = Vector2(-23, 31.71)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("4_nf0l0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Forearm"]
+position = Vector2(-23, 31.71)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 1, 3, 2, 4, 2, 4, 8, 8, 8, 8, 1)
+
+[node name="Hand" type="RigidBody2D" parent="."]
+position = Vector2(-26, -57)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="Hand" type="Sprite2D" parent="Hand"]
+position = Vector2(-23, 31.37)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("5_3g0f0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand"]
+position = Vector2(-23, 31.41)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 8, 3, 14, 4, 14, 4, 15, 7, 15, 7, 14, 8, 14, 8, 11, 9, 11, 9, 9, 8, 9, 8, 8)
+
+[node name="Head" type="RigidBody2D" parent="."]
+position = Vector2(1, -75)
+collision_layer = 2
+inertia = 500.0
+freeze_mode = 1
+script = ExtResource("2_rhjab")
+
+[node name="Head" type="Sprite2D" parent="Head"]
+position = Vector2(-3, 49.71)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("1_k52ng")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head"]
+position = Vector2(-3, 49.71)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(4, -11, 1, -11, 1, -12, -1, -12, -1, -13, -3, -13, -3, -15, -4, -15, -4, -16, -5, -16, -5, -17, -6, -17, -6, -20, -5, -20, -5, -24, -4, -24, -4, -25, -3, -25, -3, -26, 4, -26, 4, -25, 5, -25, 5, -24, 6, -24, 6, -13, 5, -13, 5, -12, 4, -12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Joints")
+autoplay = "Idle"
+libraries = {
+"": SubResource("AnimationLibrary_k6bwm")
+}
+
+[node name="Joints" type="Node2D" parent="."]
+
+[node name="ForearmToUpperarm" type="PinJoint2D" parent="Joints"]
+position = Vector2(-27, -22.71)
+scale = Vector2(0.777027, 1)
+node_a = NodePath("../../Forearm")
+node_b = NodePath("../../Upperarm")
+
+[node name="UpperarmToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(-26, -57.71)
+node_a = NodePath("../../Upperarm")
+node_b = NodePath("../../Torso")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Joints"]
+position = Vector2(-27, 3.29001)
+scale = Vector2(0.777027, 1)
+node_a = NodePath("../../Hand")
+node_b = NodePath("../../Forearm")
+
+[node name="HeadToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(0.999995, -74.71)
+scale = Vector2(1.33703, 1)
+node_a = NodePath("../../Head")
+node_b = NodePath("../../Torso")
+
+[node name="BLegToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(8, 19.29)
+scale = Vector2(0.60454, 1)
+node_a = NodePath("../../BLegs")
+node_b = NodePath("../../Torso")
+
+[node name="LegToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(-7, 19.29)
+scale = Vector2(0.603771, 1)
+node_a = NodePath("../../Legs")
+node_b = NodePath("../../Torso")
+
+[node name="BUpperarmToBForearm" type="PinJoint2D" parent="Joints"]
+position = Vector2(28, -22.71)
+scale = Vector2(0.758958, 0.68)
+node_a = NodePath("../../BUpperarm")
+node_b = NodePath("../../BForearm")
+
+[node name="BForearmToBUpperarm" type="PinJoint2D" parent="Joints"]
+position = Vector2(22, -22.71)
+scale = Vector2(0.611943, 0.711408)
+node_a = NodePath("../../BForearm")
+node_b = NodePath("../../BUpperarm")
+
+[node name="TorsoToBUpperarm" type="PinJoint2D" parent="Joints"]
+position = Vector2(25, -57.71)
+node_a = NodePath("../../Torso")
+node_b = NodePath("../../BUpperarm")
+
+[node name="BUpperarmToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(22, -57.71)
+node_a = NodePath("../../BUpperarm")
+node_b = NodePath("../../Torso")
+
+[node name="BForearmToBHand" type="PinJoint2D" parent="Joints"]
+position = Vector2(22, 4.29)
+rotation = 3.14159
+scale = Vector2(0.524304, -0.799197)
+node_a = NodePath("../../BForearm")
+node_b = NodePath("../../BHand")
+
+[node name="BHandToBForearm" type="PinJoint2D" parent="Joints"]
+position = Vector2(25, 4.29)
+scale = Vector2(-1.10856, 0.600842)
+node_a = NodePath("../../BHand")
+node_b = NodePath("../../BForearm")
+
+[node name="BLegToBFoot" type="PinJoint2D" parent="Joints"]
+position = Vector2(-2, 76)
+scale = Vector2(0.713248, 0.68)
+node_a = NodePath("../../BLegs")
+node_b = NodePath("../../BFoot")
+
+[node name="BFootToBLeg" type="PinJoint2D" parent="Joints"]
+position = Vector2(3, 76)
+scale = Vector2(0.84454, 1)
+node_a = NodePath("../../BFoot")
+node_b = NodePath("../../BLegs")
+
+[node name="LegToFoot" type="PinJoint2D" parent="Joints"]
+position = Vector2(-15, 76)
+scale = Vector2(0.627995, 0.745667)
+node_a = NodePath("../../Legs")
+node_b = NodePath("../../Foot")
+
+[node name="FootToLeg" type="PinJoint2D" parent="Joints"]
+position = Vector2(-11, 76)
+scale = Vector2(0.60454, 1)
+node_a = NodePath("../../Foot")
+node_b = NodePath("../../Legs")

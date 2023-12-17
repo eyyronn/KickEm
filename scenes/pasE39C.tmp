@@ -1,0 +1,530 @@
+[gd_scene load_steps=18 format=3 uid="uid://cygskbuhbff16"]
+
+[ext_resource type="Texture2D" uid="uid://b3d35l4s6n068" path="res://assets/passengers/base_rig/b_upperarm.png" id="1_4s3xj"]
+[ext_resource type="Texture2D" uid="uid://cp4h8edu8rv34" path="res://assets/passengers/base_rig/foot.png" id="1_7lq8a"]
+[ext_resource type="Script" path="res://src/scripts/passenger.gd" id="1_fwvpu"]
+[ext_resource type="Texture2D" uid="uid://wokr42qmd7vo" path="res://assets/passengers/base_rig/head.png" id="1_k52ng"]
+[ext_resource type="Texture2D" uid="uid://dj8f1jcpr6026" path="res://assets/passengers/base_rig/torso.png" id="1_nhr5l"]
+[ext_resource type="Texture2D" uid="uid://dtsipx3uhb5s7" path="res://assets/passengers/base_rig/legs.png" id="1_wnr4f"]
+[ext_resource type="Texture2D" uid="uid://qoc7ehgw0xyl" path="res://assets/passengers/base_rig/upperarm.png" id="3_lfc6n"]
+[ext_resource type="Texture2D" uid="uid://df0g0ddh4d3y4" path="res://assets/passengers/base_rig/b_legs.png" id="4_dipwx"]
+[ext_resource type="Texture2D" uid="uid://bx3c57snxjqy2" path="res://assets/passengers/base_rig/b_foot.png" id="4_k10bk"]
+[ext_resource type="Texture2D" uid="uid://wdbd3yc25rre" path="res://assets/passengers/base_rig/forearm.png" id="4_nf0l0"]
+[ext_resource type="Texture2D" uid="uid://jfhgabsqb076" path="res://assets/passengers/base_rig/hand.png" id="5_3g0f0"]
+[ext_resource type="Texture2D" uid="uid://culb14del4425" path="res://assets/passengers/base_rig/b_forearm.png" id="9_x5iod"]
+[ext_resource type="Texture2D" uid="uid://c2glx1k64j8cr" path="res://assets/passengers/base_rig/b_hand.png" id="10_h7tw3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq81t"]
+size = Vector2(433, 80)
+
+[sub_resource type="Animation" id="Animation_2sr1g"]
+resource_name = "Idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BLegs:lock_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BFoot:lock_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Foot:lock_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Legs:lock_rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BUpperarm:linear_damp")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BForearm:linear_damp")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BHand:linear_damp")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Upperarm:constant_force")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Torso:linear_velocity")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-100, 0), Vector2(100, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_66s4d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BLegs:lock_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BFoot:lock_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Foot:lock_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Legs:lock_rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BUpperarm:linear_damp")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BForearm:linear_damp")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BHand:linear_damp")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Upperarm:constant_force")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Torso:linear_velocity")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_umbxu"]
+_data = {
+"Idle": SubResource("Animation_2sr1g"),
+"RESET": SubResource("Animation_66s4d")
+}
+
+[node name="Passenger" type="Node2D"]
+texture_filter = 1
+position = Vector2(-3, -88.29)
+script = ExtResource("1_fwvpu")
+
+[node name="BUpperarm" type="RigidBody2D" parent="."]
+position = Vector2(37, 3.66)
+collision_layer = 0
+freeze_mode = 1
+linear_damp = 50.0
+
+[node name="BUpperarm" type="Sprite2D" parent="BUpperarm"]
+self_modulate = Color(0.74, 0.74, 0.74, 1)
+position = Vector2(17, -90.37)
+rotation = -1.5708
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("1_4s3xj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BUpperarm"]
+position = Vector2(133, -37.74)
+rotation = -1.5708
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(9, -40, 9, -30, 3, -30, 3, -31, 4, -31, 4, -32, 3, -32, 3, -40, 4, -40, 4, -41, 5, -41, 5, -42, 7, -42, 7, -41, 8, -41, 8, -40)
+
+[node name="BForearm" type="RigidBody2D" parent="."]
+position = Vector2(51, -27.34)
+collision_layer = 0
+freeze_mode = 1
+linear_damp = 50.0
+angular_velocity = 1.74533
+
+[node name="BForearm" type="Sprite2D" parent="BForearm"]
+self_modulate = Color(0.74, 0.74, 0.74, 1)
+position = Vector2(3.00001, -59.37)
+rotation = -1.5708
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("9_x5iod")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BForearm"]
+position = Vector2(3.00001, -59.37)
+rotation = -1.5708
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(-6, 1, -6, 8, -10, 8, -10, 2, -11, 2, -11, 1)
+
+[node name="BHand" type="RigidBody2D" parent="."]
+position = Vector2(52, -27.34)
+collision_layer = 0
+freeze_mode = 1
+linear_damp = 50.0
+
+[node name="BHand" type="Sprite2D" parent="BHand"]
+self_modulate = Color(0.74, 0.74, 0.74, 1)
+position = Vector2(2.00001, -59.37)
+rotation = -1.5708
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("10_h7tw3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BHand"]
+position = Vector2(2.00001, -59.37)
+rotation = -1.5708
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(-11, 8, -11, 14, -10, 14, -10, 15, -7, 15, -7, 14, -6, 14, -6, 11, -5, 11, -5, 9, -6, 9, -6, 8)
+
+[node name="BFoot" type="RigidBody2D" parent="."]
+position = Vector2(-1, -23.71)
+collision_layer = 0
+freeze_mode = 1
+
+[node name="BFoot" type="Sprite2D" parent="BFoot"]
+self_modulate = Color(0.74, 0.74, 0.74, 1)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("4_k10bk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BFoot"]
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(8, 28, 8, 31, -2, 31, -2, 27, -1, 27, -1, 26, 3, 26, 3, 26, 6, 26, 6, 27, 7, 27, 7, 28)
+
+[node name="BLegs" type="RigidBody2D" parent="."]
+position = Vector2(0.999998, -24)
+collision_layer = 0
+lock_rotation = true
+freeze_mode = 1
+
+[node name="BLegs" type="Sprite2D" parent="BLegs"]
+self_modulate = Color(0.74, 0.74, 0.74, 1)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("4_dipwx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BLegs"]
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 26, -2, 26, -2, 19, -1, 19, -1, 18, -2, 18, -2, 9, 2, 9, 3, 9, 3, 8, 4, 8, 4, 7, 5, 7, 5, 20, 4, 20, 4, 21, 3, 21)
+
+[node name="Foot" type="RigidBody2D" parent="."]
+position = Vector2(2, -24)
+collision_layer = 0
+lock_rotation = true
+freeze_mode = 1
+
+[node name="Foot" type="Sprite2D" parent="Foot"]
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("1_7lq8a")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Foot"]
+position = Vector2(-15, 0)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(8, 28, 8, 31, -2, 31, -2, 27, -1, 27, -1, 26, 3, 26, 3, 26, 6, 26, 6, 27, 7, 27, 7, 28)
+
+[node name="Legs" type="RigidBody2D" parent="."]
+position = Vector2(2, -24)
+collision_layer = 0
+lock_rotation = true
+freeze_mode = 1
+
+[node name="Legs" type="Sprite2D" parent="Legs"]
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("1_wnr4f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Legs"]
+position = Vector2(-15, 0)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 26, -2, 26, -2, 19, -1, 19, -1, 18, -2, 18, -2, 7, -1, 7, -1, 8, 0, 8, 0, 9, 5, 9, 5, 20, 4, 20, 4, 21, 3, 21)
+
+[node name="Torso" type="RigidBody2D" parent="."]
+position = Vector2(-1.90735e-06, -27)
+collision_layer = 0
+freeze_mode = 1
+
+[node name="Torso" type="Sprite2D" parent="Torso"]
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("1_nhr5l")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 12, -3, 12, -3, 11, -4, 11, -4, 10, -6, 10, -6, 9, -7, 9, -7, -11, -3, -11, -3, -13, -1, -13, -1, -12, 1, -12, 1, -11, 4, -11, 6, -11, 6, -9, 7, -9, 7, -2, 6, -2, 6, 9, 5, 9, 5, 10, 4, 10, 4, 11, 3, 11)
+
+[node name="Upperarm" type="RigidBody2D" parent="."]
+position = Vector2(-14, -27)
+collision_layer = 0
+freeze_mode = 1
+constant_force = Vector2(100, 0)
+
+[node name="Upperarm" type="Sprite2D" parent="Upperarm"]
+position = Vector2(-35, 0)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_lfc6n")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Upperarm"]
+position = Vector2(-35, 0)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(9, -9, 9, 1, 3, 1, 3, 0, 4, 0, 4, -1, 3, -1, 3, -9, 4, -9, 4, -10, 5, -10, 5, -11, 7, -11, 7, -10, 8, -10, 8, -9)
+
+[node name="Forearm" type="RigidBody2D" parent="."]
+position = Vector2(-14, -27)
+collision_layer = 0
+freeze_mode = 1
+
+[node name="Forearm" type="Sprite2D" parent="Forearm"]
+position = Vector2(-35, 0)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("4_nf0l0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Forearm"]
+position = Vector2(-35, 0)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 1, 3, 2, 4, 2, 4, 8, 8, 8, 8, 1)
+
+[node name="Hand" type="RigidBody2D" parent="."]
+position = Vector2(-13, -27)
+collision_layer = 0
+freeze_mode = 1
+
+[node name="Hand" type="Sprite2D" parent="Hand"]
+position = Vector2(-36, -0.340004)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("5_3g0f0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand"]
+position = Vector2(-36, -0.3)
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(3, 8, 3, 14, 4, 14, 4, 15, 7, 15, 7, 14, 8, 14, 8, 11, 9, 11, 9, 9, 8, 9, 8, 8)
+
+[node name="Head" type="RigidBody2D" parent="."]
+position = Vector2(-1, -27)
+collision_layer = 0
+can_sleep = false
+freeze_mode = 1
+
+[node name="Head" type="Sprite2D" parent="Head"]
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("1_k52ng")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head"]
+scale = Vector2(3.75, 3.75)
+polygon = PackedVector2Array(4, -11, 1, -11, 1, -12, -1, -12, -1, -13, -3, -13, -3, -15, -4, -15, -4, -16, -5, -16, -5, -17, -6, -17, -6, -20, -5, -20, -5, -24, -4, -24, -4, -25, -3, -25, -3, -26, 4, -26, 4, -25, 5, -25, 5, -24, 6, -24, 6, -13, 5, -13, 5, -12, 4, -12)
+
+[node name="Joints" type="Node2D" parent="."]
+
+[node name="ForearmToUpperarm" type="PinJoint2D" parent="Joints"]
+position = Vector2(-27, -22.71)
+scale = Vector2(0.777027, 1)
+node_a = NodePath("../../Forearm")
+node_b = NodePath("../../Upperarm")
+
+[node name="UpperarmToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(-26, -57.71)
+node_a = NodePath("../../Upperarm")
+node_b = NodePath("../../Torso")
+
+[node name="HandToForearm" type="PinJoint2D" parent="Joints"]
+position = Vector2(-27, 3.29001)
+scale = Vector2(0.777027, 1)
+node_a = NodePath("../../Hand")
+node_b = NodePath("../../Forearm")
+
+[node name="HeadToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(0.999995, -74.71)
+scale = Vector2(1.33703, 1)
+node_a = NodePath("../../Head")
+node_b = NodePath("../../Torso")
+
+[node name="BLegToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(8, 19.29)
+scale = Vector2(0.60454, 1)
+node_a = NodePath("../../BLegs")
+node_b = NodePath("../../Torso")
+
+[node name="LegToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(-7, 19.29)
+scale = Vector2(0.603771, 1)
+node_a = NodePath("../../Legs")
+node_b = NodePath("../../Torso")
+
+[node name="BForearmToBUpperarm" type="PinJoint2D" parent="Joints"]
+position = Vector2(58, -54.71)
+scale = Vector2(1.25703, 0.68)
+node_a = NodePath("../../BForearm")
+node_b = NodePath("../../BUpperarm")
+
+[node name="BUpperarmToTorso" type="PinJoint2D" parent="Joints"]
+position = Vector2(22, -57.71)
+node_a = NodePath("../../BUpperarm")
+node_b = NodePath("../../Torso")
+
+[node name="BHandToBForearm" type="PinJoint2D" parent="Joints"]
+position = Vector2(83, -55.71)
+scale = Vector2(-1.10856, 0.600842)
+node_a = NodePath("../../BHand")
+node_b = NodePath("../../BForearm")
+
+[node name="BFootToBLeg" type="PinJoint2D" parent="Joints"]
+position = Vector2(3, 73.29)
+scale = Vector2(0.84454, 1)
+node_a = NodePath("../../BFoot")
+node_b = NodePath("../../BLegs")
+
+[node name="FootToLeg" type="PinJoint2D" parent="Joints"]
+position = Vector2(-11, 73.29)
+scale = Vector2(0.60454, 1)
+node_a = NodePath("../../Foot")
+node_b = NodePath("../../Legs")
+
+[node name="Upright" type="DampedSpringJoint2D" parent="Joints"]
+position = Vector2(-2, -726.71)
+scale = Vector2(9.08, 9.08)
+node_a = NodePath("../../StaticBody2D")
+node_b = NodePath("../../Torso")
+length = 75.0
+rest_length = 150.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(3, 88.29)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -817)
+shape = SubResource("RectangleShape2D_nq81t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+libraries = {
+"": SubResource("AnimationLibrary_umbxu")
+}

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://qunn7yvvhmxf"]
+
+[node name="Kick" type="RigidBody2D"]
+texture_filter = 1
+position = Vector2(4, 43)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

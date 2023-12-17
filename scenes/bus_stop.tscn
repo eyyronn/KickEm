@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6axu3udp3xpt"]
+
+[ext_resource type="Texture2D" uid="uid://x5osypa1s42h" path="res://background/background_warm.png" id="1_jwlbp"]
+[ext_resource type="PackedScene" uid="uid://dtdrdlrakqwex" path="res://scenes/passenger.tscn" id="3_m6ixd"]
+[ext_resource type="PackedScene" uid="uid://rdxnihxmy1lb" path="res://scenes/student.tscn" id="3_p8lkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fynhi"]
+size = Vector2(1770, 831)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spnp2"]
+size = Vector2(1770, 831)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2lwh"]
+size = Vector2(748, 889)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vlhjk"]
+radius = 12.7373
+height = 423.929
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdx7u"]
+radius = 28.7924
+
+[node name="BusStop" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_jwlbp")
+
+[node name="RigidBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-2, 2)
+
+[node name="Bounds" type="StaticBody2D" parent="RigidBody2D2"]
+position = Vector2(2, -2)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="RigidBody2D2/Bounds"]
+position = Vector2(1763, 1036)
+shape = SubResource("RectangleShape2D_fynhi")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2/Bounds"]
+position = Vector2(143, 1015.5)
+shape = SubResource("RectangleShape2D_spnp2")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="RigidBody2D2/Bounds"]
+position = Vector2(1526, 442.5)
+shape = SubResource("RectangleShape2D_o2lwh")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D2/Bounds"]
+position = Vector2(-372, 444)
+shape = SubResource("RectangleShape2D_o2lwh")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="RigidBody2D2/Bounds"]
+position = Vector2(1080, 686)
+rotation = -0.648877
+scale = Vector2(1, 0.668564)
+shape = SubResource("CapsuleShape2D_vlhjk")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2(387, 355)
+shape = SubResource("CircleShape2D_tdx7u")
+disabled = true
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D2/CollisionShape2D"]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+
+[node name="Passenger" parent="." instance=ExtResource("3_m6ixd")]
+position = Vector2(82, 492)
+controllable = true
+movement_power = 2000.0
+
+[node name="BasePassenger" parent="." instance=ExtResource("3_p8lkg")]
+position = Vector2(200, 492)
