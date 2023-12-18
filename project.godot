@@ -26,8 +26,10 @@ Click={
 
 [layer_names]
 
-2d_physics/layer_1="Limbs"
+2d_physics/layer_1="Bounds"
 2d_physics/layer_2="Kick"
+2d_physics/layer_3="Passengers"
+2d_physics/layer_4="Passenger1"
 
 [rendering]
 

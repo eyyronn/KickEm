@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x5osypa1s42h"
-path="res://.godot/imported/background_warm.png-84c31940827c172ceb496d3e69d6a414.ctex"
+uid="uid://0ncolas8lxh0"
+path="res://.godot/imported/kick_spritesheet.png-cf307e53cd86cd9b12615c6734ea324c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://background/background_warm.png"
-dest_files=["res://.godot/imported/background_warm.png-84c31940827c172ceb496d3e69d6a414.ctex"]
+source_file="res://assets/kick/kick_spritesheet.png"
+dest_files=["res://.godot/imported/kick_spritesheet.png-cf307e53cd86cd9b12615c6734ea324c.ctex"]
 
 [params]
 

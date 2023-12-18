@@ -9,6 +9,7 @@ var limbs = []
 
 @export var controllable := false
 @export var movement_power := 500.0
+
 # @export_flags_2d_physics var layers_2d_physics
 # @export_flags_2d_render var layers_2d_render
 # @onready var limb_script = preload("res://src/scripts/limb.gd")
@@ -22,24 +23,32 @@ func _process(delta):
 		if limb.name == "Torso":
 			update_shadow(limb)
 
-
 func _physics_process(delta):		
 	for limb in limbs:
 		if limb.enabled == true:
-			
+
 			if controllable:
 				control_ragdoll(limb)	
-				
+
 #			if limb.name.ends_with("arm") or limb.name.ends_with("Hand"):
 #				pivot_arm(limb, delta)
 #				continue
-				
-			correct_rotation(limb, delta)	
 
-func _integrate_forces():
-	pass
+			correct_rotation(limb, delta)	
+			
+#func _integrate_forces(state):
+#	for limb in limbs:
+#		if limb.enabled == true:
+#
+#			if controllable:
+#				control_ragdoll(limb)	
+#
+##			if limb.name.ends_with("arm") or limb.name.ends_with("Hand"):
+##				pivot_arm(limb, delta)
+##				continue
+#
+#			correct_rotation(limb, state)	
 		
-	
 func correct_rotation(limb, delta):
 	var current_angle = limb.rotation;
 	
@@ -71,7 +80,8 @@ func control_ragdoll(limb):
 		var velocity_vector = get_global_mouse_position() - limb.global_position     
 		velocity_vector = velocity_vector.normalized()
 		limb.apply_impulse(velocity_vector * movement_power)
-		
+	
+	# Push ragdoll away on mouse release
 #	elif Input.is_action_just_released("Click"):
 #		var velocity_vector = get_global_mouse_position() - limb.global_position
 #		velocity_vector = velocity_vector.normalized()     
