@@ -30,5 +30,3 @@ func spawn_kick():
 	active = true
 	
 	
-	
-	

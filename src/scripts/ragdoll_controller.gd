@@ -7,6 +7,7 @@ class_name Passenger
 var initial_y = 0.0
 var limbs = []
 
+@export var center_of_mass := Vector2(0.0, 0.0)
 @export var controllable := false
 @export var movement_power := 500.0
 
@@ -17,6 +18,9 @@ var limbs = []
 func _ready():
 	for limb in get_children():
 		if limb is Limb: limbs.append(limb)
+		
+	for limb in limbs:
+		limb.center_of_mass = center_of_mass
 
 func _process(delta):
 	for limb in limbs:
@@ -91,7 +95,6 @@ func update_shadow(target):
 	shadow.position = Vector2(target.position.x, target.position.y + 118.0)
 	shadow.position.y = clamp(shadow.position.y, 110, 110)
 	shadow.scale.x = 1.00 - target.position.y * 0.01
-	
-	
+
 	
 	
