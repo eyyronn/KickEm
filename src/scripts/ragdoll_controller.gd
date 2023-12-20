@@ -79,6 +79,7 @@ func correct_rotation(limb, delta):
 #
 #		correct_rotation(limb, delta)
 
+# Pull ragdoll on mouse click position // for debug
 func control_ragdoll(limb):
 	if Input.is_action_just_pressed("Click"):
 		var velocity_vector = get_global_mouse_position() - limb.global_position     
@@ -92,9 +93,8 @@ func control_ragdoll(limb):
 #		limb.apply_impulse(velocity_vector * -1)
 
 func update_shadow(target):
-	shadow.position = Vector2(target.position.x, target.position.y + 118.0)
-	shadow.position.y = clamp(shadow.position.y, 110, 110)
-	shadow.scale.x = 1.00 - target.position.y * 0.01
-
-	
-	
+	shadow.position = Vector2(target.position.x - 40, target.position.y)
+	shadow.position.y = clamp(shadow.position.y, 80, 80)
+	shadow.scale.x = 1.25 + target.position.y * 0.00375
+	shadow.scale.x = clamp(shadow.scale.x, 0, 100)
+#	print_debug(target.position.y * 0.01, shadow.scale.x)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://qunn7yvvhmxf"]
+[gd_scene load_steps=15 format=3 uid="uid://qunn7yvvhmxf"]
 
 [ext_resource type="Texture2D" uid="uid://0ncolas8lxh0" path="res://assets/kick/kick_spritesheet.png" id="1_rnfqu"]
 [ext_resource type="Script" path="res://src/scripts/kick.gd" id="1_vhb8d"]
+[ext_resource type="AudioStream" uid="uid://c80m8a6nghs7o" path="res://assets/audio/kick_charge.wav" id="3_14n8r"]
+[ext_resource type="AudioStream" uid="uid://jwgcp875msp0" path="res://assets/audio/kick_release.wav" id="3_wgv7r"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i22d4"]
 
@@ -232,6 +234,17 @@ tracks/7/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.02)
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_lju2x"]
@@ -465,7 +478,6 @@ position = Vector2(0, 1)
 collision_layer = 2
 collision_mask = 13
 physics_material_override = SubResource("PhysicsMaterial_i22d4")
-constant_linear_velocity = Vector2(-200, 1000)
 script = ExtResource("1_vhb8d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -494,3 +506,11 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_rnfqu")
 hframes = 13
 frame = 1
+
+[node name="KickRelease" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wgv7r")
+volume_db = 10.0
+
+[node name="KickCharge" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_14n8r")
+volume_db = 10.0
