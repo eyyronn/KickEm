@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtdrdlrakqwex"]
+[gd_scene load_steps=19 format=3 uid="uid://dtdrdlrakqwex"]
 
 [ext_resource type="Texture2D" uid="uid://cp4h8edu8rv34" path="res://assets/passengers/base_rig/foot.png" id="1_7lq8a"]
-[ext_resource type="Script" path="res://src/scripts/ragdoll_controller.gd" id="1_cts44"]
+[ext_resource type="Script" path="res://src/scripts/ragdoll.gd" id="1_gypv7"]
 [ext_resource type="Texture2D" uid="uid://wokr42qmd7vo" path="res://assets/passengers/base_rig/head.png" id="1_k52ng"]
 [ext_resource type="Texture2D" uid="uid://dj8f1jcpr6026" path="res://assets/passengers/base_rig/torso.png" id="1_nhr5l"]
 [ext_resource type="Texture2D" uid="uid://dtsipx3uhb5s7" path="res://assets/passengers/base_rig/legs.png" id="1_wnr4f"]
@@ -11,9 +11,41 @@
 [ext_resource type="Texture2D" uid="uid://bx3c57snxjqy2" path="res://assets/passengers/base_rig/b_foot.png" id="4_k10bk"]
 [ext_resource type="Texture2D" uid="uid://wdbd3yc25rre" path="res://assets/passengers/base_rig/forearm.png" id="4_nf0l0"]
 [ext_resource type="Texture2D" uid="uid://jfhgabsqb076" path="res://assets/passengers/base_rig/hand.png" id="5_3g0f0"]
+[ext_resource type="AudioStream" uid="uid://ct5f656s64v8x" path="res://assets/audio/absorb.wav" id="12_pib2d"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mq7un"]
 load_path = "res://.godot/imported/Shadow.png-61d7b9db74850b1fff710392eeb336df.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbial"]
+size = Vector2(72, 217)
+
+[sub_resource type="Animation" id="Animation_mtohl"]
+resource_name = "Absorb"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1.18012, 1.18012), Vector2(1.8, 0.8), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.26),
+"transitions": PackedFloat32Array(3.73213, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.0349066, -0.122173, -0.349066, -0.785398, -1.309]
+}
 
 [sub_resource type="Animation" id="Animation_lk81b"]
 resource_name = "Idle"
@@ -93,20 +125,46 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k6bwm"]
 _data = {
+"Absorb": SubResource("Animation_mtohl"),
 "Idle": SubResource("Animation_lk81b"),
 "RESET": SubResource("Animation_b4hxx")
 }
 
 [node name="BasePassenger" type="Node2D"]
 texture_filter = 1
-position = Vector2(0, -94)
-script = ExtResource("1_cts44")
+position = Vector2(0, -69)
+script = ExtResource("1_gypv7")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(-27, 86)
+z_index = -1
+position = Vector2(-37.1439, 77.7778)
 scale = Vector2(1.25, 0.7)
 skew = -0.401426
 texture = SubResource("CompressedTexture2D_mq7un")
@@ -114,11 +172,12 @@ centered = false
 
 [node name="BUpperarm" type="RigidBody2D" parent="."]
 self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
-position = Vector2(23, -57)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(19.8878, 32.1753)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -136,11 +195,12 @@ polygon = PackedVector2Array(9, -9, 9, 1, 3, 1, 3, 0, 4, 0, 4, -1, 3, -1, 3, -9,
 
 [node name="BForearm" type="RigidBody2D" parent="."]
 self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
-position = Vector2(23, -57)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(19.8878, 32.1753)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -158,11 +218,12 @@ polygon = PackedVector2Array(3, 1, 3, 2, 4, 2, 4, 8, 8, 8, 8, 1)
 
 [node name="BHand" type="RigidBody2D" parent="."]
 self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
-position = Vector2(23, -57)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(19.8878, 32.1753)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -179,11 +240,12 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(3, 8, 3, 14, 4, 14, 4, 15, 7, 15, 7, 14, 8, 14, 8, 11, 9, 11, 9, 9, 8, 9, 8, 8)
 
 [node name="BFoot" type="RigidBody2D" parent="."]
-position = Vector2(-11, 73.71)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(-14.1122, 162.885)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -200,11 +262,12 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(8, 28, 8, 31, -2, 31, -2, 27, -1, 27, -1, 26, 3, 26, 3, 26, 6, 26, 6, 27, 7, 27, 7, 28)
 
 [node name="BLegs" type="RigidBody2D" parent="."]
-position = Vector2(-1.90735e-06, -22.29)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(-3.11217, 66.8853)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -219,11 +282,12 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(3, 26, -2, 26, -2, 19, -1, 19, -1, 18, -2, 18, -2, 9, 2, 9, 3, 9, 3, 8, 4, 8, 4, 7, 5, 7, 5, 20, 4, 20, 4, 21, 3, 21)
 
 [node name="Foot" type="RigidBody2D" parent="."]
-position = Vector2(3, 74)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(-0.112173, 163.175)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -239,11 +303,12 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(8, 28, 8, 31, -2, 31, -2, 27, -1, 27, -1, 26, 3, 26, 3, 26, 6, 26, 6, 27, 7, 27, 7, 28)
 
 [node name="Legs" type="RigidBody2D" parent="."]
-position = Vector2(1, -22.29)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(-2.11217, 66.8853)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -258,11 +323,12 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(3, 26, -2, 26, -2, 19, -1, 19, -1, 18, -2, 18, -2, 7, -1, 7, -1, 8, 0, 8, 0, 9, 5, 9, 5, 20, 4, 20, 4, 21, 3, 21)
 
 [node name="Torso" type="RigidBody2D" parent="."]
-position = Vector2(-1, -25.29)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(-4.11217, 63.8853)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -275,12 +341,21 @@ texture = ExtResource("1_nhr5l")
 scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(3, 12, -3, 12, -3, 11, -4, 11, -4, 10, -6, 10, -6, 9, -7, 9, -7, -11, -3, -11, -3, -13, -1, -13, -1, -12, 1, -12, 1, -11, 4, -11, 6, -11, 6, -9, 7, -9, 7, -2, 6, -2, 6, 9, 5, 9, 5, 10, 4, 10, 4, 11, 3, 11)
 
+[node name="Area2D" type="Area2D" parent="Torso"]
+position = Vector2(-0.887832, 10.6147)
+collision_layer = 51
+collision_mask = 51
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/Area2D"]
+shape = SubResource("RectangleShape2D_cbial")
+
 [node name="Upperarm" type="RigidBody2D" parent="."]
-position = Vector2(-26, -57)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(-29.1122, 32.1753)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -296,11 +371,12 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(9, -9, 9, 1, 3, 1, 3, 0, 4, 0, 4, -1, 3, -1, 3, -9, 4, -9, 4, -10, 5, -10, 5, -11, 7, -11, 7, -10, 8, -10, 8, -9)
 
 [node name="Forearm" type="RigidBody2D" parent="."]
-position = Vector2(-26, -57)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(-29.1122, 32.1753)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -316,11 +392,12 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(3, 1, 3, 2, 4, 2, 4, 8, 8, 8, 8, 1)
 
 [node name="Hand" type="RigidBody2D" parent="."]
-position = Vector2(-26, -57)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(-29.1122, 32.1753)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -336,11 +413,12 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(3, 8, 3, 14, 4, 14, 4, 15, 7, 15, 7, 14, 8, 14, 8, 11, 9, 11, 9, 9, 8, 9, 8, 8)
 
 [node name="Head" type="RigidBody2D" parent="."]
-position = Vector2(1, -75)
-collision_layer = 0
-collision_mask = 11
+position = Vector2(-2.11217, 14.1753)
+collision_layer = 4
+collision_mask = 51
 center_of_mass_mode = 1
 gravity_scale = 2.5
+can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -356,6 +434,7 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(4, -11, 1, -11, 1, -12, -1, -12, -1, -13, -3, -13, -3, -15, -4, -15, -4, -16, -5, -16, -5, -17, -6, -17, -6, -20, -5, -20, -5, -24, -4, -24, -4, -25, -3, -25, -3, -26, 4, -26, 4, -25, 5, -25, 5, -24, 6, -24, 6, -13, 5, -13, 5, -12, 4, -12)
 
 [node name="Joints" type="Node2D" parent="."]
+position = Vector2(-3.11217, 89.1753)
 
 [node name="ForearmToUpperarm" type="PinJoint2D" parent="Joints"]
 position = Vector2(-27, -22.71)
@@ -451,7 +530,13 @@ scale = Vector2(0.60454, 1)
 node_a = NodePath("../../Foot")
 node_b = NodePath("../../Legs")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AbsorbSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 69)
+stream = ExtResource("12_pib2d")
+volume_db = -1.0
+pitch_scale = 0.8
+
+[node name="PassengerPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Joints")
 autoplay = "Idle"
 libraries = {

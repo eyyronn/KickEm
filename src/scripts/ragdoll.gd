@@ -3,19 +3,26 @@ class_name Passenger
 
 @onready var shadow = $Shadow
 @onready var torso = $Torso
+@onready var anim = $PassengerPlayer
+@onready var area = $Torso/Area2D
+@onready var absorb = $AbsorbSound
 
-var initial_y = 0.0
-var limbs = []
-
-@export var center_of_mass := Vector2(0.0, 0.0)
+@export var center_of_mass := Vector2(0.0, 40.0)
 @export var controllable := false
 @export var movement_power := 500.0
-
 # @export_flags_2d_physics var layers_2d_physics
 # @export_flags_2d_render var layers_2d_render
 # @onready var limb_script = preload("res://src/scripts/limb.gd")
 
+var initial_y = 0.0
+var limbs = []
+var colliding_bodies = []
+var is_on_bus = false
+
 func _ready():
+	area.connect("body_entered", _on_body_entered)
+	area.connect("body_exited", _on_body_exited)
+	
 	for limb in get_children():
 		if limb is Limb: limbs.append(limb)
 		
@@ -23,17 +30,25 @@ func _ready():
 		limb.center_of_mass = center_of_mass
 
 func _process(delta):
+	if is_hit() and GameManager.kick.impact > 2:
+		GameManager.hit_stop(GameManager.kick.impact)
+		
 	for limb in limbs:
-		if limb.name == "Torso":
+		
+		if limb.name == "Torso" and not is_on_bus:
 			update_shadow(limb)
+#			self.position = limb.global_position
 
-func _physics_process(delta):		
+func _physics_process(delta):	
 	for limb in limbs:
 		if limb.enabled == true:
 
 			if controllable:
 				control_ragdoll(limb)	
-
+				
+#			if limb.name == "Torso":
+#				update_shadow(limb)
+##				self.position = limb.global_position - Vector2(0, 60)
 #			if limb.name.ends_with("arm") or limb.name.ends_with("Hand"):
 #				pivot_arm(limb, delta)
 #				continue
@@ -98,3 +113,43 @@ func update_shadow(target):
 	shadow.scale.x = 1.25 + target.position.y * 0.00375
 	shadow.scale.x = clamp(shadow.scale.x, 0, 100)
 #	print_debug(target.position.y * 0.01, shadow.scale.x)
+
+#func get_true_position() -> Array:
+#	var limb_positions = []
+#	for limb in limbs:
+#		limb_positions.append(limb.position)
+#
+#	return limb_positions
+func _on_body_entered(body):
+	colliding_bodies.append(body)
+
+func _on_body_exited(body):
+	colliding_bodies.erase(body)
+
+func is_hit() -> bool:
+#	print(colliding_bodies)
+#	print(GameManager.kick in colliding_bodies)
+	return GameManager.kick in colliding_bodies
+
+func freeze() -> void:
+	for limb in limbs:
+		limb.freeze = true
+
+func get_on_bus():
+	freeze()
+##	anim.play("Absorb")
+##	if not anim.is_playing(): queue_free()
+#	var tween_body = create_tween().set_parallel(true)
+##	tween_body.tween_property(self, "position", Vector2(1040, 448), 0.5)
+	for limb in limbs:
+		var tween = create_tween().set_parallel(true)
+#		tween.tween_property(limb, "position", Vector2(1040, 448), 0.5)
+#		if limb.name.ends_with("arm") or limb.name.ends_with("Hand") or limb.name.ends_with("Legs") or limb.name.ends_with("Foot"):
+		for child in limb.get_children():
+			tween.tween_property(child, "scale", Vector2.ZERO, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
+			tween.tween_property(child, "global_position", Vector2(1040, 448), 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
+#	tween.tween_property(self, "scale", Vector2.ZERO, 1).set_ease(Tween.EASE_IN)
+	shadow.queue_free()
+	absorb.play()
+	GameManager.remove_passenger(self)
+	is_on_bus = true

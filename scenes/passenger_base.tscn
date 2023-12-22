@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://g4jxcnr8810c"]
 
-[ext_resource type="Script" path="res://src/scripts/ragdoll_controller.gd" id="1_6jbfu"]
+[ext_resource type="Script" path="res://src/scripts/ragdoll.gd" id="1_6jbfu"]
 [ext_resource type="Script" path="res://src/scripts/limb.gd" id="2_qkpxy"]
 [ext_resource type="Texture2D" uid="uid://culb14del4425" path="res://assets/passengers/base_rig/b_forearm.png" id="3_3ut0u"]
 [ext_resource type="Texture2D" uid="uid://b3d35l4s6n068" path="res://assets/passengers/base_rig/b_upperarm.png" id="4_l1750"]

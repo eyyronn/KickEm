@@ -1,11 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6axu3udp3xpt"]
+[gd_scene load_steps=13 format=3 uid="uid://b6axu3udp3xpt"]
 
 [ext_resource type="Texture2D" uid="uid://dr38c8qag2iui" path="res://assets/background/background_cool.png" id="1_404tk"]
-[ext_resource type="Script" path="res://src/scripts/bus_stop.gd" id="1_m6rqx"]
-[ext_resource type="Texture2D" uid="uid://dmoqkpcfyyut5" path="res://assets/bus/bus_open.png" id="3_1fgdv"]
-[ext_resource type="PackedScene" uid="uid://dtdrdlrakqwex" path="res://scenes/passenger.tscn" id="3_m6ixd"]
-[ext_resource type="PackedScene" uid="uid://rdxnihxmy1lb" path="res://scenes/student.tscn" id="3_p8lkg"]
-[ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="4_d61y3"]
+[ext_resource type="Script" path="res://src/scripts/main.gd" id="1_nsfnh"]
+[ext_resource type="AudioStream" uid="uid://b41qt0bx0sjmt" path="res://assets/audio/noise.wav" id="3_ss1b5"]
 [ext_resource type="AudioStream" uid="uid://dxdsqa100t6d4" path="res://assets/audio/background_song.wav" id="6_lmrek"]
 
 [sub_resource type="Environment" id="Environment_jksyc"]
@@ -30,398 +27,53 @@ size = Vector2(703, 3533)
 size = Vector2(744, 3500)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vlhjk"]
-radius = 12.7373
+radius = 8.4061
 height = 423.929
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51jir"]
 size = Vector2(1742.51, 831)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mark1"]
+[sub_resource type="GDScript" id="GDScript_tmafl"]
+script/source = "extends Control
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d2y1n"]
-shader = ExtResource("4_d61y3")
-shader_parameter/lod = 0.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0gn7"]
-size = Vector2(54.5341, 47.2063)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2sv7"]
-size = Vector2(352.25, 307)
-
-[sub_resource type="Animation" id="Animation_btou5"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Bus/Bus:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Bus/Bus:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(966, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Bus/Bus:position:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(428, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Bus/Bus:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Bus/Bus:scale:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.17945, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Bus/Bus:scale:y")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.17945, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Bus/Blur:material:shader_parameter/lod")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Bus/Blur:size:x")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(47, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Bus/Blur:size:y")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(43, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/9/type = "bezier"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Bus/Blur:position:x")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(942, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/10/type = "bezier"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("../Bus/Blur:position:y")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(326, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/11/type = "bezier"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("../Bus/Blur:scale:x")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(4.41303, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("../Bus/Blur:scale:y")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(4.74215, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("../Bus/CollisionShape2D:disabled")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("Bus:frame_coords")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_3f4km"]
-resource_name = "bus_arrive"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Bus/Bus:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Bus/Bus:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(966, -0.25, 0, 0.25, 0, 1207, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Bus/Bus:position:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(428, -0.25, 0, 0.25, 0, 435, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Bus/Bus:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Bus/Bus:scale:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1.17945, -0.25, 0, 0.25, 0, 6.3492, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Bus/Bus:scale:y")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1.17945, -0.25, 0, 0.25, 0, 6.3492, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Bus/Blur:material:shader_parameter/lod")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(1.615, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.33, 0.66, 0.7)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Bus/Blur:size:x")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(17, -0.25, 0, 0.25, 0, 47, -0.25, 0, 0.25, 0, 61, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.33, 0.66)
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Bus/Blur:size:y")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(17, -0.25, 0, 0.25, 0, 43, -0.25, 0, 0.25, 0, 64, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.33, 0.66)
-}
-tracks/9/type = "bezier"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Bus/Blur:position:x")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(928, -0.25, 0, 0.25, 0, 942, -0.25, 0, 0.25, 0, 993, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.33, 0.66)
-}
-tracks/10/type = "bezier"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("../Bus/Blur:position:y")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(390, -0.25, 0, 0.25, 0, 326, -0.25, 0, 0.25, 0, 275, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.33, 0.66)
-}
-tracks/11/type = "bezier"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("../Bus/Blur:scale:x")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(4.41303, -0.25, 0, 0.25, 0, 4.41303, -0.25, 0, 0.25, 0, 4.41303, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.33, 0.66)
-}
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("../Bus/Blur:scale:y")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(4.74215, -0.25, 0, 0.25, 0, 4.74215, -0.25, 0, 0.25, 0, 4.74215, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.2)
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("../Bus/CollisionShape2D:disabled")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_i5y8d"]
-resource_name = "bus_open"
-length = 0.15
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bus:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.09, 0.13),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2sq8i"]
-_data = {
-"RESET": SubResource("Animation_btou5"),
-"bus_arrive": SubResource("Animation_3f4km"),
-"bus_open": SubResource("Animation_i5y8d")
-}
+func _ready():
+	GameManager.connect(\"on_lose\", open_lose_screen)
+	GameManager.connect(\"on_restart\", restart_scene)
+	
+func open_lose_screen():
+	pass
+	
+func restart_scene():
+	get_tree().reload_current_scene()
+"
 
 [node name="BusStop" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_m6rqx")
-aim_speed = 2
+script = ExtResource("1_nsfnh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jksyc")
 
 [node name="Warm" type="CanvasModulate" parent="."]
 visible = false
+texture_filter = 1
 color = Color(1, 0.878431, 0.619608, 1)
 
 [node name="Environment" type="Node2D" parent="."]
+z_index = -2
 
 [node name="Background" type="TextureRect" parent="Environment"]
 offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("1_404tk")
 
+[node name="Ambience" type="AudioStreamPlayer2D" parent="Environment"]
+stream = ExtResource("3_ss1b5")
+volume_db = 5.0
+autoplay = true
+
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Environment"]
 stream = ExtResource("6_lmrek")
-volume_db = 10.0
 autoplay = true
 
 [node name="Bounds" type="StaticBody2D" parent="Environment"]
@@ -443,23 +95,18 @@ one_way_collision_margin = 128.0
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment/Bounds"]
 position = Vector2(1583.5, -853.5)
 shape = SubResource("RectangleShape2D_bivvc")
-one_way_collision = true
-one_way_collision_margin = 128.0
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Bounds"]
 position = Vector2(-370, -862)
 shape = SubResource("RectangleShape2D_l5f43")
-one_way_collision = true
-one_way_collision_margin = 128.0
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Environment/Bounds"]
-position = Vector2(1080, 686)
+position = Vector2(1086, 691)
 rotation = -0.648877
 scale = Vector2(1, 0.668564)
 shape = SubResource("CapsuleShape2D_vlhjk")
-one_way_collision = true
 one_way_collision_margin = 128.0
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Environment/Bounds"]
@@ -468,57 +115,11 @@ scale = Vector2(1.53585, 1.60654)
 shape = SubResource("RectangleShape2D_51jir")
 one_way_collision_margin = 128.0
 
-[node name="Bus" type="StaticBody2D" parent="."]
-
-[node name="Bus" type="Sprite2D" parent="Bus"]
-material = SubResource("ShaderMaterial_mark1")
-position = Vector2(966, 428)
-scale = Vector2(1.17945, 1.17945)
-texture = ExtResource("3_1fgdv")
-hframes = 4
-
-[node name="Blur" type="ColorRect" parent="Bus"]
-material = SubResource("ShaderMaterial_d2y1n")
-clip_contents = true
-offset_left = 942.0
-offset_top = 326.0
-offset_right = 989.0
-offset_bottom = 369.0
-scale = Vector2(4.41303, 4.74215)
-
-[node name="Area2D" type="Area2D" parent="Bus"]
-position = Vector2(1207, 449)
-scale = Vector2(6.48219, 6.48219)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bus/Area2D"]
-position = Vector2(2.77679, 3.12392)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_i0gn7")
-one_way_collision = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bus"]
-position = Vector2(1225.5, 469.125)
-rotation = -1.5708
-shape = SubResource("RectangleShape2D_t2sv7")
-disabled = true
-one_way_collision = true
-one_way_collision_margin = 128.0
-
-[node name="Passenger" parent="." instance=ExtResource("3_m6ixd")]
-position = Vector2(302, 505)
-center_of_mass = Vector2(0, 40)
-movement_power = 2000.0
-
-[node name="Student" parent="." instance=ExtResource("3_p8lkg")]
-position = Vector2(420, 505)
-center_of_mass = Vector2(0, 40)
-
-[node name="BusAnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Bus")
-autoplay = "bus_arrive"
-speed_scale = 0.33
-libraries = {
-"": SubResource("AnimationLibrary_2sq8i")
-}
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_tmafl")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

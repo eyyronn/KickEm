@@ -16,6 +16,11 @@ run/main_scene="res://scenes/bus_stop.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Messenger="*res://src/scripts/messenger.gd"
+GameManager="*res://src/scripts/game_manager.gd"
+
 [input]
 
 Click={
@@ -30,6 +35,8 @@ Click={
 2d_physics/layer_2="Kick"
 2d_physics/layer_3="Passengers"
 2d_physics/layer_4="Passenger1"
+2d_physics/layer_5="Bus"
+2d_physics/layer_6="Blob"
 
 [rendering]
 
