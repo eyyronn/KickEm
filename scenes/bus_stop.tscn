@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dr38c8qag2iui" path="res://assets/background/background_cool.png" id="1_404tk"]
 [ext_resource type="Script" path="res://src/scripts/main.gd" id="1_nsfnh"]
 [ext_resource type="AudioStream" uid="uid://b41qt0bx0sjmt" path="res://assets/audio/noise.wav" id="3_ss1b5"]
+[ext_resource type="PackedScene" uid="uid://tn51vycgy3xn" path="res://scenes/UI/in_game_ui.tscn" id="5_y38gy"]
 [ext_resource type="AudioStream" uid="uid://dxdsqa100t6d4" path="res://assets/audio/background_song.wav" id="6_lmrek"]
 
 [sub_resource type="Environment" id="Environment_jksyc"]
@@ -32,20 +33,6 @@ height = 423.929
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51jir"]
 size = Vector2(1742.51, 831)
-
-[sub_resource type="GDScript" id="GDScript_tmafl"]
-script/source = "extends Control
-
-func _ready():
-	GameManager.connect(\"on_lose\", open_lose_screen)
-	GameManager.connect(\"on_restart\", restart_scene)
-	
-func open_lose_screen():
-	pass
-	
-func restart_scene():
-	get_tree().reload_current_scene()
-"
 
 [node name="BusStop" type="Node2D"]
 texture_filter = 1
@@ -115,11 +102,6 @@ scale = Vector2(1.53585, 1.60654)
 shape = SubResource("RectangleShape2D_51jir")
 one_way_collision_margin = 128.0
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = SubResource("GDScript_tmafl")
+[node name="Control" parent="." instance=ExtResource("5_y38gy")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

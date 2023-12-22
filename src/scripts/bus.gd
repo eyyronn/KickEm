@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name Bus
 
 #@onready var area = $Area2D
 @onready var anim = $BusPlayer
@@ -35,7 +36,7 @@ func _physics_process(delta):
 #	prev_body = body
 		
 func absorb_passenger(passenger):
-	var distance = passenger.area.global_position.distance_to(area.global_position)
+	var distance = passenger.hurt_box.global_position.distance_to(area.global_position)
 
 	if distance < absorb_distance:
 		passenger.get_on_bus()

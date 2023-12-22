@@ -6,6 +6,7 @@ class_name Passenger
 @onready var anim = $PassengerPlayer
 @onready var area = $Torso/Area2D
 @onready var absorb = $AbsorbSound
+@onready var hurt_box = $Torso/HurtBoxComponent
 
 @export var center_of_mass := Vector2(0.0, 40.0)
 @export var controllable := false
@@ -16,13 +17,9 @@ class_name Passenger
 
 var initial_y = 0.0
 var limbs = []
-var colliding_bodies = []
 var is_on_bus = false
 
 func _ready():
-	area.connect("body_entered", _on_body_entered)
-	area.connect("body_exited", _on_body_exited)
-	
 	for limb in get_children():
 		if limb is Limb: limbs.append(limb)
 		
@@ -30,7 +27,7 @@ func _ready():
 		limb.center_of_mass = center_of_mass
 
 func _process(delta):
-	if is_hit() and GameManager.kick.impact > 2:
+	if hurt_box.is_hit() and GameManager.kick.impact > 2:
 		GameManager.hit_stop(GameManager.kick.impact)
 		
 	for limb in limbs:
@@ -120,16 +117,6 @@ func update_shadow(target):
 #		limb_positions.append(limb.position)
 #
 #	return limb_positions
-func _on_body_entered(body):
-	colliding_bodies.append(body)
-
-func _on_body_exited(body):
-	colliding_bodies.erase(body)
-
-func is_hit() -> bool:
-#	print(colliding_bodies)
-#	print(GameManager.kick in colliding_bodies)
-	return GameManager.kick in colliding_bodies
 
 func freeze() -> void:
 	for limb in limbs:
@@ -143,13 +130,11 @@ func get_on_bus():
 ##	tween_body.tween_property(self, "position", Vector2(1040, 448), 0.5)
 	for limb in limbs:
 		var tween = create_tween().set_parallel(true)
-#		tween.tween_property(limb, "position", Vector2(1040, 448), 0.5)
-#		if limb.name.ends_with("arm") or limb.name.ends_with("Hand") or limb.name.ends_with("Legs") or limb.name.ends_with("Foot"):
 		for child in limb.get_children():
 			tween.tween_property(child, "scale", Vector2.ZERO, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 			tween.tween_property(child, "global_position", Vector2(1040, 448), 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
-#	tween.tween_property(self, "scale", Vector2.ZERO, 1).set_ease(Tween.EASE_IN)
 	shadow.queue_free()
+	is_on_bus = true
 	absorb.play()
 	GameManager.remove_passenger(self)
-	is_on_bus = true
+	

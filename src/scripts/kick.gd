@@ -1,5 +1,5 @@
 extends StaticBody2D
-#class_name Kick
+class_name Kick
 
 @onready var animation = $AnimationPlayer
 @onready var charge_audio = $KickCharge
