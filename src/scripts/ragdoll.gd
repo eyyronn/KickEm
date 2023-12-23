@@ -6,7 +6,6 @@ class_name Passenger
 @onready var anim = $PassengerPlayer
 @onready var area = $Torso/Area2D
 @onready var absorb = $AbsorbSound
-@onready var hurt_box = $Torso/HurtBoxComponent
 
 @export var center_of_mass := Vector2(0.0, 40.0)
 @export var controllable := false
@@ -14,9 +13,10 @@ class_name Passenger
 # @export_flags_2d_physics var layers_2d_physics
 # @export_flags_2d_render var layers_2d_render
 # @onready var limb_script = preload("res://src/scripts/limb.gd")
+#var initial_y = 0.0
 
-var initial_y = 0.0
 var limbs = []
+var current_size = 10
 var is_on_bus = false
 
 func _ready():
@@ -26,10 +26,7 @@ func _ready():
 	for limb in limbs:
 		limb.center_of_mass = center_of_mass
 
-func _process(delta):
-	if hurt_box.is_hit() and GameManager.kick.impact > 2:
-		GameManager.hit_stop(GameManager.kick.impact)
-		
+func _process(delta):	
 	for limb in limbs:
 		
 		if limb.name == "Torso" and not is_on_bus:
@@ -123,7 +120,7 @@ func freeze() -> void:
 		limb.freeze = true
 
 func get_on_bus():
-	freeze()
+	self.freeze()
 ##	anim.play("Absorb")
 ##	if not anim.is_playing(): queue_free()
 #	var tween_body = create_tween().set_parallel(true)
@@ -133,8 +130,17 @@ func get_on_bus():
 		for child in limb.get_children():
 			tween.tween_property(child, "scale", Vector2.ZERO, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 			tween.tween_property(child, "global_position", Vector2(1040, 448), 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
-	shadow.queue_free()
-	is_on_bus = true
-	absorb.play()
+	
+	self.shadow.queue_free()
+	self.is_on_bus = true
+	self.absorb.play()
 	GameManager.remove_passenger(self)
 	
+#	if GameManager.active_blob:
+#		GameManager.active_blob.grow(self.current_size)
+#		GameManager.active_blob.first_grow = false
+	
+#func is_hit() ->  bool:
+#	if GameManager.kick.raycast.is_colliding():
+#		return GameManager.kick.raycast.get_collider() is Limb
+#	return false

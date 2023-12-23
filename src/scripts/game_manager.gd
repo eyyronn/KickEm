@@ -1,18 +1,18 @@
 extends Node2D
 
 @onready var kick = kick_scene.instantiate() as Kick
-@onready var blob = blob_scene.instantiate()
+#@onready var blob = blob_scene.instantiate()
 #@onready var active = false
 #@onready var bus_anim = bus.anim
 
 #@export var aim_speed := 1
-@export var spawn_count := 5
+@export var spawn_count := 5.0
 @export var spawn_range := [100, 650]
 @export var spawn_offset := [10, 50]
 
 var all_passengers = []
-var current_passenger_count = 5
-var active_bus
+var current_passenger_count = 5.0
+var active_bus = null
 var active_blob = null
 var score = 0
 var is_player_lost = false
@@ -25,6 +25,7 @@ const blob_scene = preload("res://scenes/blob.tscn")
 
 signal on_lose
 signal on_restart
+
 
 func _ready():
 	add_child(kick)
@@ -45,11 +46,13 @@ func _process(delta):
 #		kick.rotation_degrees =  lerp(kick.rotation_degrees, rad_to_deg(get_angle_to(get_global_mouse_position())), aim_speed)
 		kick.look_at(get_global_mouse_position())
 	
-	if current_passenger_count < spawn_count and active_blob == null:
+	if (spawn_count - current_passenger_count == 1.0) and active_blob == null:
 		spawn_blob()
+		active_blob.first_grow = true
 		
 func _physics_process(delta):
-	pass
+	if kick.success_hit() is Limb and kick.impact > 2:
+		hit_stop(kick.impact)
 		
 func spawn_kick():
 	kick.position = get_global_mouse_position()
@@ -59,13 +62,13 @@ func spawn_bus():
 	add_child(bus)
 	active_bus = bus
 	spawn_passengers()
-#	bus.anim.play("bus_come")
+#	print_debug("bus", active_blob, active_bus)
 
 func spawn_blob():
 	var blob = blob_scene.instantiate() as Blob
-	print("blob")
 	add_child(blob)
 	active_blob = blob
+#	print_debug("blob", active_blob, active_bus)
 
 func spawn_passengers():
 	for i in spawn_count:

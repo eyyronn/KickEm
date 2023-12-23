@@ -4,7 +4,8 @@ class_name Kick
 @onready var animation = $AnimationPlayer
 @onready var charge_audio = $KickCharge
 @onready var release_audio = $KickRelease
-
+@onready var hit_box = $HitBox
+@onready var raycast = $RayCast
 #@export var constant_linear_velocity := Vector2(800, 0)
 #@export var strength  := constant_linear_velocity
 @export var force_multiplier := Vector2(500, 500)
@@ -18,6 +19,10 @@ func _ready():
 	pass
 	
 func _process(delta):
+	
+	if GameManager.is_player_lost:
+		return
+
 	var direction = global_transform.origin.direction_to(get_global_mouse_position())
 	
 	if Input.is_action_pressed("Click"):
@@ -33,6 +38,10 @@ func _process(delta):
 #	print_debug(force, constant_linear_velocity
 	
 func _physics_process(delta):
+	
+	if GameManager.is_player_lost:
+		return
+	
 	if Input.is_action_just_pressed("Click"):
 		charge_kick(delta)
 		
@@ -43,6 +52,7 @@ func _integrate_forces(state):
 	pass
 		
 func charge_kick(delta):
+	raycast.enabled = false
 	is_charging = true
 	force += 1
 	charge_audio.play()
@@ -55,8 +65,11 @@ func release_kick():
 	release_audio.play()
 	animation.play("kick_release")
 	
-
-	
+func success_hit() -> Object:
+	if raycast.is_colliding():
+		return raycast.get_collider()
+		
+	return null
 	
 
 	
