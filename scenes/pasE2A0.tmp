@@ -11,14 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://bx3c57snxjqy2" path="res://assets/passengers/base_rig/b_foot.png" id="4_k10bk"]
 [ext_resource type="Texture2D" uid="uid://wdbd3yc25rre" path="res://assets/passengers/base_rig/forearm.png" id="4_nf0l0"]
 [ext_resource type="Texture2D" uid="uid://jfhgabsqb076" path="res://assets/passengers/base_rig/hand.png" id="5_3g0f0"]
-[ext_resource type="PackedScene" uid="uid://be1ao4i84ilhs" path="res://scenes/hurt_box_component.tscn" id="11_ds2lk"]
+[ext_resource type="Script" path="res://src/scripts/hurt_box.gd" id="11_4h4th"]
 [ext_resource type="AudioStream" uid="uid://ct5f656s64v8x" path="res://assets/audio/absorb.wav" id="12_pib2d"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mq7un"]
 load_path = "res://.godot/imported/Shadow.png-61d7b9db74850b1fff710392eeb336df.ctex"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnavv"]
-size = Vector2(71, 218)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbial"]
+size = Vector2(72, 217)
 
 [sub_resource type="Animation" id="Animation_mtohl"]
 resource_name = "Absorb"
@@ -159,7 +159,6 @@ _data = {
 }
 
 [node name="BasePassenger" type="Node2D"]
-z_index = 2
 texture_filter = 1
 position = Vector2(0, -69)
 script = ExtResource("1_gypv7")
@@ -343,11 +342,14 @@ texture = ExtResource("1_nhr5l")
 scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(3, 12, -3, 12, -3, 11, -4, 11, -4, 10, -6, 10, -6, 9, -7, 9, -7, -11, -3, -11, -3, -13, -1, -13, -1, -12, 1, -12, 1, -11, 4, -11, 6, -11, 6, -9, 7, -9, 7, -2, 6, -2, 6, 9, 5, 9, 5, 10, 4, 10, 4, 11, 3, 11)
 
-[node name="HurtBoxComponent" parent="Torso" instance=ExtResource("11_ds2lk")]
+[node name="HurtBoxComponent" type="Area2D" parent="Torso"]
+position = Vector2(-0.887832, 10.6147)
+collision_layer = 51
+collision_mask = 51
+script = ExtResource("11_4h4th")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/HurtBoxComponent"]
-position = Vector2(0.500003, 0.5)
-shape = SubResource("RectangleShape2D_tnavv")
+shape = SubResource("RectangleShape2D_cbial")
 
 [node name="Upperarm" type="RigidBody2D" parent="."]
 position = Vector2(-29.1122, 32.1753)

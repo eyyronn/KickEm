@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://tn51vycgy3xn"]
+
+[ext_resource type="Script" path="res://src/scripts/in_game_ui.gd" id="1_hdrbt"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hdrbt")
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 400.0
+offset_top = 37.0
+offset_right = 779.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.055
+anchor_top = -0.925
+anchor_right = -1.055
+anchor_bottom = -0.925
+offset_left = 399.845
+offset_top = 37.0
+offset_right = 439.845
+offset_bottom = 60.0
+text = "50
+"
