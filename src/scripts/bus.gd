@@ -41,8 +41,9 @@ func absorb_passenger(passenger):
 	if distance < absorb_distance:
 		passenger.get_on_bus()
 		if GameManager.active_blob:
+			GameManager.active_blob.first_grow = false
 			GameManager.active_blob.grow(passenger.current_size)
-#
+			
 #	var limbs_distance = []
 ##
 #	for limb_position in passenger.get_true_position():
