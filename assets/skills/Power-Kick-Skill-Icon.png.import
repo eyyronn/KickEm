@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di73onv6dtehy"
-path="res://.godot/imported/Shadow.png-61d7b9db74850b1fff710392eeb336df.ctex"
+uid="uid://bylu11il220t5"
+path="res://.godot/imported/Power-Kick-Skill-Icon.png-0c6fee0b57f40185556b6dee0d9630b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/passengers/Shadow.png"
-dest_files=["res://.godot/imported/Shadow.png-61d7b9db74850b1fff710392eeb336df.ctex"]
+source_file="res://assets/skills/Power-Kick-Skill-Icon.png"
+dest_files=["res://.godot/imported/Power-Kick-Skill-Icon.png-0c6fee0b57f40185556b6dee0d9630b4.ctex"]
 
 [params]
 

@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 
 Messenger="*res://src/scripts/messenger.gd"
 GameManager="*res://src/scripts/game_manager.gd"
+AntiGravity="*res://scenes/anti_gravity.tscn"
+PowerKick="*res://scenes/power_kick.tscn"
 
 [input]
 

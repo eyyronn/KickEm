@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2tc7xwls7r4h"]
+
+[ext_resource type="Script" path="res://src/scripts/anti_gravity.gd" id="1_imhoe"]
+[ext_resource type="Texture2D" uid="uid://ds6vgkyjl5m0x" path="res://assets/skills/Anti-Gravity-Skill.png" id="1_vlgci"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v760m"]
+radius = 55.0364
+
+[sub_resource type="Animation" id="Animation_oiipd"]
+resource_name = "Cooldown"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Anti-Gravity-Skill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.294118), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1hx33"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Anti-Gravity-Skill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.294118)]
+}
+
+[sub_resource type="Animation" id="Animation_rrjnf"]
+resource_name = "activated"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Anti-Gravity-Skill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.294118)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gj2aw"]
+_data = {
+"Cooldown": SubResource("Animation_oiipd"),
+"RESET": SubResource("Animation_1hx33"),
+"activated": SubResource("Animation_rrjnf")
+}
+
+[node name="Anti-Gravity" type="Area2D"]
+script = ExtResource("1_imhoe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(75, 68)
+shape = SubResource("CircleShape2D_v760m")
+metadata/_edit_lock_ = true
+
+[node name="Anti-Gravity-Skill" type="Sprite2D" parent="CollisionShape2D"]
+modulate = Color(1, 1, 1, 0.294118)
+position = Vector2(0.0500042, 6.5)
+scale = Vector2(0.262292, 0.272917)
+texture = ExtResource("1_vlgci")
+
+[node name="SkillAnimation" type="AnimationPlayer" parent="."]
+autoplay = "Cooldown"
+libraries = {
+"": SubResource("AnimationLibrary_gj2aw")
+}
+
+[node name="Cooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 32.0
+one_shot = true
+
+[node name="Activated" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Activated" to="." method="_on_activated_timeout"]
