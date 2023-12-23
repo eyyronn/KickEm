@@ -25,6 +25,9 @@ func _physics_process(delta):
 	pass
 	
 func grow(amount):
+	
+	size += amount
+	
 	if not first_grow:
 		var tween = create_tween().set_parallel(true)
 		
@@ -33,9 +36,13 @@ func grow(amount):
 		print_debug(grow_amount)
 		tween.tween_property(self, "position", position - Vector2(3, 0), 0.5).from_current().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 		tween.tween_property(self, "scale", scale + grow_amount, 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
-		first_grow = false
+	
+	first_grow = false
 	
 func shrink(amount):
+	
+	size -= amount
+	
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "position", position + Vector2(3, 0), 0.5).from_current().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "scale", scale - Vector2(amount * 0.01, amount * 0.01), 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)

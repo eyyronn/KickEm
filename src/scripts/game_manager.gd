@@ -46,7 +46,7 @@ func _process(delta):
 #		kick.rotation_degrees =  lerp(kick.rotation_degrees, rad_to_deg(get_angle_to(get_global_mouse_position())), aim_speed)
 		kick.look_at(get_global_mouse_position())
 	
-	if (spawn_count - current_passenger_count == 1.0) and active_blob == null:
+	if current_passenger_count < spawn_count and active_blob == null:
 		spawn_blob()
 		active_blob.first_grow = true
 		
