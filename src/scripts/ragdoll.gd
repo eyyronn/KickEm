@@ -16,16 +16,54 @@ class_name Passenger
 #var initial_y = 0.0
 
 var limbs = []
-var current_size = 10
+var size = 10
 var is_on_bus = false
+var type : int
 
 func _ready():
+	initialize_limbs()
+	initialize_type()
+		
+func initialize_limbs():
 	for limb in get_children():
 		if limb is Limb: limbs.append(limb)
-		
-	for limb in limbs:
-		limb.center_of_mass = center_of_mass
 
+func initialize_type():
+	var available_types = get_available_types()
+	type = available_types[randi_range(0, available_types.size() - 1)]
+	
+	match type:
+		0:	
+			size = 10
+		1: 	
+			size = 20
+		2:	
+			size = 30
+		3:	
+			size = 40
+		4:	
+			size = 50
+			
+	set_weight(size * 4.0)
+	
+func get_available_types():
+	var available_types = [0]
+	match GameManager.difficulty:
+		1:	
+			available_types.append(1)
+		2:	
+			available_types.append(2)
+		3:	
+			available_types.append(3)
+		4:	
+			available_types.append(4)
+			
+	return available_types
+	
+func set_weight(weight):
+	for limb in limbs:
+		limb.center_of_mass = Vector2(0.0, weight)
+		
 func _process(delta):	
 	for limb in limbs:
 		
@@ -137,7 +175,7 @@ func get_on_bus():
 	GameManager.remove_passenger(self)
 	
 #	if GameManager.active_blob:
-#		GameManager.active_blob.grow(self.current_size)
+#		GameManager.active_blob.grow(self.size)
 #		GameManager.active_blob.first_grow = false
 	
 #func is_hit() ->  bool:

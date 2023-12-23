@@ -17,6 +17,7 @@ var active_blob = null
 var score = 0
 var is_player_lost = false
 var hit_stop_enabled = true
+var difficulty = 0
 
 const passenger_scene = preload("res://scenes/passenger.tscn")
 const bus_scene = preload("res://scenes/bus.tscn")

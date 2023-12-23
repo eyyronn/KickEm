@@ -44,7 +44,7 @@ func absorb_passenger(passenger):
 		
 		if GameManager.active_blob:
 			GameManager.active_blob.first_grow = false
-			GameManager.active_blob.grow(passenger.current_size)
+			GameManager.active_blob.grow(passenger.size)
 			
 #	var limbs_distance = []
 ##
