@@ -35,6 +35,10 @@ func _process(delta):
 		constant_linear_velocity = force_multiplier * Vector2(force, force) * direction
 		impact = force
 		force = 0
+		
+	if success_hit():
+		if success_hit() is Blob:
+			kick_blob()
 #	print_debug(force, constant_linear_velocity
 	
 func _physics_process(delta):
@@ -52,6 +56,7 @@ func _integrate_forces(state):
 	pass
 		
 func charge_kick(delta):
+	raycast.set_collision_mask_value(6, true)
 	raycast.enabled = false
 	is_charging = true
 	force += 1
@@ -67,9 +72,16 @@ func release_kick():
 	
 func success_hit() -> Object:
 	if raycast.is_colliding():
-		return raycast.get_collider()
-		
+		var collider = raycast.get_collider()
+		return collider
+	
 	return null
 	
+func kick_blob():
+	raycast.set_collision_mask_value(6, false)
+	GameManager.active_blob.anim.play("Hurt")
+#	print_debug(GameManager.active_blob.size, impact * 3.33)
+	GameManager.active_blob.shrink(impact)
+#	print_debug("Hit", GameManager.active_blob.size, impact)
 
 	

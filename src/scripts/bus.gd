@@ -19,9 +19,10 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	for passenger in GameManager.all_passengers:
-		if passenger.is_on_bus == false:
-			absorb_passenger(passenger)
+	if not anim.is_playing():
+		for passenger in GameManager.all_passengers:
+			if passenger.is_on_bus == false:
+				absorb_passenger(passenger)
 
 #func spawn_bus():
 #	anim.play("BusCome")
@@ -40,6 +41,7 @@ func absorb_passenger(passenger):
 
 	if distance < absorb_distance:
 		passenger.get_on_bus()
+		
 		if GameManager.active_blob:
 			GameManager.active_blob.first_grow = false
 			GameManager.active_blob.grow(passenger.current_size)

@@ -1,11 +1,14 @@
-extends Node2D
+extends StaticBody2D
 class_name Blob
 
-@onready var blob_anim = $Blob/BlobPlayer
+@onready var anim = $BlobPlayer
 #var hit_distance = 100
 #var kick_hit_box = GameManager.kick.hit_box
-var first_grow = true
-var size = 10
+@onready var first_grow = true
+@onready var size = 10
+
+@export var impact_multiplier := 3.33
+
 var grow_amount : Vector2
 
 func _ready():
@@ -17,9 +20,10 @@ func _process(delta):
 #	print_debug(first_grow)
 #	print(GameManager.active_blob)
 	if GameManager.kick.success_hit():
-		if GameManager.kick.success_hit().name == "Blob":
-			blob_anim.play("Hurt")
-			shrink(GameManager.kick.impact * 2)
+		if GameManager.kick.success_hit() is Blob:
+			
+			if size < 1 and GameManager.all_passengers.size() == 0:
+				print_debug("Bus Go")
 		
 func _physics_process(delta):
 	pass
@@ -36,13 +40,11 @@ func grow(amount):
 		tween.tween_property(self, "scale", scale + grow_amount, 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 	
 func shrink(amount):
-	
-	size -= amount
-	
+	size -= amount * impact_multiplier
+#	
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "position", position + Vector2(3, 0), 0.5).from_current().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "scale", scale - Vector2(amount * 0.01, amount * 0.01), 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
-	
 #func _on_kick_hit(body : Kick):
 #	kick = body
 #

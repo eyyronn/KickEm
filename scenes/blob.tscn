@@ -122,28 +122,25 @@ _data = {
 "RESET": SubResource("Animation_rh2yc")
 }
 
-[node name="Blob" type="Node2D"]
+[node name="Blob" type="StaticBody2D"]
 texture_filter = 1
-position = Vector2(1028, 449)
-script = ExtResource("1_6hnyd")
-
-[node name="Blob" type="StaticBody2D" parent="."]
-position = Vector2(36, 0)
+position = Vector2(1068, 449)
 collision_layer = 32
 collision_mask = 2
 collision_priority = 0.0
+script = ExtResource("1_6hnyd")
 
-[node name="Sprite2D" type="Sprite2D" parent="Blob"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-30, 0)
 scale = Vector2(5, 5)
 texture = ExtResource("1_aet8e")
 hframes = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Blob"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-46, -9)
 shape = SubResource("CapsuleShape2D_ut1yw")
 
-[node name="BlobPlayer" type="AnimationPlayer" parent="Blob"]
+[node name="BlobPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
 autoplay = "Appear"
 speed_scale = 2.0

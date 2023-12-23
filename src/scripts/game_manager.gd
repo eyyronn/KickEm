@@ -55,8 +55,9 @@ func _physics_process(delta):
 		hit_stop(kick.impact)
 		
 func spawn_kick():
+	kick.look_at(get_global_mouse_position())
 	kick.position = get_global_mouse_position()
-
+	
 func spawn_bus():
 	var bus = bus_scene.instantiate() as Bus
 	add_child(bus)
@@ -89,6 +90,7 @@ func remove_passenger(passenger):
 	
 func bus_go():
 	score += 1
+	print("Next Round!")
 
 func hit_stop(impact):
 	if hit_stop_enabled:
@@ -100,10 +102,16 @@ func hit_stop(impact):
 func restart_game():
 	if active_bus != null:
 		active_bus.queue_free()
+		active_bus = null
+	
+	if active_blob != null:
+		active_blob.queue_free()
+		active_blob = null
 		
 	for i in all_passengers.size():
 		all_passengers[i].queue_free()
-		
+		all_passengers[i] = null
+	
 	all_passengers.clear()
 	spawn_count = 5
 	current_passenger_count = spawn_count
