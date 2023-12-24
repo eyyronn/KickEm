@@ -1,24 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://tn51vycgy3xn"]
+[gd_scene load_steps=3 format=3 uid="uid://tn51vycgy3xn"]
 
 [ext_resource type="Script" path="res://src/scripts/in_game_ui.gd" id="1_hdrbt"]
+[ext_resource type="Theme" uid="uid://cms61kldfd47s" path="res://assets/theme.tres" id="2_w1x45"]
 
 [node name="Control" type="Control"]
+texture_filter = 1
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_hdrbt")
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
-anchors_preset = -1
-offset_left = 400.0
-offset_top = 37.0
-offset_right = 779.0
-offset_bottom = 77.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -189.0
+offset_top = -267.0
+offset_right = 190.0
+offset_bottom = -227.0
 grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("2_w1x45")
 value = 50.0
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="ProgressBar"]
 visible = false
@@ -34,3 +43,18 @@ offset_right = 439.845
 offset_bottom = 60.0
 text = "50
 "
+
+[node name="Score" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 2
+offset_left = -107.5
+offset_top = 267.0
+offset_right = 107.5
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_w1x45")
+text = "Trains packed: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

@@ -16,6 +16,7 @@ var active_bus = null
 var active_blob = null
 var score = 0
 var is_player_lost = false
+var bus_incoming = false
 var hit_stop_enabled = true
 var difficulty = 0
 
@@ -35,6 +36,9 @@ func _ready():
 
 func _process(delta):
 	
+	if not active_bus and not bus_incoming:
+		spawn_bus()
+	
 	if Input.is_action_just_pressed("Restart"):
 		restart_game()
 		emit_signal("on_restart")
@@ -46,14 +50,14 @@ func _process(delta):
 	if kick.is_charging:
 #		kick.rotation_degrees =  lerp(kick.rotation_degrees, rad_to_deg(get_angle_to(get_global_mouse_position())), aim_speed)
 		kick.look_at(get_global_mouse_position())
-	
+
 	if current_passenger_count < spawn_count and active_blob == null:
 		spawn_blob()
-		active_blob.first_grow = true
 		
 func _physics_process(delta):
-	if kick.success_hit() is Limb and kick.impact > 2:
-		hit_stop(kick.impact)
+	if hit_stop_enabled:
+		if kick.success_hit() is Limb and kick.impact > 2:
+			hit_stop(kick.impact)
 		
 func spawn_kick():
 	kick.look_at(get_global_mouse_position())
@@ -62,6 +66,7 @@ func spawn_kick():
 func spawn_bus():
 	var bus = bus_scene.instantiate() as Bus
 	add_child(bus)
+	bus_incoming = true
 	active_bus = bus
 	spawn_passengers()
 #	print_debug("bus", active_blob, active_bus)
@@ -70,6 +75,7 @@ func spawn_blob():
 	var blob = blob_scene.instantiate() as Blob
 	add_child(blob)
 	active_blob = blob
+	active_blob.first_grow = true
 #	print_debug("blob", active_blob, active_bus)
 
 func spawn_passengers():
@@ -89,16 +95,20 @@ func remove_passenger(passenger):
 	current_passenger_count -= 1
 	all_passengers.erase(passenger)
 	
-func bus_go():
+func round_complete():
 	score += 1
+	delete_blob()
+
 	print("Next Round!")
 
 func hit_stop(impact):
-	if hit_stop_enabled:
+	kick.impact_sound.pitch_scale = (5 - kick.impact + 1) * 0.1
+	kick.impact_sound.volume_db = kick.impact - 4
+	kick.impact_sound.play()
 #		print(1 - impact * 0.1 - 0.2)
-		Engine.time_scale = 1 - impact * 0.1 - 0.2
-		await get_tree().create_timer(0.3, true, false, true).timeout
-		Engine.time_scale = 1
+	Engine.time_scale = 1 - impact * 0.1 - 0.2
+	await get_tree().create_timer(0.3, true, false, true).timeout
+	Engine.time_scale = 1
 
 func restart_game():
 	if active_bus != null:
@@ -118,5 +128,15 @@ func restart_game():
 	current_passenger_count = spawn_count
 	spawn_bus()
 
+func delete_bus(bus):
+	bus.queue_free()
+	active_bus = null
+	bus_incoming = false
+
+func delete_blob():
+#	remove_child(active_blob)
+	active_blob.queue_free()
+	active_blob = null
+	current_passenger_count = spawn_count
 	
 

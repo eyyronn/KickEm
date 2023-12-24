@@ -119,6 +119,31 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_ffafa"]
 resource_name = "BusGo"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bus:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8, 1.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(45, 400)]
+}
 
 [sub_resource type="Animation" id="Animation_viro1"]
 length = 0.001
@@ -218,6 +243,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4kvyd"]
 _data = {
@@ -234,6 +271,7 @@ collision_mask = 0
 script = ExtResource("1_3sft0")
 
 [node name="Blur" type="ColorRect" parent="."]
+z_index = 20
 material = SubResource("ShaderMaterial_d2y1n")
 offset_left = 942.0
 offset_top = 326.0

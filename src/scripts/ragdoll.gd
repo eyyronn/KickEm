@@ -84,7 +84,6 @@ func _physics_process(delta):
 #			if limb.name.ends_with("arm") or limb.name.ends_with("Hand"):
 #				pivot_arm(limb, delta)
 #				continue
-
 			correct_rotation(limb, delta)	
 			
 #func _integrate_forces(state):
@@ -166,7 +165,7 @@ func get_on_bus():
 	for limb in limbs:
 		var tween = create_tween().set_parallel(true)
 		for child in limb.get_children():
-			tween.tween_property(child, "scale", Vector2.ZERO, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
+			tween.tween_property(child, "scale", Vector2.ZERO, 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 			tween.tween_property(child, "global_position", Vector2(1040, 448), 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 	
 	self.shadow.queue_free()

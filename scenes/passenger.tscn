@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bx3c57snxjqy2" path="res://assets/passengers/base_rig/b_foot.png" id="4_k10bk"]
 [ext_resource type="Texture2D" uid="uid://wdbd3yc25rre" path="res://assets/passengers/base_rig/forearm.png" id="4_nf0l0"]
 [ext_resource type="Texture2D" uid="uid://jfhgabsqb076" path="res://assets/passengers/base_rig/hand.png" id="5_3g0f0"]
-[ext_resource type="AudioStream" uid="uid://ct5f656s64v8x" path="res://assets/audio/absorb.wav" id="12_pib2d"]
+[ext_resource type="AudioStream" uid="uid://bxk13tpwg5gfa" path="res://assets/audio/absorb.wav" id="12_pib2d"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mq7un"]
 load_path = "res://.godot/imported/Shadow.png-61d7b9db74850b1fff710392eeb336df.ctex"
@@ -178,7 +178,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -201,7 +200,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -224,7 +222,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -246,7 +243,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -268,7 +264,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -288,7 +283,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -309,7 +303,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -329,7 +322,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -343,7 +335,6 @@ scale = Vector2(3.75, 3.75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/Area2D"]
 position = Vector2(-0.103421, 2.96392)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_jdfrt")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
@@ -356,7 +347,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -377,7 +367,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -398,7 +387,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0
@@ -419,7 +407,6 @@ collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
 gravity_scale = 2.5
-can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_rhjab")
 force = 4000.0

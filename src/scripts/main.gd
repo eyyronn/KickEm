@@ -5,4 +5,3 @@ func _ready():
 	
 func restart_scene():
 	pass
-

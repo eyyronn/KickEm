@@ -2,10 +2,12 @@ extends StaticBody2D
 class_name Kick
 
 @onready var animation = $AnimationPlayer
-@onready var charge_audio = $KickCharge
-@onready var release_audio = $KickRelease
+@onready var charge_sound = $KickCharge
+@onready var release_sound = $KickRelease
+@onready var impact_sound = $KickImpact
 @onready var hit_box = $HitBox
 @onready var raycast = $RayCast
+
 #@export var constant_linear_velocity := Vector2(800, 0)
 #@export var strength  := constant_linear_velocity
 @export var force_multiplier := Vector2(500, 500)
@@ -39,6 +41,9 @@ func _process(delta):
 	if success_hit():
 		if success_hit() is Blob:
 			kick_blob()
+		if success_hit() is Limb:
+			kick_limb()
+			
 #	print_debug(force, constant_linear_velocity
 	
 func _physics_process(delta):
@@ -57,17 +62,22 @@ func _integrate_forces(state):
 		
 func charge_kick(delta):
 	raycast.set_collision_mask_value(6, true)
+	raycast.set_collision_mask_value(2, true)
+	raycast.set_collision_mask_value(3, true)
 	raycast.enabled = false
 	is_charging = true
 	force += 1
-	charge_audio.play()
+	charge_sound.pitch_scale = randf_range(1, 1.2)
+	charge_sound.play()
 	animation.play("kick_ready")
 	animation.queue("kick_charge")
 
 func release_kick():
 	is_charging = false
-	charge_audio.stop()
-	release_audio.play()
+	charge_sound.stop()
+	release_sound.pitch_scale = randf_range(0.8, 1)
+	release_sound.volume_db = randf_range(-4, -2)
+	release_sound.play()
 	animation.play("kick_release")
 	
 func success_hit() -> Object:
@@ -80,8 +90,17 @@ func success_hit() -> Object:
 func kick_blob():
 	raycast.set_collision_mask_value(6, false)
 	GameManager.active_blob.anim.play("Hurt")
+	impact_sound.volume_db = randf_range(-5, -3)
+	impact_sound.pitch_scale = randf_range(0.8, 1.3)
+	impact_sound.play()
 #	print_debug(GameManager.active_blob.size, impact * 3.33)
 	GameManager.active_blob.shrink(impact)
 #	print_debug("Hit", GameManager.active_blob.size, impact)
 
+func kick_limb():
+	raycast.set_collision_mask_value(2, false)
+	raycast.set_collision_mask_value(3, false)
+	impact_sound.volume_db = randf_range(0, 1)
+	impact_sound.pitch_scale = randf_range(0.8, 1.6)
+	impact_sound.play()
 	

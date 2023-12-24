@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cms61kldfd47s"]
+
+[ext_resource type="FontFile" uid="uid://cfp310grh4qan" path="res://assets/fonts/Absolute 10 Basic.ttf" id="1_x2kja"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rfcc3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jx26u"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+border_width_top = 4
+border_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ujmp"]
+bg_color = Color(1, 0.784314, 0.129412, 1)
+border_width_top = 4
+border_color = Color(1, 0.415686, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+default_font = ExtResource("1_x2kja")
+Label/colors/font_color = Color(0.941176, 0.694118, 0.207843, 1)
+Label/colors/font_outline_color = Color(0.819608, 0.231373, 0, 1)
+Label/colors/font_shadow_color = Color(0.921569, 0.270588, 0, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 4
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 4
+Label/constants/shadow_outline_size = 4
+Label/font_sizes/font_size = 36
+Label/fonts/font = ExtResource("1_x2kja")
+Label/styles/normal = SubResource("StyleBoxEmpty_rfcc3")
+ProgressBar/colors/font_color = Color(1, 0.415686, 0, 1)
+ProgressBar/font_sizes/font_size = 40
+ProgressBar/fonts/font = ExtResource("1_x2kja")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_jx26u")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_1ujmp")

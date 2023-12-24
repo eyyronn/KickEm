@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://qunn7yvvhmxf"]
+[gd_scene load_steps=16 format=3 uid="uid://qunn7yvvhmxf"]
 
 [ext_resource type="Texture2D" uid="uid://0ncolas8lxh0" path="res://assets/kick/kick_spritesheet.png" id="1_rnfqu"]
 [ext_resource type="Script" path="res://src/scripts/kick.gd" id="1_vhb8d"]
 [ext_resource type="AudioStream" uid="uid://c80m8a6nghs7o" path="res://assets/audio/kick_charge.wav" id="3_14n8r"]
 [ext_resource type="AudioStream" uid="uid://jwgcp875msp0" path="res://assets/audio/kick_release.wav" id="3_wgv7r"]
+[ext_resource type="AudioStream" uid="uid://dkfrvfjuecv2f" path="res://assets/audio/impact.wav" id="5_k1stv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i22d4"]
 
@@ -579,3 +580,6 @@ stream = ExtResource("3_wgv7r")
 
 [node name="KickCharge" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_14n8r")
+
+[node name="KickImpact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_k1stv")

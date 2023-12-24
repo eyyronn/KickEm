@@ -45,7 +45,12 @@ func absorb_passenger(passenger):
 		if GameManager.active_blob:
 			GameManager.active_blob.first_grow = false
 			GameManager.active_blob.grow(passenger.size)
-			
+
+func bus_go():
+	anim.play("BusGo")
+	await get_tree().create_timer(2).timeout
+	GameManager.delete_bus(self)
+	
 #	var limbs_distance = []
 ##
 #	for limb_position in passenger.get_true_position():
