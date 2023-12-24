@@ -18,7 +18,7 @@ func _process(delta):
 	progress_bar.value = smooth_val
 
 func update_score():
-	var score_string = "Trains Packed: {str}"
+	var score_string = "Buses Packed: {str}"
 	score_label.text = score_string.format({"str" : GameManager.score})
 
 func open_lose_screen():
