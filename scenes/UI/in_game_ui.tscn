@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://tn51vycgy3xn"]
+[gd_scene load_steps=7 format=3 uid="uid://tn51vycgy3xn"]
 
 [ext_resource type="Script" path="res://src/scripts/in_game_ui.gd" id="1_hdrbt"]
 [ext_resource type="Theme" uid="uid://cms61kldfd47s" path="res://assets/theme.tres" id="2_w1x45"]
-[ext_resource type="Texture2D" uid="uid://bqg5uxploldrl" path="res://icon.svg" id="3_vxa0m"]
+[ext_resource type="Texture2D" uid="uid://3kd3b562yf6d" path="res://assets/skills/Anti-Gravity-Skill-Icon-Under (2).png" id="3_vsmlo"]
+[ext_resource type="Texture2D" uid="uid://bv6pf8w44mmr4" path="res://assets/skills/Anti-Gravity-Skill.png" id="4_ytf7y"]
+[ext_resource type="Texture2D" uid="uid://nfjsv3pf66dc" path="res://assets/skills/Power-Kick-Skill-Icon-Under (2).png" id="5_d5n7q"]
+[ext_resource type="Texture2D" uid="uid://crsfnno7cisk6" path="res://assets/skills/Power-Kick-Skill.png" id="6_llg1s"]
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -60,21 +63,66 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="AntiGravity" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = -527.0
-offset_top = -275.0
-offset_right = -399.0
-offset_bottom = -147.0
-texture_normal = ExtResource("3_vxa0m")
+[node name="AntiGravity" type="TextureProgressBar" parent="."]
+layout_mode = 1
+offset_left = -561.0
+offset_top = -308.0
+offset_right = -81.0
+offset_bottom = 172.0
+scale = Vector2(0.3, 0.3)
+fill_mode = 4
+texture_under = ExtResource("3_vsmlo")
+texture_progress = ExtResource("4_ytf7y")
 
-[node name="PowerKick" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = -371.0
-offset_top = -275.0
-offset_right = -243.0
-offset_bottom = -147.0
-texture_normal = ExtResource("3_vxa0m")
+[node name="AntiGravity" type="TextureButton" parent="AntiGravity"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 10.0
+offset_right = -27.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
 
-[connection signal="pressed" from="AntiGravity" to="." method="_on_anti_gravity_pressed"]
-[connection signal="pressed" from="PowerKick" to="." method="_on_power_kick_pressed"]
+[node name="AG_Cooldown" type="Timer" parent="AntiGravity"]
+process_callback = 0
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="PowerKick" type="TextureProgressBar" parent="."]
+layout_mode = 1
+offset_left = -428.0
+offset_top = -308.0
+offset_right = 52.0
+offset_bottom = 172.0
+scale = Vector2(0.3, 0.3)
+fill_mode = 4
+texture_under = ExtResource("5_d5n7q")
+texture_progress = ExtResource("6_llg1s")
+
+[node name="PowerKick" type="TextureButton" parent="PowerKick"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 10.0
+offset_right = -27.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PK_Cooldown" type="Timer" parent="PowerKick"]
+process_callback = 0
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[connection signal="pressed" from="AntiGravity/AntiGravity" to="." method="_on_anti_gravity_pressed"]
+[connection signal="timeout" from="AntiGravity/AG_Cooldown" to="." method="_on_ag_cooldown_timeout"]
+[connection signal="pressed" from="PowerKick/PowerKick" to="." method="_on_power_kick_pressed"]
+[connection signal="timeout" from="PowerKick/PK_Cooldown" to="." method="_on_pk_cooldown_timeout"]

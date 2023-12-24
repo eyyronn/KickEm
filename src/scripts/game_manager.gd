@@ -19,6 +19,8 @@ var is_player_lost = false
 var bus_incoming = false
 var hit_stop_enabled = true
 var difficulty = 0
+var anti_gravity_enabled = false
+var power_kick_enabled = false
 
 const passenger_scene = preload("res://scenes/passenger.tscn")
 const bus_scene = preload("res://scenes/bus.tscn")
@@ -32,9 +34,11 @@ func _ready():
 	add_child(kick)
 	kick.position.x = -1000
 	spawn_bus()
+	
 
 func _process(delta):
-	
+	print_debug(power_kick_enabled)
+	print(kick.force)
 	if not active_bus and not bus_incoming:
 		spawn_bus()
 	
@@ -45,6 +49,9 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("Click"):
 		spawn_kick()
+	
+	if power_kick_enabled:
+		kick.force = 10
 		
 	if kick.is_charging:
 #		kick.rotation_degrees =  lerp(kick.rotation_degrees, rad_to_deg(get_angle_to(get_global_mouse_position())), aim_speed)
@@ -54,6 +61,10 @@ func _process(delta):
 		spawn_blob()
 		
 func _physics_process(delta):
+	for passenger in all_passengers:
+		for limb in passenger.limbs:
+			if anti_gravity_enabled:
+				limb.gravity_scale = 0
 	if hit_stop_enabled:
 		if kick.success_hit() is Limb and kick.impact > 2:
 			hit_stop(kick.impact)
@@ -110,10 +121,14 @@ func hit_stop(impact):
 	Engine.time_scale = 1
 
 func anti_gravity_on():
-	print("anti gravity on")
-	
+	anti_gravity_enabled = true
+	await get_tree().create_timer(10).timeout
+	anti_gravity_enabled = false
+
 func power_kick_on():
-	print("power kick on")
+	power_kick_enabled = true
+	await get_tree().create_timer(3).timeout
+	power_kick_enabled = false
 
 func restart_game():
 	if active_bus != null:

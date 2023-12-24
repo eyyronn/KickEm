@@ -19,6 +19,7 @@ var limbs = []
 var size = 10
 var is_on_bus = false
 var type : int
+var gravity = 2.5
 
 func _ready():
 	initialize_limbs()
@@ -65,12 +66,23 @@ func set_weight(weight):
 		limb.center_of_mass = Vector2(0.0, weight)
 		
 func _process(delta):	
+	set_gravity()
 	for limb in limbs:
 		
 		if limb.name == "Torso" and not is_on_bus:
 			update_shadow(limb)
 #			self.position = limb.global_position
 
+func set_gravity():
+#	var gravity = 2.5
+#	if GameManager.anti_gravity_pressed():
+#		gravity = 0
+#	else:
+#		gravity = 2.5
+#	return gravity
+	for limb in limbs:
+		limb.gravity_scale = gravity
+		
 func _physics_process(delta):	
 	for limb in limbs:
 		if limb.enabled == true:
