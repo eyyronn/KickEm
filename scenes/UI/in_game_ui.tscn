@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://tn51vycgy3xn"]
+[gd_scene load_steps=4 format=3 uid="uid://tn51vycgy3xn"]
 
 [ext_resource type="Script" path="res://src/scripts/in_game_ui.gd" id="1_hdrbt"]
 [ext_resource type="Theme" uid="uid://cms61kldfd47s" path="res://assets/theme.tres" id="2_w1x45"]
+[ext_resource type="Texture2D" uid="uid://bqg5uxploldrl" path="res://icon.svg" id="3_vxa0m"]
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -58,3 +59,22 @@ text = "Buses packed: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="AntiGravity" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -527.0
+offset_top = -275.0
+offset_right = -399.0
+offset_bottom = -147.0
+texture_normal = ExtResource("3_vxa0m")
+
+[node name="PowerKick" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -371.0
+offset_top = -275.0
+offset_right = -243.0
+offset_bottom = -147.0
+texture_normal = ExtResource("3_vxa0m")
+
+[connection signal="pressed" from="AntiGravity" to="." method="_on_anti_gravity_pressed"]
+[connection signal="pressed" from="PowerKick" to="." method="_on_power_kick_pressed"]

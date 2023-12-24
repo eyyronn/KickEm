@@ -28,7 +28,6 @@ const blob_scene = preload("res://scenes/blob.tscn")
 signal on_lose
 signal on_restart
 
-
 func _ready():
 	add_child(kick)
 	kick.position.x = -1000
@@ -109,6 +108,12 @@ func hit_stop(impact):
 	Engine.time_scale = 1 - impact * 0.1 - 0.2
 	await get_tree().create_timer(0.3, true, false, true).timeout
 	Engine.time_scale = 1
+
+func anti_gravity_on():
+	print("anti gravity on")
+	
+func power_kick_on():
+	print("power kick on")
 
 func restart_game():
 	if active_bus != null:
