@@ -4,10 +4,13 @@ extends Control
 @onready var score_label = $Score
 @onready var anti_gravity = $AntiGravity
 @onready var power_kick = $PowerKick
+@onready var round_timer = $RoundTime
+@onready var round_time = $Round_TIME
 
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
+var sec = 40
 
 @onready var ag_cooldown = $AntiGravity/AG_Cooldown
 @onready var ag_cooldown_percentage
@@ -20,18 +23,17 @@ signal enable_anti_gravity
 signal enable_power_kick
 
 func _ready():
+	GameManager.connect("round_done", Reset_Timer)
 	GameManager.connect("on_lose", open_lose_screen)
 	GameManager.connect("on_restart", restart_scene)
 	connect("enable_power_kick", GameManager.power_kick_on)
 	connect("enable_anti_gravity", GameManager.anti_gravity_on)
+	round_timer.start()
 
 func _process(delta):
 	update_score()
-	
-	progress_bar.max_value = GameManager.spawn_count
-	smooth_val = lerp(smooth_val, GameManager.spawn_count - GameManager.current_passenger_count, delta * progress_bar_speed)
-	progress_bar.value = smooth_val
-	
+	update_progress_bar(delta)
+	Round_Timer()
 	if ag_cooldown.time_left > 0:
 		ag_cooldown_percentage = (
 			(1 - ag_cooldown.time_left / ag_cooldown.wait_time) * 100
@@ -43,6 +45,12 @@ func _process(delta):
 			(1 - pk_cooldown.time_left / pk_cooldown.wait_time) * 100
 			)
 		power_kick.value = pk_cooldown_percentage
+		
+		
+func update_progress_bar(delta):
+	progress_bar.max_value = GameManager.spawn_count
+	smooth_val = lerp(smooth_val, GameManager.spawn_count - GameManager.current_passenger_count, delta * progress_bar_speed)
+	progress_bar.value = smooth_val
 		
 func update_score():
 	var score_string = "Buses Packed: {str}"
@@ -76,3 +84,25 @@ func _on_power_kick_pressed():
 	emit_signal("enable_power_kick")
 	pk_button.disabled = true
 	pk_cooldown.start()
+	
+func Reset_Timer():
+	sec = sec - (5 * GameManager.score)
+	if sec < 15:
+		sec = 15
+	else:
+		sec = sec
+	$RoundTime.start()
+	
+func Round_Timer():
+	$RoundTime.set_wait_time(sec)
+	$RoundTime/Round_TIME.text = str(round($RoundTime.time_left))
+
+	
+
+	
+	
+	
+	
+
+
+		

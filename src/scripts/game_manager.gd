@@ -29,12 +29,12 @@ const blob_scene = preload("res://scenes/blob.tscn")
 
 signal on_lose
 signal on_restart
+signal round_done
 
 func _ready():
 	add_child(kick)
 	kick.position.x = -1000
 	spawn_bus()
-	
 
 func _process(delta):
 	print_debug(power_kick_enabled)
@@ -79,6 +79,7 @@ func spawn_bus():
 	bus_incoming = true
 	active_bus = bus
 	spawn_passengers()
+	emit_signal("round_done")
 #	print_debug("bus", active_blob, active_bus)
 
 func spawn_blob():
@@ -97,7 +98,7 @@ func spawn_passengers():
 		passenger.global_transform.origin.x += randf_range(spawn_offset[0], spawn_offset[1])
 		add_passenger(passenger)
 		await get_tree().create_timer(randf_range(0.1,0.5)).timeout
-		
+	
 func add_passenger(passenger):
 	all_passengers.append(passenger)
 	
@@ -108,7 +109,6 @@ func remove_passenger(passenger):
 func round_complete():
 	score += 1
 	delete_blob()
-
 	print("Next Round!")
 
 func hit_stop(impact):

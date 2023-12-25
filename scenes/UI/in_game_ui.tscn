@@ -122,6 +122,22 @@ wait_time = 30.0
 one_shot = true
 autostart = true
 
+[node name="RoundTime" type="Timer" parent="."]
+process_callback = 0
+wait_time = 45.0
+
+[node name="Round_TIME" type="Label" parent="RoundTime"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -89.0
+offset_top = 101.0
+offset_right = 138.0
+offset_bottom = 145.0
+grow_horizontal = 2
+theme = ExtResource("2_w1x45")
+text = "0"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="AntiGravity/AntiGravity" to="." method="_on_anti_gravity_pressed"]
 [connection signal="timeout" from="AntiGravity/AG_Cooldown" to="." method="_on_ag_cooldown_timeout"]
 [connection signal="pressed" from="PowerKick/PowerKick" to="." method="_on_power_kick_pressed"]
