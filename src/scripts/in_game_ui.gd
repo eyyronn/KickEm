@@ -5,6 +5,7 @@ extends Control
 @onready var anti_gravity = $AntiGravity
 @onready var power_kick = $PowerKick
 
+
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
 
