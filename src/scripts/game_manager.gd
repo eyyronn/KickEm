@@ -21,6 +21,7 @@ var hit_stop_enabled = true
 var difficulty = 0
 var anti_gravity_enabled = false
 var power_kick_enabled = false
+var game_active = false
 
 const passenger_scene = preload("res://scenes/passenger.tscn")
 const bus_scene = preload("res://scenes/bus.tscn")
@@ -37,53 +38,57 @@ func _ready():
 	spawn_bus()
 
 func _process(delta):
-	print_debug(power_kick_enabled)
-	print(kick.force)
-	if not active_bus and not bus_incoming:
-		spawn_bus()
-	
-	if Input.is_action_just_pressed("Restart"):
-		restart_game()
-		emit_signal("on_restart")
-		get_tree().reload_current_scene()
-	
-	if Input.is_action_just_pressed("Click"):
-		spawn_kick()
-	
-	if power_kick_enabled:
-		kick.force = 10
+#	print_debug(power_kick_enabled)
+#	print(kick.force)
+	if game_active:
+		if not active_bus and not bus_incoming:
+			spawn_bus()
 		
-	if kick.is_charging:
-#		kick.rotation_degrees =  lerp(kick.rotation_degrees, rad_to_deg(get_angle_to(get_global_mouse_position())), aim_speed)
-		kick.look_at(get_global_mouse_position())
+		if Input.is_action_just_pressed("Restart"):
+			restart_game()
+			emit_signal("on_restart")
+			get_tree().reload_current_scene()
+		
+		if Input.is_action_just_pressed("Click"):
+			spawn_kick()
+		
+		if power_kick_enabled:
+			kick.force = 10
+			
+		if kick.is_charging:
+	#		kick.rotation_degrees =  lerp(kick.rotation_degrees, rad_to_deg(get_angle_to(get_global_mouse_position())), aim_speed)
+			kick.look_at(get_global_mouse_position())
 
-	if current_passenger_count < spawn_count and active_blob == null:
-		spawn_blob()
+		if current_passenger_count < spawn_count and active_blob == null:
+				spawn_blob()
 		
 func _physics_process(delta):
-	for passenger in all_passengers:
-		for limb in passenger.limbs:
-			if anti_gravity_enabled:
-				limb.gravity_scale = 0
-				
-	if hit_stop_enabled:
-		if kick.success_hit() is Limb and kick.impact > 2:
-			hit_stop(kick.impact)
+	if game_active:
+		for passenger in all_passengers:
+			for limb in passenger.limbs:
+				if anti_gravity_enabled:
+					limb.gravity_scale = 0
+		if hit_stop_enabled:
+			if kick.success_hit() is Limb and kick.impact > 2:
+				hit_stop(kick.impact)
 		
 func spawn_kick():
+#	if game_active:
 	kick.look_at(get_global_mouse_position())
 	kick.position = get_global_mouse_position()
 	
 func spawn_bus():
-	var bus = bus_scene.instantiate() as Bus
-	add_child(bus)
-	bus_incoming = true
-	active_bus = bus
-	spawn_passengers()
-	emit_signal("round_done")
+	if game_active:
+		var bus = bus_scene.instantiate() as Bus
+		add_child(bus)
+		bus_incoming = true
+		active_bus = bus
+		spawn_passengers()
+		emit_signal("round_done")
 #	print_debug("bus", active_blob, active_bus)
 
 func spawn_blob():
+#	if game_active:
 	var blob = blob_scene.instantiate() as Blob
 	add_child(blob)
 	active_blob = blob
@@ -91,6 +96,7 @@ func spawn_blob():
 #	print_debug("blob", active_blob, active_bus)
 
 func spawn_passengers():
+#	if game_active:
 	for i in spawn_count:
 		var passenger = passenger_scene.instantiate() as Passenger
 		add_child(passenger)
@@ -101,13 +107,16 @@ func spawn_passengers():
 		await get_tree().create_timer(randf_range(0.1,0.5)).timeout
 	
 func add_passenger(passenger):
+#	if game_active:
 	all_passengers.append(passenger)
 	
 func remove_passenger(passenger):
+#	if game_active:
 	current_passenger_count -= 1
 	all_passengers.erase(passenger)
 	
 func round_complete():
+#	if game_active:
 	score += 1
 	delete_blob()
 	print("Next Round!")
@@ -175,4 +184,6 @@ func delete_blob():
 	active_blob = null
 	current_passenger_count = spawn_count
 	
-
+func game_activation():
+	game_active = true
+	print(game_active)
