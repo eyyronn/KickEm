@@ -65,6 +65,7 @@ func _physics_process(delta):
 		for limb in passenger.limbs:
 			if anti_gravity_enabled:
 				limb.gravity_scale = 0
+				
 	if hit_stop_enabled:
 		if kick.success_hit() is Limb and kick.impact > 2:
 			hit_stop(kick.impact)
@@ -146,8 +147,23 @@ func restart_game():
 	all_passengers.clear()
 	spawn_count = 5
 	current_passenger_count = spawn_count
+	emit_signal("on_restart")
 	spawn_bus()
-
+	
+func delete_entities():
+	if active_bus != null:
+		active_bus.queue_free()
+		active_bus = null
+	
+	if active_blob != null:
+		active_blob.queue_free()
+		active_blob = null
+		
+	for passenger in all_passengers:
+		if passenger != null:
+			passenger.queue_free()
+			passenger = null
+		
 func delete_bus(bus):
 	bus.queue_free()
 	active_bus = null
