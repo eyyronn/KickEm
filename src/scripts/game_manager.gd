@@ -73,9 +73,9 @@ func _physics_process(delta):
 				hit_stop(kick.impact)
 		
 func spawn_kick():
-	if game_active:
-		kick.look_at(get_global_mouse_position())
-		kick.position = get_global_mouse_position()
+#	if game_active:
+	kick.look_at(get_global_mouse_position())
+	kick.position = get_global_mouse_position()
 	
 func spawn_bus():
 	if game_active:
@@ -88,38 +88,38 @@ func spawn_bus():
 #	print_debug("bus", active_blob, active_bus)
 
 func spawn_blob():
-	if game_active:
-		var blob = blob_scene.instantiate() as Blob
-		add_child(blob)
-		active_blob = blob
-		active_blob.first_grow = true
+#	if game_active:
+	var blob = blob_scene.instantiate() as Blob
+	add_child(blob)
+	active_blob = blob
+	active_blob.first_grow = true
 #	print_debug("blob", active_blob, active_bus)
 
 func spawn_passengers():
-	if game_active:
-		for i in spawn_count:
-			var passenger = passenger_scene.instantiate() as Passenger
-			add_child(passenger)
-			passenger.global_transform.origin = Vector2.ZERO
-			passenger.global_transform.origin = Vector2(randf_range(spawn_range[0], spawn_range[1]), 506)
-			passenger.global_transform.origin.x += randf_range(spawn_offset[0], spawn_offset[1])
-			add_passenger(passenger)
-			await get_tree().create_timer(randf_range(0.1,0.5)).timeout
+#	if game_active:
+	for i in spawn_count:
+		var passenger = passenger_scene.instantiate() as Passenger
+		add_child(passenger)
+		passenger.global_transform.origin = Vector2.ZERO
+		passenger.global_transform.origin = Vector2(randf_range(spawn_range[0], spawn_range[1]), 506)
+		passenger.global_transform.origin.x += randf_range(spawn_offset[0], spawn_offset[1])
+		add_passenger(passenger)
+		await get_tree().create_timer(randf_range(0.1,0.5)).timeout
 	
 func add_passenger(passenger):
-	if game_active:
-		all_passengers.append(passenger)
+#	if game_active:
+	all_passengers.append(passenger)
 	
 func remove_passenger(passenger):
-	if game_active:
-		current_passenger_count -= 1
-		all_passengers.erase(passenger)
+#	if game_active:
+	current_passenger_count -= 1
+	all_passengers.erase(passenger)
 	
 func round_complete():
-	if game_active:
-		score += 1
-		delete_blob()
-		print("Next Round!")
+#	if game_active:
+	score += 1
+	delete_blob()
+	print("Next Round!")
 
 func hit_stop(impact):
 	kick.impact_sound.pitch_scale = (5 - kick.impact + 1) * 0.1
