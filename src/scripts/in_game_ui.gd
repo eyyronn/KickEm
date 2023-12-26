@@ -7,6 +7,7 @@ extends Control
 @onready var round_timer = $RoundTime
 @onready var round_time = $Round_TIME
 
+
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
 var sec = 40

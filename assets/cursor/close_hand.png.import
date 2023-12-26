@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di73onv6dtehy"
-path="res://.godot/imported/shadow.png-29e0441c449b9c60fdc30455f32527a4.ctex"
+uid="uid://cq56bdoo08ooa"
+path="res://.godot/imported/close_hand.png-1874036bd2ed2a4a3fcf6193f6984f9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/passengers/shadow.png"
-dest_files=["res://.godot/imported/shadow.png-29e0441c449b9c60fdc30455f32527a4.ctex"]
+source_file="res://assets/cursor/close_hand.png"
+dest_files=["res://.godot/imported/close_hand.png-1874036bd2ed2a4a3fcf6193f6984f9a.ctex"]
 
 [params]
 
