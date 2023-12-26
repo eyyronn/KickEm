@@ -8,6 +8,7 @@ extends Control
 @onready var round_time = $Round_TIME
 @onready var lose_screen = preload("res://scenes/UI/lose_screen.tscn") as PackedScene
 
+
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
 var sec = 40

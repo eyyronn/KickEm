@@ -1,8 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpmph2gwntmb3"]
+[gd_scene load_steps=6 format=3 uid="uid://bpmph2gwntmb3"]
 
 [ext_resource type="Script" path="res://src/scripts/game_manager.gd" id="1_6upsn"]
+[ext_resource type="Texture2D" uid="uid://dwkakr4b3du6t" path="res://assets/cursor/open_hand.png" id="2_tq6v7"]
+[ext_resource type="Script" path="res://src/scripts/cursor.gd" id="3_ak5cr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_14320"]
+load_path = "res://.godot/imported/close_hand.png-1874036bd2ed2a4a3fcf6193f6984f9a.ctex"
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_4omtv"]
+frames = 2
+pause = true
+frame_0/texture = ExtResource("2_tq6v7")
+frame_1/texture = SubResource("CompressedTexture2D_14320")
+frame_1/duration = 1.0
 
 [node name="GameManager" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_6upsn")
 spawn_range = [10, 620]
 spawn_offset = [10, 100]
+
+[node name="Cursor" type="Sprite2D" parent="."]
+position = Vector2(-219, 0)
+texture = SubResource("AnimatedTexture_4omtv")
+script = ExtResource("3_ak5cr")
