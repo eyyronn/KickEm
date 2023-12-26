@@ -130,7 +130,7 @@ func power_kick_on():
 	await get_tree().create_timer(3).timeout
 	power_kick_enabled = false
 
-func restart_game():
+func delete_entities():
 	if active_bus != null:
 		active_bus.queue_free()
 		active_bus = null
@@ -139,13 +139,17 @@ func restart_game():
 		active_blob.queue_free()
 		active_blob = null
 		
-	for i in all_passengers.size():
-		all_passengers[i].queue_free()
-		all_passengers[i] = null
-	
+	for passenger in all_passengers:
+		if passenger != null:
+			passenger.queue_free()
+			passenger = null
+		
+func restart_game():
 	all_passengers.clear()
 	spawn_count = 5
 	current_passenger_count = spawn_count
+	score = 0
+	emit_signal("on_restart")
 	spawn_bus()
 
 func delete_bus(bus):

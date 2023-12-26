@@ -6,6 +6,7 @@ extends Control
 @onready var power_kick = $PowerKick
 @onready var round_timer = $RoundTime
 @onready var round_time = $Round_TIME
+@onready var lose_screen = preload("res://scenes/UI/lose_screen.tscn") as PackedScene
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
@@ -56,7 +57,8 @@ func update_score():
 	score_label.text = score_string.format({"str" : GameManager.score})
 
 func open_lose_screen():
-	pass
+	GameManager.delete_entities()
+	get_tree().change_scene_to_packed(lose_screen)
 
 func restart_scene():
 	get_tree().reload_current_scene()
@@ -86,22 +88,16 @@ func _on_power_kick_pressed():
 	
 func Reset_Timer():
 	sec = sec - (5 * GameManager.score)
-	if sec < 15:
-		sec = 15
+	if sec < 20:
+		sec = 20
 	else:
 		sec = sec
 	$RoundTime.start()
 	
 func Round_Timer():
-	$RoundTime.set_wait_time(sec)
+	$RoundTime.wait_time = sec
 	$RoundTime/Round_TIME.text = str(round($RoundTime.time_left))
 
-	
-
-	
-	
-	
-	
-
-
-		
+func _on_round_time_timeout() -> void:
+	if progress_bar.value != GameManager.spawn_count or GameManager.active_blob != null:
+		open_lose_screen()
