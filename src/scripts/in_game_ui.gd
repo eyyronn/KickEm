@@ -5,16 +5,14 @@ extends Control
 @onready var anti_gravity = $AntiGravity
 @onready var power_kick = $PowerKick
 @onready var round_timer = $RoundTime
-@onready var round_time = $Round_TIME
+@onready var round_time = $RoundTime/Round_TIME
 @onready var lose_screen = preload("res://scenes/UI/lose_screen.tscn") as PackedScene
-
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
-var sec = 45
+var sec = 30
 @onready var paused_menu = $Pause
 var paused = false
-
 
 @onready var ag_cooldown = $AntiGravity/AG_Cooldown
 @onready var ag_cooldown_percentage
@@ -39,7 +37,6 @@ func _ready():
 	connect("enable_anti_gravity", GameManager.anti_gravity_on)
 	connect("game_is_paused", GameManager.game_paused)
 	connect("game_not_paused", GameManager.game_unpaused)
-#	round_timer.start()
 
 func _process(delta):
 	update_score()
@@ -80,6 +77,7 @@ func update_score():
 func open_lose_screen():
 	get_tree().change_scene_to_packed(lose_screen)
 
+
 func restart_scene():
 	get_tree().reload_current_scene()
 
@@ -91,7 +89,7 @@ func _on_ag_cooldown_timeout():
 	ag_button.disabled = false
 
 func _on_anti_gravity_pressed():
-	print("ag")
+#	print("ag")
 	emit_signal("enable_anti_gravity")
 	ag_button.disabled = true
 	ag_cooldown.start()
@@ -101,23 +99,23 @@ func _on_pk_cooldown_timeout():
 	pk_button.disabled = false
 
 func _on_power_kick_pressed():
-	print("ag")
+#	print("ag")
 	emit_signal("enable_power_kick")
 	pk_button.disabled = true
 	pk_cooldown.start()
 	
+var new_sec = sec
+
 func Reset_Timer():
 	$RoundTime.paused = false
-	sec = sec - 5
-	if sec < 20:
-		sec = 20
-	else:
-		sec = sec
+	sec = new_sec + (GameManager.score * 5)
+	sec = min(sec, 60)
+	
 	Round_Timer()
 	$RoundTime.start()
 	
 func Round_Timer():
-	$RoundTime.wait_time = sec
+	$RoundTime.set_wait_time(sec)
 	$RoundTime/Round_TIME.text = str(round($RoundTime.time_left))
 
 func _on_round_time_timeout() -> void:

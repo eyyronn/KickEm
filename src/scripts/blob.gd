@@ -54,6 +54,7 @@ func grow(amount):
 		return
 		
 	size += amount
+	size = min(size, 180)
 	
 	if not first_grow:
 		var tween = create_tween().set_parallel(true)

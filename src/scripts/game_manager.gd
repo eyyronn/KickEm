@@ -22,6 +22,7 @@ var difficulty = 0
 var anti_gravity_enabled = false
 var power_kick_enabled = false
 var game_active = false
+var proceed_from_menu
 
 const passenger_scene = preload("res://scenes/passenger.tscn")
 const bus_scene = preload("res://scenes/bus.tscn")
@@ -36,13 +37,11 @@ signal on_resume
 signal restarted
 
 func _ready():
-	add_child(kick)
-	kick.position.x = -1000
-	spawn_bus()
+	start()
 
 func _process(delta):
 #	print_debug(power_kick_enabled)
-	print(game_active)
+#	print(game_active)
 	if game_active:
 		if not active_bus and not bus_incoming:
 			spawn_bus()
@@ -75,7 +74,12 @@ func _physics_process(delta):
 		if hit_stop_enabled:
 			if kick.success_hit() is Limb and kick.impact > 2:
 				hit_stop(kick.impact)
-		
+
+func start():
+	add_child(kick)
+	kick.position.x = -1000
+	spawn_bus()
+
 func spawn_kick():
 #	if game_active:
 	kick.look_at(get_global_mouse_position())
@@ -158,7 +162,7 @@ func delete_entities():
 		for passenger in all_passengers:
 			remove_child(passenger)
 			passenger = null
-
+		
 func restart_game():
 	delete_entities()
 	all_passengers.clear()
@@ -182,10 +186,13 @@ func delete_blob():
 	current_passenger_count = spawn_count
 	
 func game_activation():
+#	emit_signal("on_restart")
 	game_active = true
+	start()
+	await get_tree().create_timer(0.0000000000000001).timeout # DO NOT REMOVE !!!!! MESSIAH
+	pause_on_restart()
+	emit_signal("round_done")
 #	pause_on_restart()
-#	spawn_bus()
-#	emit_signal("round_done")
 	
 func game_paused():
 	game_active = false
@@ -200,14 +207,18 @@ func pause_to_gm():
 func pause_on_restart():
 	restart_game()
 #	get_tree().reload_current_scene()
-#	emit_signal("on_restart")
 	emit_signal("restarted")
 
 func pause_on_main_menu():
 	game_active = false
+
+func game_deactivation():
+	game_active = false
+	
+func main_menu():
+	game_deactivation()
 	for passenger in all_passengers:
 		remove_child(passenger)
 	remove_child(active_bus)
 	remove_child(active_blob)
 	remove_child(kick)
-	
