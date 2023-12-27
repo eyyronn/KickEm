@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di73onv6dtehy"
-path="res://.godot/imported/shadow.png-29e0441c449b9c60fdc30455f32527a4.ctex"
+uid="uid://q17x6dlvm18y"
+path="res://.godot/imported/b_upperarm.png-be13cc457d4a2dcd4d46eab1498ce7e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/passengers/shadow.png"
-dest_files=["res://.godot/imported/shadow.png-29e0441c449b9c60fdc30455f32527a4.ctex"]
+source_file="res://assets/passengers/base/b_arm/b_upperarm.png"
+dest_files=["res://.godot/imported/b_upperarm.png-be13cc457d4a2dcd4d46eab1498ce7e6.ctex"]
 
 [params]
 

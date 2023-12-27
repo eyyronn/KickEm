@@ -151,14 +151,14 @@ func delete_entities():
 		if active_blob != null:
 			active_blob.queue_free()
 			active_blob = null
-		
+	
 		for passenger in all_passengers:
-			if passenger != null:
-				passenger.queue_free()
-				passenger = null
+			passenger.queue_free()
+			passenger = null
 		
 func restart_game():
 	all_passengers.clear()
+	delete_entities()
 	spawn_count = 5
 	current_passenger_count = spawn_count
 	score = 0

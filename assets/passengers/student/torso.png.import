@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di73onv6dtehy"
-path="res://.godot/imported/shadow.png-29e0441c449b9c60fdc30455f32527a4.ctex"
+uid="uid://bro4qe4xnx0t0"
+path="res://.godot/imported/torso.png-7a8da7688d3bce7bde5b96870dfe8035.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/passengers/shadow.png"
-dest_files=["res://.godot/imported/shadow.png-29e0441c449b9c60fdc30455f32527a4.ctex"]
+source_file="res://assets/passengers/student/torso.png"
+dest_files=["res://.godot/imported/torso.png-7a8da7688d3bce7bde5b96870dfe8035.ctex"]
 
 [params]
 

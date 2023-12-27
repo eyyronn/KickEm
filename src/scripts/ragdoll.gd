@@ -51,7 +51,7 @@ func initialize_type():
 	
 func get_available_types():
 	var available_types = [0]
-	match GameManager.difficulty:
+	match GameManager.score:
 		1:	
 			available_types.append(1)
 		2:	
@@ -61,12 +61,14 @@ func get_available_types():
 		4:	
 			available_types.append(4)
 			
+	
+	print_debug(available_types)
 	return available_types
 
 func set_skin(type):
 	for limb in limbs:
 		match limb.name:
-			
+#		
 			"BUpperarm":	
 					limb.back_upper.texture = skins[type][0]
 			"BForearm":

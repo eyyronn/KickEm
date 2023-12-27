@@ -1,20 +1,43 @@
-[gd_scene load_steps=22 format=3 uid="uid://dtdrdlrakqwex"]
+[gd_scene load_steps=45 format=3 uid="uid://dtdrdlrakqwex"]
 
-[ext_resource type="Texture2D" uid="uid://cp4h8edu8rv34" path="res://assets/passengers/base_rig/foot.png" id="1_7lq8a"]
 [ext_resource type="Script" path="res://src/scripts/ragdoll.gd" id="1_gypv7"]
-[ext_resource type="Texture2D" uid="uid://wokr42qmd7vo" path="res://assets/passengers/base_rig/head.png" id="1_k52ng"]
-[ext_resource type="Texture2D" uid="uid://dj8f1jcpr6026" path="res://assets/passengers/base_rig/torso.png" id="1_nhr5l"]
-[ext_resource type="Texture2D" uid="uid://dtsipx3uhb5s7" path="res://assets/passengers/base_rig/legs.png" id="1_wnr4f"]
+[ext_resource type="Texture2D" uid="uid://q17x6dlvm18y" path="res://assets/passengers/base/b_arm/b_upperarm.png" id="2_bup0g"]
+[ext_resource type="Texture2D" uid="uid://dm7nderkiuoxh" path="res://assets/passengers/base/arm/upperarm.png" id="2_nhyl5"]
 [ext_resource type="Script" path="res://src/scripts/limb.gd" id="2_rhjab"]
-[ext_resource type="Texture2D" uid="uid://b3d35l4s6n068" path="res://assets/passengers/base_rig/b_upperarm.png" id="2_u0l25"]
-[ext_resource type="Texture2D" uid="uid://qoc7ehgw0xyl" path="res://assets/passengers/base_rig/upperarm.png" id="3_lfc6n"]
-[ext_resource type="Texture2D" uid="uid://culb14del4425" path="res://assets/passengers/base_rig/b_forearm.png" id="3_r0nhj"]
-[ext_resource type="Texture2D" uid="uid://df0g0ddh4d3y4" path="res://assets/passengers/base_rig/b_legs.png" id="4_dipwx"]
-[ext_resource type="Texture2D" uid="uid://bx3c57snxjqy2" path="res://assets/passengers/base_rig/b_foot.png" id="4_k10bk"]
-[ext_resource type="Texture2D" uid="uid://wdbd3yc25rre" path="res://assets/passengers/base_rig/forearm.png" id="4_nf0l0"]
-[ext_resource type="Texture2D" uid="uid://c2glx1k64j8cr" path="res://assets/passengers/base_rig/b_hand.png" id="4_wfxd4"]
-[ext_resource type="Texture2D" uid="uid://jfhgabsqb076" path="res://assets/passengers/base_rig/hand.png" id="5_3g0f0"]
+[ext_resource type="Texture2D" uid="uid://1eebg2wbiy7e" path="res://assets/passengers/base/b_arm/b_forearm.png" id="3_gexsf"]
+[ext_resource type="Texture2D" uid="uid://chq16l6vbai75" path="res://assets/passengers/base/arm/forearm.png" id="3_lmj74"]
+[ext_resource type="Texture2D" uid="uid://dcmpm2l1jt1ur" path="res://assets/passengers/base/b_leg/b_foot.png" id="5_yeav5"]
+[ext_resource type="Texture2D" uid="uid://bvwtw6r8a237b" path="res://assets/passengers/base/b_leg/b_leg.png" id="6_hv0sc"]
+[ext_resource type="Texture2D" uid="uid://ca5x0noqmdplb" path="res://assets/passengers/base/leg/foot.png" id="7_ajafr"]
+[ext_resource type="Texture2D" uid="uid://bc0lttuh11eto" path="res://assets/passengers/base/leg/leg.png" id="8_4foxe"]
+[ext_resource type="Texture2D" uid="uid://boh484sf00mby" path="res://assets/passengers/base/torso.png" id="9_3sat6"]
 [ext_resource type="AudioStream" uid="uid://bxk13tpwg5gfa" path="res://assets/audio/absorb.wav" id="12_pib2d"]
+[ext_resource type="Texture2D" uid="uid://d4axnwb6cxf48" path="res://assets/passengers/base/arm/hand.png" id="12_rwnhp"]
+[ext_resource type="Texture2D" uid="uid://cj5glw08xkcd2" path="res://assets/passengers/base/head.png" id="13_pm3nm"]
+[ext_resource type="Texture2D" uid="uid://bro4qe4xnx0t0" path="res://assets/passengers/student/torso.png" id="15_2hebv"]
+[ext_resource type="Texture2D" uid="uid://bsu1e25e6e606" path="res://assets/passengers/student/back_arm/back_fore.png" id="15_2k43g"]
+[ext_resource type="Texture2D" uid="uid://djv4h8508qs5r" path="res://assets/passengers/student/back_leg/back_foot.png" id="15_5tmr5"]
+[ext_resource type="Texture2D" uid="uid://kuy8s7y2fbcs" path="res://assets/passengers/student/back_arm/back_upper.png" id="15_853xx"]
+[ext_resource type="Texture2D" uid="uid://ceg2trxryl6o0" path="res://assets/passengers/student/arm/fore.png" id="15_imxys"]
+[ext_resource type="Texture2D" uid="uid://dxik8vpawh1r5" path="res://assets/passengers/student/arm/upper.png" id="15_msexb"]
+[ext_resource type="Texture2D" uid="uid://bt7duety7ymkk" path="res://assets/passengers/student/back_leg/back_leg.png" id="15_pljdr"]
+[ext_resource type="Texture2D" uid="uid://4llwbiiklkd7" path="res://assets/passengers/student/leg/leg.png" id="15_tuyg0"]
+[ext_resource type="Texture2D" uid="uid://bjbn2vxtl1f1j" path="res://assets/passengers/student/head.png" id="15_unqun"]
+[ext_resource type="Texture2D" uid="uid://cox14d07lhk8m" path="res://assets/passengers/student/leg/foot.png" id="15_v3d3f"]
+[ext_resource type="Texture2D" uid="uid://dq011tnv5guf4" path="res://assets/passengers/student/back_arm/back_hand.png" id="15_w64gj"]
+[ext_resource type="Texture2D" uid="uid://b5j8l38tclopi" path="res://assets/passengers/student/arm/hand.png" id="15_wayk5"]
+[ext_resource type="Texture2D" uid="uid://bdk4qcp1tca2n" path="res://assets/passengers/armored/b_arm/b_upperarm.png" id="24_xxs15"]
+[ext_resource type="Texture2D" uid="uid://be72eh5ss6lkj" path="res://assets/passengers/armored/b_arm/b_forearm.png" id="25_6f1pl"]
+[ext_resource type="Texture2D" uid="uid://6o0trmknbh48" path="res://assets/passengers/armored/b_arm/b_hand.png" id="26_ngh02"]
+[ext_resource type="Texture2D" uid="uid://d1cmgva5bqypj" path="res://assets/passengers/armored/b_leg/b_foot.png" id="27_jmdlg"]
+[ext_resource type="Texture2D" uid="uid://crm8lm5fh766r" path="res://assets/passengers/armored/b_leg/b_leg.png" id="28_g167v"]
+[ext_resource type="Texture2D" uid="uid://b22hvo4wk7c05" path="res://assets/passengers/armored/leg/foot.png" id="29_8ag0s"]
+[ext_resource type="Texture2D" uid="uid://5apfkhiqoug1" path="res://assets/passengers/armored/leg/leg.png" id="30_v1nkk"]
+[ext_resource type="Texture2D" uid="uid://cboebhvs38hg0" path="res://assets/passengers/armored/torso.png" id="31_gtmds"]
+[ext_resource type="Texture2D" uid="uid://b8hrrclsh2xyn" path="res://assets/passengers/armored/arm/upperarm.png" id="32_e4ccn"]
+[ext_resource type="Texture2D" uid="uid://d0v05eopgqu21" path="res://assets/passengers/armored/arm/forearm.png" id="33_wyto5"]
+[ext_resource type="Texture2D" uid="uid://cjjqcycdi2r6w" path="res://assets/passengers/armored/arm/hand.png" id="34_u3dkt"]
+[ext_resource type="Texture2D" uid="uid://b13p8lmvtjt27" path="res://assets/passengers/armored/head.png" id="35_jvjcv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mq7un"]
 load_path = "res://.godot/imported/Shadow.png-61d7b9db74850b1fff710392eeb336df.ctex"
@@ -165,7 +188,7 @@ z_index = 2
 texture_filter = 1
 position = Vector2(0, -69)
 script = ExtResource("1_gypv7")
-skins = Array[Array]([[ExtResource("2_u0l25"), ExtResource("3_r0nhj"), ExtResource("4_wfxd4"), ExtResource("4_k10bk"), ExtResource("4_dipwx"), ExtResource("1_7lq8a"), ExtResource("1_wnr4f"), ExtResource("1_nhr5l"), ExtResource("3_lfc6n"), ExtResource("4_nf0l0"), ExtResource("5_3g0f0"), ExtResource("1_k52ng")]])
+skins = Array[Array]([[ExtResource("2_bup0g"), ExtResource("3_gexsf"), ExtResource("15_w64gj"), ExtResource("5_yeav5"), ExtResource("6_hv0sc"), ExtResource("7_ajafr"), ExtResource("8_4foxe"), ExtResource("9_3sat6"), ExtResource("2_nhyl5"), ExtResource("3_lmj74"), ExtResource("12_rwnhp"), ExtResource("13_pm3nm")], [ExtResource("15_853xx"), ExtResource("15_2k43g"), ExtResource("15_w64gj"), ExtResource("15_5tmr5"), ExtResource("15_pljdr"), ExtResource("15_v3d3f"), ExtResource("15_tuyg0"), ExtResource("15_2hebv"), ExtResource("15_msexb"), ExtResource("3_lmj74"), ExtResource("15_wayk5"), ExtResource("15_unqun")], [ExtResource("24_xxs15"), ExtResource("25_6f1pl"), ExtResource("26_ngh02"), ExtResource("27_jmdlg"), ExtResource("28_g167v"), ExtResource("29_8ag0s"), ExtResource("30_v1nkk"), ExtResource("31_gtmds"), ExtResource("32_e4ccn"), ExtResource("33_wyto5"), ExtResource("34_u3dkt"), ExtResource("35_jvjcv")]])
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
@@ -176,8 +199,7 @@ texture = SubResource("CompressedTexture2D_mq7un")
 centered = false
 
 [node name="BUpperarm" type="RigidBody2D" parent="."]
-self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
-position = Vector2(19.8878, 32.1753)
+position = Vector2(20, 32)
 collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
@@ -187,10 +209,10 @@ script = ExtResource("2_rhjab")
 force = 4000.0
 
 [node name="BUpperarm" type="Sprite2D" parent="BUpperarm"]
-self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
-position = Vector2(-23, 31.71)
+position = Vector2(-23, 32)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("3_lfc6n")
+texture = ExtResource("15_853xx")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BUpperarm"]
 position = Vector2(-23, 31.71)
@@ -198,8 +220,7 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(9, -9, 9, 1, 3, 1, 3, 0, 4, 0, 4, -1, 3, -1, 3, -9, 4, -9, 4, -10, 5, -10, 5, -11, 7, -11, 7, -10, 8, -10, 8, -9)
 
 [node name="BForearm" type="RigidBody2D" parent="."]
-self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
-position = Vector2(19.8878, 32.1753)
+position = Vector2(20, 32)
 collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
@@ -209,10 +230,10 @@ script = ExtResource("2_rhjab")
 force = 4000.0
 
 [node name="BForearm" type="Sprite2D" parent="BForearm"]
-self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
-position = Vector2(-23, 31.71)
+position = Vector2(-23, 32)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("4_nf0l0")
+texture = ExtResource("15_2k43g")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BForearm"]
 position = Vector2(-23, 31.71)
@@ -220,8 +241,7 @@ scale = Vector2(3.75, 3.75)
 polygon = PackedVector2Array(3, 1, 3, 2, 4, 2, 4, 8, 8, 8, 8, 1)
 
 [node name="BHand" type="RigidBody2D" parent="."]
-self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
-position = Vector2(19.8878, 32.1753)
+position = Vector2(20, 32)
 collision_layer = 4
 collision_mask = 19
 center_of_mass_mode = 1
@@ -231,10 +251,10 @@ script = ExtResource("2_rhjab")
 force = 4000.0
 
 [node name="BHand" type="Sprite2D" parent="BHand"]
-self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
-position = Vector2(-23, 31.37)
+position = Vector2(-23, 32)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("5_3g0f0")
+texture = ExtResource("15_w64gj")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BHand"]
 position = Vector2(-23, 31.41)
@@ -255,7 +275,8 @@ force = 4000.0
 self_modulate = Color(0.74, 0.74, 0.74, 1)
 position = Vector2(9, -96)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("4_k10bk")
+texture = ExtResource("15_5tmr5")
+flip_h = true
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="BFoot"]
 position = Vector2(9, -96)
@@ -275,7 +296,8 @@ force = 4000.0
 [node name="BLeg" type="Sprite2D" parent="BLeg"]
 self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("4_dipwx")
+texture = ExtResource("15_pljdr")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BLeg"]
 scale = Vector2(3.75, 3.75)
@@ -294,7 +316,8 @@ force = 4000.0
 [node name="Foot" type="Sprite2D" parent="Foot"]
 position = Vector2(-2, -96.29)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("1_7lq8a")
+texture = ExtResource("15_v3d3f")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Foot"]
 position = Vector2(-17, -96.29)
@@ -313,7 +336,8 @@ force = 4000.0
 
 [node name="Leg" type="Sprite2D" parent="Leg"]
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("1_wnr4f")
+texture = ExtResource("15_tuyg0")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Leg"]
 position = Vector2(-15, 0)
@@ -332,7 +356,8 @@ force = 4000.0
 
 [node name="Torso" type="Sprite2D" parent="Torso"]
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("1_nhr5l")
+texture = ExtResource("15_2hebv")
+flip_h = true
 
 [node name="Area2D" type="Area2D" parent="Torso"]
 scale = Vector2(3.75, 3.75)
@@ -356,9 +381,10 @@ script = ExtResource("2_rhjab")
 force = 4000.0
 
 [node name="Upperarm" type="Sprite2D" parent="Upperarm"]
-position = Vector2(-23, 31.71)
+position = Vector2(29.1122, 31.8247)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("3_lfc6n")
+texture = ExtResource("15_msexb")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Upperarm"]
 position = Vector2(-23, 31.71)
@@ -376,9 +402,10 @@ script = ExtResource("2_rhjab")
 force = 4000.0
 
 [node name="Forearm" type="Sprite2D" parent="Forearm"]
-position = Vector2(-23, 31.71)
+position = Vector2(29.1122, 31.8247)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("4_nf0l0")
+texture = ExtResource("15_imxys")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Forearm"]
 position = Vector2(-23, 31.71)
@@ -396,9 +423,10 @@ script = ExtResource("2_rhjab")
 force = 4000.0
 
 [node name="Hand" type="Sprite2D" parent="Hand"]
-position = Vector2(-23, 31.37)
+position = Vector2(30.1122, 31.8247)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("5_3g0f0")
+texture = ExtResource("15_wayk5")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand"]
 position = Vector2(-23, 31.41)
@@ -418,7 +446,8 @@ force = 4000.0
 [node name="Head" type="Sprite2D" parent="Head"]
 position = Vector2(-3, 49.71)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("1_k52ng")
+texture = ExtResource("15_unqun")
+flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head"]
 position = Vector2(-3, 49.71)
