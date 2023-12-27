@@ -15,15 +15,12 @@ func _ready():
 func _on_resume_pressed():
 	emit_signal("resume")
 	
-
 func _on_restart_pressed():
 	emit_signal("resume")
 	emit_signal("on_restart")
 	
-
 func _on_settings_pressed():
 	pass # Replace with function body.
-
 
 func _on_main_menu_pressed():
 	emit_signal("on_main_menu")

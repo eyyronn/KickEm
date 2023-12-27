@@ -36,9 +36,7 @@ signal on_resume
 signal restarted
 
 func _ready():
-	add_child(kick)
-	kick.position.x = -1000
-	spawn_bus()
+	start()
 
 func _process(delta):
 #	print_debug(power_kick_enabled)
@@ -75,7 +73,12 @@ func _physics_process(delta):
 		if hit_stop_enabled:
 			if kick.success_hit() is Limb and kick.impact > 2:
 				hit_stop(kick.impact)
-		
+
+func start():
+	add_child(kick)
+	kick.position.x = -1000
+	spawn_bus()
+
 func spawn_kick():
 #	if game_active:
 	kick.look_at(get_global_mouse_position())
@@ -182,10 +185,14 @@ func delete_blob():
 	current_passenger_count = spawn_count
 	
 func game_activation():
-	game_active = true
+#	emit_signal("on_restart")
+	emit_signal("round_done")
+	start()
+#	await get_tree().create_timer(0.0000001).timeout # DO NOT REMOVE !!!!! MESSIAH
 #	pause_on_restart()
-#	spawn_bus()
-#	emit_signal("round_done")
+	game_active = true
+	
+#	pause_on_restart()
 	
 func game_paused():
 	game_active = false
@@ -200,7 +207,6 @@ func pause_to_gm():
 func pause_on_restart():
 	restart_game()
 #	get_tree().reload_current_scene()
-#	emit_signal("on_restart")
 	emit_signal("restarted")
 
 func pause_on_main_menu():
@@ -210,4 +216,7 @@ func pause_on_main_menu():
 	remove_child(active_bus)
 	remove_child(active_blob)
 	remove_child(kick)
+	
+
+#func back_to_menu()
 	

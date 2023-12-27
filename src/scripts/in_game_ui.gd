@@ -15,7 +15,6 @@ var sec = 45
 @onready var paused_menu = $Pause
 var paused = false
 
-
 @onready var ag_cooldown = $AntiGravity/AG_Cooldown
 @onready var ag_cooldown_percentage
 @onready var ag_button = $AntiGravity/AntiGravity
@@ -108,7 +107,7 @@ func _on_power_kick_pressed():
 	
 func Reset_Timer():
 	$RoundTime.paused = false
-	sec = sec - 5
+	sec = sec - (GameManager.score * 5)
 	if sec < 20:
 		sec = 20
 	else:
