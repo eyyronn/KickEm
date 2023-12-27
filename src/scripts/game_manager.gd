@@ -22,6 +22,7 @@ var difficulty = 0
 var anti_gravity_enabled = false
 var power_kick_enabled = false
 var game_active = false
+var proceed_from_menu
 
 const passenger_scene = preload("res://scenes/passenger.tscn")
 const bus_scene = preload("res://scenes/bus.tscn")
@@ -32,8 +33,12 @@ signal on_lose
 signal on_restart
 signal round_done
 signal pause_timer
+<<<<<<< Updated upstream
 signal on_resume
 signal restarted
+=======
+signal proceed
+>>>>>>> Stashed changes
 
 func _ready():
 	start()
@@ -104,6 +109,7 @@ func spawn_blob():
 
 func spawn_passengers():
 #	if game_active:
+<<<<<<< Updated upstream
 	for i in spawn_count:
 		var passenger = passenger_scene.instantiate() as Passenger
 		add_child(passenger)
@@ -112,6 +118,17 @@ func spawn_passengers():
 		passenger.global_transform.origin.x += randf_range(spawn_offset[0], spawn_offset[1])
 		add_passenger(passenger)
 #		await get_tree().create_timer(randf_range(0.1,0.5)).timeout
+=======
+	#if all_passengers.size() == 0:
+		for i in spawn_count:
+			var passenger = passenger_scene.instantiate() as Passenger
+			add_child(passenger)
+			passenger.global_transform.origin = Vector2.ZERO
+			passenger.global_transform.origin = Vector2(randf_range(spawn_range[0], spawn_range[1]), 506)
+			passenger.global_transform.origin.x += randf_range(spawn_offset[0], spawn_offset[1])
+			add_passenger(passenger)
+			await get_tree().create_timer(randf_range(0.1,0.5)).timeout
+>>>>>>> Stashed changes
 	
 func add_passenger(passenger):
 #	if game_active:
@@ -159,9 +176,15 @@ func delete_entities():
 			active_blob = null
 
 		for passenger in all_passengers:
+<<<<<<< Updated upstream
 			remove_child(passenger)
 			passenger = null
 
+=======
+				remove_child(passenger)
+				passenger = null
+		
+>>>>>>> Stashed changes
 func restart_game():
 	delete_entities()
 	all_passengers.clear()
@@ -191,6 +214,7 @@ func game_activation():
 #	await get_tree().create_timer(0.0000001).timeout # DO NOT REMOVE !!!!! MESSIAH
 #	pause_on_restart()
 	game_active = true
+<<<<<<< Updated upstream
 	
 #	pause_on_restart()
 	
@@ -211,12 +235,29 @@ func pause_on_restart():
 
 func pause_on_main_menu():
 	game_active = false
+=======
+	print(game_active)
+
+func game_deactivation():
+	game_active = false
+	
+func main_menu():
+	game_deactivation()
+>>>>>>> Stashed changes
 	for passenger in all_passengers:
 		remove_child(passenger)
 	remove_child(active_bus)
 	remove_child(active_blob)
+<<<<<<< Updated upstream
 	remove_child(kick)
 	
 
 #func back_to_menu()
+=======
+	emit_signal("proceed")
+	proceed_from_menu = await proceed
+
+	
+	
+>>>>>>> Stashed changes
 	
