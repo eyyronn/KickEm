@@ -38,7 +38,6 @@ func _ready():
 	connect("enable_anti_gravity", GameManager.anti_gravity_on)
 	connect("game_is_paused", GameManager.game_paused)
 	connect("game_not_paused", GameManager.game_unpaused)
-#	round_timer.start()
 
 func _process(delta):
 	update_score()
@@ -79,6 +78,7 @@ func update_score():
 func open_lose_screen():
 	get_tree().change_scene_to_packed(lose_screen)
 
+
 func restart_scene():
 	get_tree().reload_current_scene()
 
@@ -105,9 +105,11 @@ func _on_power_kick_pressed():
 	pk_button.disabled = true
 	pk_cooldown.start()
 	
+var new_sec = sec
+
 func Reset_Timer():
 	$RoundTime.paused = false
-	sec = sec - (GameManager.score * 5)
+	sec = new_sec - (GameManager.score * 5)
 	if sec < 20:
 		sec = 20
 	else:
@@ -116,7 +118,7 @@ func Reset_Timer():
 	$RoundTime.start()
 	
 func Round_Timer():
-	$RoundTime.wait_time = sec
+	$RoundTime.set_wait_time(sec)
 	$RoundTime/Round_TIME.text = str(round($RoundTime.time_left))
 
 func _on_round_time_timeout() -> void:

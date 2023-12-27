@@ -22,6 +22,7 @@ var difficulty = 0
 var anti_gravity_enabled = false
 var power_kick_enabled = false
 var game_active = false
+var proceed_from_menu
 
 const passenger_scene = preload("res://scenes/passenger.tscn")
 const bus_scene = preload("res://scenes/bus.tscn")
@@ -161,7 +162,7 @@ func delete_entities():
 		for passenger in all_passengers:
 			remove_child(passenger)
 			passenger = null
-
+		
 func restart_game():
 	delete_entities()
 	all_passengers.clear()
@@ -191,12 +192,6 @@ func game_activation():
 	await get_tree().create_timer(0.0000001).timeout # DO NOT REMOVE !!!!! MESSIAH
 	pause_on_restart()
 	emit_signal("round_done")
-	
-	
-#	await get_tree().create_timer(0.0000001).timeout # DO NOT REMOVE !!!!! MESSIAH
-#	pause_on_restart()
-	
-	
 #	pause_on_restart()
 	
 func game_paused():
@@ -216,12 +211,14 @@ func pause_on_restart():
 
 func pause_on_main_menu():
 	game_active = false
+
+func game_deactivation():
+	game_active = false
+	
+func main_menu():
+	game_deactivation()
 	for passenger in all_passengers:
 		remove_child(passenger)
 	remove_child(active_bus)
 	remove_child(active_blob)
 	remove_child(kick)
-	
-
-#func back_to_menu()
-	
