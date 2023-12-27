@@ -32,6 +32,8 @@ signal on_lose
 signal on_restart
 signal round_done
 signal pause_timer
+signal on_resume
+signal restarted
 
 func _ready():
 	add_child(kick)
@@ -40,15 +42,16 @@ func _ready():
 
 func _process(delta):
 #	print_debug(power_kick_enabled)
-#	print(kick.force)
+	print(game_active)
 	if game_active:
 		if not active_bus and not bus_incoming:
 			spawn_bus()
 		
 		if Input.is_action_just_pressed("Restart"):
 			restart_game()
-			emit_signal("on_restart")
-			get_tree().reload_current_scene()
+#			emit_signal("on_restart")
+#			get_tree().reload_current_scene()
+#			delete_entities()
 		
 		if Input.is_action_just_pressed("Click"):
 			spawn_kick()
@@ -64,7 +67,7 @@ func _process(delta):
 				spawn_blob()
 		
 func _physics_process(delta):
-	if game_active:
+	if game_active && all_passengers.size() > 0:
 		for passenger in all_passengers:
 			for limb in passenger.limbs:
 				if anti_gravity_enabled:
@@ -105,7 +108,7 @@ func spawn_passengers():
 		passenger.global_transform.origin = Vector2(randf_range(spawn_range[0], spawn_range[1]), 506)
 		passenger.global_transform.origin.x += randf_range(spawn_offset[0], spawn_offset[1])
 		add_passenger(passenger)
-		await get_tree().create_timer(randf_range(0.1,0.5)).timeout
+#		await get_tree().create_timer(randf_range(0.1,0.5)).timeout
 	
 func add_passenger(passenger):
 #	if game_active:
@@ -147,24 +150,25 @@ func delete_entities():
 		if active_bus != null:
 			active_bus.queue_free()
 			active_bus = null
-	
+
 		if active_blob != null:
 			active_blob.queue_free()
 			active_blob = null
-		
+
 		for passenger in all_passengers:
-			if passenger != null:
-				passenger.queue_free()
-				passenger = null
-		
+			remove_child(passenger)
+			passenger = null
+
 func restart_game():
+	delete_entities()
 	all_passengers.clear()
 	spawn_count = 5
 	current_passenger_count = spawn_count
 	score = 0
-	#emit_signal("on_restart")
+#	emit_signal("on_restart")
 	spawn_bus()
-	
+
+
 func delete_bus(bus):
 	bus.queue_free()
 	active_bus = null
@@ -178,6 +182,31 @@ func delete_blob():
 	
 func game_activation():
 	game_active = true
-	print(game_active)
+#	pause_on_restart()
+#	spawn_bus()
+#	emit_signal("round_done")
+	
+func game_paused():
+	game_active = false
 
+func game_unpaused():
+	game_active = true
+
+func pause_to_gm():
+	game_active = true
+	emit_signal("on_resume")
+
+func pause_on_restart():
+	restart_game()
+#	get_tree().reload_current_scene()
+#	emit_signal("on_restart")
+	emit_signal("restarted")
+
+func pause_on_main_menu():
+	game_active = false
+	for passenger in all_passengers:
+		remove_child(passenger)
+	remove_child(active_bus)
+	remove_child(active_blob)
+	remove_child(kick)
 	

@@ -11,7 +11,9 @@ extends Control
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
-var sec = 15
+var sec = 20
+@onready var paused_menu = $Pause
+var paused = false
 
 @onready var ag_cooldown = $AntiGravity/AG_Cooldown
 @onready var ag_cooldown_percentage
@@ -22,15 +24,21 @@ var sec = 15
 
 signal enable_anti_gravity
 signal enable_power_kick
+signal game_is_paused
+signal game_not_paused
 
 func _ready():
 	GameManager.connect("pause_timer", Timer_pause)
 	GameManager.connect("round_done", Reset_Timer)
 	GameManager.connect("on_lose", open_lose_screen)
 	GameManager.connect("on_restart", restart_scene)
+	GameManager.connect("on_resume", pause_menu)
+	GameManager.connect("restarted", restarted)
 	connect("enable_power_kick", GameManager.power_kick_on)
 	connect("enable_anti_gravity", GameManager.anti_gravity_on)
-	round_timer.start()
+	connect("game_is_paused", GameManager.game_paused)
+	connect("game_not_paused", GameManager.game_unpaused)
+#	round_timer.start()
 
 func _process(delta):
 	update_score()
@@ -41,13 +49,23 @@ func _process(delta):
 			(1 - ag_cooldown.time_left / ag_cooldown.wait_time) * 100
 			)
 		anti_gravity.value = ag_cooldown_percentage
+		if paused:
+			ag_cooldown.paused = true
+		else:
+			ag_cooldown.paused = false
 		
 	if pk_cooldown.time_left > 0:
 		pk_cooldown_percentage = (
 			(1 - pk_cooldown.time_left / pk_cooldown.wait_time) * 100
 			)
 		power_kick.value = pk_cooldown_percentage
-		
+		if paused == true:
+			pk_cooldown.paused = true
+		else:
+			pk_cooldown.paused = false
+			
+	if Input.is_action_just_pressed("Pause"):
+		pause_menu()
 		
 func update_progress_bar(delta):
 	progress_bar.max_value = GameManager.spawn_count
@@ -89,11 +107,12 @@ func _on_power_kick_pressed():
 	
 func Reset_Timer():
 	$RoundTime.paused = false
-	sec = sec - (5 * GameManager.score)
+	sec = sec - 5
 	if sec < 20:
 		sec = 20
 	else:
 		sec = sec
+	Round_Timer()
 	$RoundTime.start()
 	
 func Round_Timer():
@@ -106,3 +125,23 @@ func _on_round_time_timeout() -> void:
 
 func Timer_pause():
 	$RoundTime.paused = true
+	
+func pause_menu():
+	if paused:
+		paused_menu.hide()
+#		Engine.time_scale = 1
+		$RoundTime.paused = false
+		emit_signal("game_not_paused")
+	else:
+		paused_menu.show()
+#		Engine.time_scale = 0.01
+		$RoundTime.paused = true
+		emit_signal("game_is_paused")
+		
+	paused = !paused
+	
+func restarted():
+	ag_cooldown.start()
+	pk_cooldown.start()
+
+		

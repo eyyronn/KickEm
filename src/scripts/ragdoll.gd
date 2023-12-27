@@ -68,7 +68,6 @@ func set_weight(weight):
 func _process(delta):	
 	set_gravity()
 	for limb in limbs:
-		
 		if limb.name == "Torso" and not is_on_bus:
 			update_shadow(limb)
 #			self.position = limb.global_position
@@ -124,7 +123,7 @@ func correct_rotation(limb, delta):
 
 	var magnitude = current_vector.distance_to(heading_vector);
 	var applied_force = limb.force;
-	
+
 	limb.angular_velocity = lerp_angle(current_angle, limb.desired_angle, (limb.force) * delta);
 		
 # Supposed to restrict arm movement to an arc
@@ -193,3 +192,4 @@ func get_on_bus():
 #	if GameManager.kick.raycast.is_colliding():
 #		return GameManager.kick.raycast.get_collider() is Limb
 #	return false
+

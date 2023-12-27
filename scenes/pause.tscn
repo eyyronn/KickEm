@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://n1efd0ef4okf"]
+
+[ext_resource type="Script" path="res://src/scripts/pause.gd" id="1_84ool"]
+[ext_resource type="Theme" uid="uid://cms61kldfd47s" path="res://assets/theme.tres" id="1_spvme"]
+
+[node name="Pause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_84ool")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = -13.0
+offset_right = 427.0
+offset_bottom = 725.0
+theme = ExtResource("1_spvme")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_spvme")
+
+[node name="TopMargin" type="Panel" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_spvme")
+text = "           Resume            "
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_spvme")
+text = "           Restart            "
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Settings" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_spvme")
+text = "           Settings           "
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="MainMenu" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_spvme")
+text = "          Main Menu          "
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_spvme")
+text = "             Quit              "
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="BottomMargin" type="Panel" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

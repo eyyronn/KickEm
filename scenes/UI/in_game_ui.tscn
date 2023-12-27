@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tn51vycgy3xn"]
+[gd_scene load_steps=8 format=3 uid="uid://tn51vycgy3xn"]
 
 [ext_resource type="Script" path="res://src/scripts/in_game_ui.gd" id="1_hdrbt"]
 [ext_resource type="Theme" uid="uid://cms61kldfd47s" path="res://assets/theme.tres" id="2_w1x45"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bv6pf8w44mmr4" path="res://assets/skills/Anti-Gravity-Skill.png" id="4_ytf7y"]
 [ext_resource type="Texture2D" uid="uid://nfjsv3pf66dc" path="res://assets/skills/Power-Kick-Skill-Icon-Under (2).png" id="5_d5n7q"]
 [ext_resource type="Texture2D" uid="uid://crsfnno7cisk6" path="res://assets/skills/Power-Kick-Skill.png" id="6_llg1s"]
+[ext_resource type="PackedScene" uid="uid://n1efd0ef4okf" path="res://scenes/pause.tscn" id="9_68w0d"]
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -137,6 +138,14 @@ grow_horizontal = 2
 theme = ExtResource("2_w1x45")
 text = "0"
 horizontal_alignment = 1
+
+[node name="Pause" parent="." instance=ExtResource("9_68w0d")]
+visible = false
+layout_mode = 1
+offset_left = -585.0
+offset_top = -332.0
+offset_right = -585.0
+offset_bottom = -332.0
 
 [connection signal="pressed" from="AntiGravity/AntiGravity" to="." method="_on_anti_gravity_pressed"]
 [connection signal="timeout" from="AntiGravity/AG_Cooldown" to="." method="_on_ag_cooldown_timeout"]
