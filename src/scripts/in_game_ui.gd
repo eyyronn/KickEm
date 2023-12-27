@@ -11,7 +11,7 @@ extends Control
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
-var sec = 40
+var sec = 15
 
 @onready var ag_cooldown = $AntiGravity/AG_Cooldown
 @onready var ag_cooldown_percentage
@@ -24,6 +24,7 @@ signal enable_anti_gravity
 signal enable_power_kick
 
 func _ready():
+	GameManager.connect("pause_timer", Timer_pause)
 	GameManager.connect("round_done", Reset_Timer)
 	GameManager.connect("on_lose", open_lose_screen)
 	GameManager.connect("on_restart", restart_scene)
@@ -58,7 +59,6 @@ func update_score():
 	score_label.text = score_string.format({"str" : GameManager.score})
 
 func open_lose_screen():
-	GameManager.delete_entities()
 	get_tree().change_scene_to_packed(lose_screen)
 
 func restart_scene():
@@ -88,6 +88,7 @@ func _on_power_kick_pressed():
 	pk_cooldown.start()
 	
 func Reset_Timer():
+	$RoundTime.paused = false
 	sec = sec - (5 * GameManager.score)
 	if sec < 20:
 		sec = 20
@@ -102,3 +103,6 @@ func Round_Timer():
 func _on_round_time_timeout() -> void:
 	if progress_bar.value != GameManager.spawn_count or GameManager.active_blob != null:
 		open_lose_screen()
+
+func Timer_pause():
+	$RoundTime.paused = true

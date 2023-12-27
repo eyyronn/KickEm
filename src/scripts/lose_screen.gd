@@ -21,5 +21,5 @@ func on_replay_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/bus_stop.tscn")
 	
 func on_menu_pressed() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
