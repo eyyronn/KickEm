@@ -126,7 +126,6 @@ autostart = true
 [node name="RoundTime" type="Timer" parent="."]
 process_callback = 0
 wait_time = 45.0
-autostart = true
 
 [node name="Round_TIME" type="Label" parent="RoundTime"]
 anchors_preset = 10

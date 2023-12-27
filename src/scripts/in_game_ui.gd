@@ -11,13 +11,9 @@ extends Control
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
-<<<<<<< Updated upstream
 var sec = 45
 @onready var paused_menu = $Pause
 var paused = false
-=======
-var sec = 20
->>>>>>> Stashed changes
 
 @onready var ag_cooldown = $AntiGravity/AG_Cooldown
 @onready var ag_cooldown_percentage
@@ -35,7 +31,6 @@ func _ready():
 	GameManager.connect("pause_timer", Timer_pause)
 	GameManager.connect("round_done", Reset_Timer)
 	GameManager.connect("on_lose", open_lose_screen)
-<<<<<<< Updated upstream
 	GameManager.connect("on_restart", restart_scene)
 	GameManager.connect("on_resume", pause_menu)
 	GameManager.connect("restarted", restarted)
@@ -43,13 +38,6 @@ func _ready():
 	connect("enable_anti_gravity", GameManager.anti_gravity_on)
 	connect("game_is_paused", GameManager.game_paused)
 	connect("game_not_paused", GameManager.game_unpaused)
-#	round_timer.start()
-=======
-	GameManager.connect("on_restart", restart_scene)  
-	connect("enable_power_kick", GameManager.power_kick_on)
-	connect("enable_anti_gravity", GameManager.anti_gravity_on)
-	Round_Timer()
->>>>>>> Stashed changes
 
 func _process(delta):
 	update_score()
@@ -118,16 +106,10 @@ func _on_power_kick_pressed():
 	pk_cooldown.start()
 	
 var new_sec = sec
-<<<<<<< Updated upstream
-func Reset_Timer():
-	$RoundTime.paused = false
-	sec = new_sec - (GameManager.score * 5)
-=======
 
 func Reset_Timer():
 	$RoundTime.paused = false
-	sec = new_sec - (5 * GameManager.score)
->>>>>>> Stashed changes
+	sec = new_sec - (GameManager.score * 5)
 	if sec < 20:
 		sec = 20
 	else:
