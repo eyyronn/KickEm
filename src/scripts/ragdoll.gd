@@ -21,6 +21,7 @@ var size = 10
 var is_on_bus = false
 var type : int
 var gravity = 2.5
+var available_types = [0]
 
 func _ready():
 	initialize_limbs()
@@ -50,15 +51,20 @@ func initialize_type():
 	set_skin(type)
 	
 func get_available_types():
-	var available_types = [0]
 	match GameManager.score:
 		1:	
 			available_types.append(1)
 		2:	
+			available_types.append(1)
 			available_types.append(2)
 		3:	
+			available_types.append(1)
+			available_types.append(2)
 			available_types.append(3)
 		4:	
+			available_types.append(1)
+			available_types.append(2)
+			available_types.append(3)
 			available_types.append(4)
 			
 	

@@ -90,7 +90,7 @@ func _on_ag_cooldown_timeout():
 	ag_button.disabled = false
 
 func _on_anti_gravity_pressed():
-	print("ag")
+#	print("ag")
 	emit_signal("enable_anti_gravity")
 	ag_button.disabled = true
 	ag_cooldown.start()
@@ -100,7 +100,7 @@ func _on_pk_cooldown_timeout():
 	pk_button.disabled = false
 
 func _on_power_kick_pressed():
-	print("ag")
+#	print("ag")
 	emit_signal("enable_power_kick")
 	pk_button.disabled = true
 	pk_cooldown.start()

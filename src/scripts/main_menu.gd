@@ -13,12 +13,13 @@ func _process(delta):
 	pass
 	
 func _on_play_pressed():
-	print("hiiiiiiiiiii")
+#	print("hiiiiiiiiiii")
 	get_tree().change_scene_to_file(game_scene)
 	emit_signal("play_pressed")
 
 func _on_settings_pressed():
-	print('asdjadad')
+#	print('asdjadad')
+	pass
 	
 func _on_quit_pressed():
 	get_tree().quit()

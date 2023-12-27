@@ -40,7 +40,7 @@ func _ready():
 
 func _process(delta):
 #	print_debug(power_kick_enabled)
-	print(game_active)
+#	print(game_active)
 	if game_active:
 		if not active_bus and not bus_incoming:
 			spawn_bus()
