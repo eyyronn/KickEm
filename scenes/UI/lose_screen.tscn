@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0kvny5e6o1l8"]
+[gd_scene load_steps=4 format=3 uid="uid://ccjcstksqck28"]
 
 [ext_resource type="Script" path="res://src/scripts/lose_screen.gd" id="1_5fhd5"]
 [ext_resource type="Texture2D" uid="uid://rvdkymt1o4r8" path="res://assets/background/background_warm_blur.jpg" id="2_ewedh"]
@@ -79,7 +79,7 @@ custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 theme = ExtResource("3_e50mh")
 theme_override_font_sizes/font_size = 60
-text = "REPLAY"
+text = " REPLAY "
 
 [node name="menu" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)

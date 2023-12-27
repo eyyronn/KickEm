@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bv6pf8w44mmr4" path="res://assets/skills/Anti-Gravity-Skill.png" id="4_ytf7y"]
 [ext_resource type="Texture2D" uid="uid://nfjsv3pf66dc" path="res://assets/skills/Power-Kick-Skill-Icon-Under (2).png" id="5_d5n7q"]
 [ext_resource type="Texture2D" uid="uid://crsfnno7cisk6" path="res://assets/skills/Power-Kick-Skill.png" id="6_llg1s"]
-[ext_resource type="PackedScene" uid="uid://ddg2wjc6sn8ju" path="res://scenes/pause.tscn" id="7_oh1ii"]
+[ext_resource type="PackedScene" uid="uid://n1efd0ef4okf" path="res://scenes/pause.tscn" id="9_68w0d"]
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -192,19 +192,6 @@ theme = ExtResource("2_w1x45")
 text = "QUIT
 "
 alignment = 0
-
-[node name="Pause" parent="." instance=ExtResource("7_oh1ii")]
-visible = false
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -587.0
-offset_top = -324.0
-offset_right = -587.0
-offset_bottom = -324.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [connection signal="pressed" from="AntiGravity/AntiGravity" to="." method="_on_anti_gravity_pressed"]
 [connection signal="timeout" from="AntiGravity/AG_Cooldown" to="." method="_on_ag_cooldown_timeout"]

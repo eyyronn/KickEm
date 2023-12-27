@@ -121,14 +121,14 @@ func _physics_process(delta):
 
 			if controllable:
 				control_ragdoll(limb)	
-			correct_rotation(limb, delta)	
+				
 #			if limb.name == "Torso":
 #				update_shadow(limb)
 ##				self.position = limb.global_position - Vector2(0, 60)
 #			if limb.name.ends_with("arm") or limb.name.ends_with("Hand"):
 #				pivot_arm(limb, delta)
 #				continue
-			
+			correct_rotation(limb, delta)	
 			
 #func _integrate_forces(state):
 #	for limb in limbs:
@@ -145,20 +145,19 @@ func _physics_process(delta):
 		
 func correct_rotation(limb, delta):
 	var current_angle = limb.rotation;
-	limb.angular_velocity = lerp_angle(current_angle, limb.desired_angle, (limb.force) * delta);
 	
-#	var heading_vector = Vector2.ZERO;
-#	heading_vector.x = cos(limb.desired_angle);
-#	heading_vector.y = sin(limb.desired_angle);
-#
-#	var current_vector = Vector2.ZERO;
-#	current_vector.x = cos(current_angle);
-#	current_vector.y = sin(current_angle);
-#
-#	var magnitude = current_vector.distance_to(heading_vector);
-#	var applied_force = limb.force;
+	var heading_vector = Vector2.ZERO;
+	heading_vector.x = cos(limb.desired_angle);
+	heading_vector.y = sin(limb.desired_angle);
 
-	
+	var current_vector = Vector2.ZERO;
+	current_vector.x = cos(current_angle);
+	current_vector.y = sin(current_angle);
+
+	var magnitude = current_vector.distance_to(heading_vector);
+	var applied_force = limb.force;
+
+	limb.angular_velocity = lerp_angle(current_angle, limb.desired_angle, (limb.force) * delta);
 		
 # Supposed to restrict arm movement to an arc
 #func pivot_arm(limb, delta):
