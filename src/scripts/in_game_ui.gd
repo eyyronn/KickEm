@@ -11,9 +11,10 @@ extends Control
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
-var sec = 20
+var sec = 45
 @onready var paused_menu = $Pause
 var paused = false
+
 
 @onready var ag_cooldown = $AntiGravity/AG_Cooldown
 @onready var ag_cooldown_percentage

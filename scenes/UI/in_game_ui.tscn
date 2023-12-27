@@ -139,13 +139,59 @@ theme = ExtResource("2_w1x45")
 text = "0"
 horizontal_alignment = 1
 
-[node name="Pause" parent="." instance=ExtResource("9_68w0d")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
-layout_mode = 1
-offset_left = -585.0
-offset_top = -332.0
-offset_right = -585.0
-offset_bottom = -332.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1160.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.313726)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 438.0
+offset_bottom = 648.0
+size_flags_horizontal = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w1x45")
+text = "RESUME"
+alignment = 0
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w1x45")
+text = "BACK TO MENU
+"
+alignment = 0
+
+[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w1x45")
+text = "SETTINGS
+"
+alignment = 0
+
+[node name="Button4" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w1x45")
+text = "QUIT
+"
+alignment = 0
+
+[node name="Button5" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w1x45")
+text = "QUIT
+"
+alignment = 0
+
+[node name="Button6" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w1x45")
+text = "QUIT
+"
+alignment = 0
 
 [connection signal="pressed" from="AntiGravity/AntiGravity" to="." method="_on_anti_gravity_pressed"]
 [connection signal="timeout" from="AntiGravity/AG_Cooldown" to="." method="_on_ag_cooldown_timeout"]

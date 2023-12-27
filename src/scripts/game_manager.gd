@@ -162,6 +162,7 @@ func delete_entities():
 func restart_game():
 	delete_entities()
 	all_passengers.clear()
+	delete_entities()
 	spawn_count = 5
 	current_passenger_count = spawn_count
 	score = 0

@@ -7,6 +7,7 @@ class_name Passenger
 @onready var area = $Torso/Area2D
 @onready var absorb = $AbsorbSound
 
+@export var skins : Array[Array]
 @export var center_of_mass := Vector2(0.0, 40.0)
 @export var controllable := false
 @export var movement_power := 500.0
@@ -46,10 +47,11 @@ func initialize_type():
 			size = 50
 			
 	set_weight(size * 4.0)
+	set_skin(type)
 	
 func get_available_types():
 	var available_types = [0]
-	match GameManager.difficulty:
+	match GameManager.score:
 		1:	
 			available_types.append(1)
 		2:	
@@ -59,8 +61,39 @@ func get_available_types():
 		4:	
 			available_types.append(4)
 			
-	return available_types
 	
+	print_debug(available_types)
+	return available_types
+
+func set_skin(type):
+	for limb in limbs:
+		match limb.name:
+#		
+			"BUpperarm":	
+					limb.back_upper.texture = skins[type][0]
+			"BForearm":
+					limb.back_fore.texture = skins[type][1]
+			"BHand":
+					limb.back_hand.texture = skins[type][2]
+			"BFoot":
+					limb.back_foot.texture = skins[type][3]
+			"BLeg":
+					limb.back_leg.texture = skins[type][4]
+			"Foot":
+					limb.foot.texture = skins[type][5]
+			"Leg":
+					limb.leg.texture = skins[type][6]
+			"Torso":
+					limb.torso.texture = skins[type][7]
+			"Upperarm":
+					limb.upper.texture = skins[type][8]
+			"Forearm":
+					limb.fore.texture = skins[type][9]
+			"Hand":
+					limb.hand.texture = skins[type][10]
+			"Head":
+					limb.head.texture = skins[type][11]
+
 func set_weight(weight):
 	for limb in limbs:
 		limb.center_of_mass = Vector2(0.0, weight)

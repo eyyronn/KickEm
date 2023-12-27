@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di73onv6dtehy"
-path="res://.godot/imported/shadow.png-29e0441c449b9c60fdc30455f32527a4.ctex"
+uid="uid://d1cmgva5bqypj"
+path="res://.godot/imported/b_foot.png-af5d643ebdcbe1f874ff49ecd18de3a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/passengers/shadow.png"
-dest_files=["res://.godot/imported/shadow.png-29e0441c449b9c60fdc30455f32527a4.ctex"]
+source_file="res://assets/passengers/armored/b_leg/b_foot.png"
+dest_files=["res://.godot/imported/b_foot.png-af5d643ebdcbe1f874ff49ecd18de3a8.ctex"]
 
 [params]
 
