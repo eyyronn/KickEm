@@ -165,7 +165,7 @@ z_index = 2
 texture_filter = 1
 position = Vector2(0, -69)
 script = ExtResource("1_gypv7")
-skins = Array[Array]([[ExtResource("2_u0l25"), ExtResource("3_r0nhj"), ExtResource("4_wfxd4"), ExtResource("4_k10bk"), ExtResource("4_dipwx"), ExtResource("1_7lq8a"), ExtResource("1_wnr4f"), ExtResource("1_nhr5l"), ExtResource("3_lfc6n"), ExtResource("4_nf0l0"), ExtResource("5_3g0f0"), ExtResource("1_k52ng")]])
+skins = Array[Array]([[ExtResource("2_u0l25"), ExtResource("3_r0nhj"), ExtResource("4_wfxd4"), ExtResource("4_k10bk"), ExtResource("4_dipwx"), ExtResource("1_7lq8a"), ExtResource("1_wnr4f"), ExtResource("1_nhr5l"), ExtResource("3_lfc6n"), null, ExtResource("4_nf0l0"), ExtResource("1_k52ng")]])
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1

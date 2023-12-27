@@ -1,6 +1,16 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cms61kldfd47s"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cms61kldfd47s"]
 
 [ext_resource type="FontFile" uid="uid://cfp310grh4qan" path="res://assets/fonts/Absolute 10 Basic.ttf" id="1_x2kja"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plmdw"]
+content_margin_left = 50.0
+content_margin_top = 19.0
+content_margin_right = 50.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 0.784314, 0.129412, 1)
+shadow_color = Color(1, 0.415686, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 10)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rfcc3"]
 
@@ -24,6 +34,10 @@ corner_radius_bottom_left = 4
 
 [resource]
 default_font = ExtResource("1_x2kja")
+Button/colors/font_color = Color(1, 0.415686, 0, 1)
+Button/font_sizes/font_size = 75
+Button/fonts/font = ExtResource("1_x2kja")
+Button/styles/normal = SubResource("StyleBoxFlat_plmdw")
 Label/colors/font_color = Color(0.941176, 0.694118, 0.207843, 1)
 Label/colors/font_outline_color = Color(0.819608, 0.231373, 0, 1)
 Label/colors/font_shadow_color = Color(0.921569, 0.270588, 0, 1)
