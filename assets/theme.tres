@@ -1,6 +1,14 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cms61kldfd47s"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cms61kldfd47s"]
 
 [ext_resource type="FontFile" uid="uid://cfp310grh4qan" path="res://assets/fonts/Absolute 10 Basic.ttf" id="1_x2kja"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7qkj"]
+bg_color = Color(0.917647, 0.698039, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tngmd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2pqr"]
+bg_color = Color(0.917647, 0.596078, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rfcc3"]
 
@@ -24,9 +32,20 @@ corner_radius_bottom_left = 4
 
 [resource]
 default_font = ExtResource("1_x2kja")
-Label/colors/font_color = Color(0.941176, 0.694118, 0.207843, 1)
-Label/colors/font_outline_color = Color(0.819608, 0.231373, 0, 1)
-Label/colors/font_shadow_color = Color(0.921569, 0.270588, 0, 1)
+Button/colors/font_color = Color(0.917647, 0.443137, 0, 1)
+Button/colors/font_focus_color = Color(0.917647, 0.443137, 0, 1)
+Button/colors/font_hover_color = Color(0.917647, 0.443137, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0.917647, 0.443137, 0, 1)
+Button/colors/font_outline_color = Color(0.917647, 0.698039, 0, 1)
+Button/colors/font_pressed_color = Color(0.933333, 0.694118, 0.27451, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_x2kja")
+Button/styles/hover = SubResource("StyleBoxFlat_b7qkj")
+Button/styles/normal = SubResource("StyleBoxEmpty_tngmd")
+Button/styles/pressed = SubResource("StyleBoxFlat_s2pqr")
+Label/colors/font_color = Color(0.933333, 0.694118, 0.27451, 1)
+Label/colors/font_outline_color = Color(0.819608, 0.231373, 0.00784314, 1)
+Label/colors/font_shadow_color = Color(0.905882, 0.294118, 0.0862745, 1)
 Label/constants/line_spacing = 3
 Label/constants/outline_size = 4
 Label/constants/shadow_offset_x = 0
