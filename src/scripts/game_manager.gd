@@ -152,27 +152,27 @@ func power_kick_on():
 func delete_entities():
 	if game_active:
 		if active_bus != null:
-			active_bus.queue_free()
+			remove_child(active_bus)
 			active_bus = null
 
 		if active_blob != null:
-			active_blob.queue_free()
+			remove_child(active_blob)
 			active_blob = null
 
 		for passenger in all_passengers:
 			remove_child(passenger)
 			passenger = null
+			
 		
 func restart_game():
 	delete_entities()
 	all_passengers.clear()
-	delete_entities()
 	spawn_count = 5
 	current_passenger_count = spawn_count
 	score = 0
 #	emit_signal("on_restart")
-	spawn_bus()
-
+	game_active = true
+	start()
 
 func delete_bus(bus):
 	bus.queue_free()
@@ -193,7 +193,7 @@ func game_activation():
 	pause_on_restart()
 	emit_signal("round_done")
 #	pause_on_restart()
-	
+
 func game_paused():
 	game_active = false
 
@@ -202,23 +202,43 @@ func game_unpaused():
 
 func pause_to_gm():
 	game_active = true
+	return_state()
 	emit_signal("on_resume")
 
 func pause_on_restart():
 	restart_game()
 #	get_tree().reload_current_scene()
 	emit_signal("restarted")
-
-func pause_on_main_menu():
-	game_active = false
-
-func game_deactivation():
-	game_active = false
 	
-func main_menu():
-	game_deactivation()
+func deactivate_game():
+	if active_bus != null:
+		remove_child(active_bus)
+		active_bus = null
+
+	if active_blob != null:
+		remove_child(active_blob)
+		active_blob = null
+
 	for passenger in all_passengers:
 		remove_child(passenger)
-	remove_child(active_bus)
-	remove_child(active_blob)
+		passenger = null
 	remove_child(kick)
+	game_active = false
+	
+func stop_time():
+	for passenger in all_passengers:
+		passenger.anim.stop()
+		for limb in passenger.limbs:
+			print(limb)
+			limb.freeze = true
+			limb.gravity_scale = 0
+			
+			
+func return_state():
+	for passenger in all_passengers:
+		passenger.anim.play()
+		for limb in passenger.limbs:
+			print(limb)
+			limb.freeze = false
+			limb.gravity_scale = 2.5
+			

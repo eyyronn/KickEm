@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dtdrdlrakqwex"]
+[gd_scene load_steps=69 format=3 uid="uid://dtdrdlrakqwex"]
 
 [ext_resource type="Script" path="res://src/scripts/ragdoll.gd" id="1_gypv7"]
 [ext_resource type="Texture2D" uid="uid://q17x6dlvm18y" path="res://assets/passengers/base/b_arm/b_upperarm.png" id="2_bup0g"]
@@ -38,6 +38,30 @@
 [ext_resource type="Texture2D" uid="uid://d0v05eopgqu21" path="res://assets/passengers/armored/arm/forearm.png" id="33_wyto5"]
 [ext_resource type="Texture2D" uid="uid://cjjqcycdi2r6w" path="res://assets/passengers/armored/arm/hand.png" id="34_u3dkt"]
 [ext_resource type="Texture2D" uid="uid://b13p8lmvtjt27" path="res://assets/passengers/armored/head.png" id="35_jvjcv"]
+[ext_resource type="Texture2D" uid="uid://5e6jgoimask0" path="res://assets/passengers/worker/b_arm/b_upperarm.png" id="36_uhcg7"]
+[ext_resource type="Texture2D" uid="uid://bl2irnud0aubs" path="res://assets/passengers/worker/b_arm/b_forearm.png" id="37_01i4m"]
+[ext_resource type="Texture2D" uid="uid://cmtrdqmw5x241" path="res://assets/passengers/worker/b_arm/b_hand.png" id="38_3qorw"]
+[ext_resource type="Texture2D" uid="uid://rkc3recndcxs" path="res://assets/passengers/worker/b_leg/b_foot.png" id="39_deqqu"]
+[ext_resource type="Texture2D" uid="uid://bf7manuvle0h3" path="res://assets/passengers/worker/b_leg/b_leg.png" id="40_152ww"]
+[ext_resource type="Texture2D" uid="uid://caf0dkxrw8qwv" path="res://assets/passengers/worker/leg/foot.png" id="41_0lsck"]
+[ext_resource type="Texture2D" uid="uid://bjhb57535mqn4" path="res://assets/passengers/worker/leg/leg.png" id="42_ugyrk"]
+[ext_resource type="Texture2D" uid="uid://ce3qcbqosrpxx" path="res://assets/passengers/worker/torso.png" id="43_dk5qa"]
+[ext_resource type="Texture2D" uid="uid://cgflvfmswakoj" path="res://assets/passengers/worker/arm/upperarm.png" id="44_1rc5m"]
+[ext_resource type="Texture2D" uid="uid://cbj26s6xttqgq" path="res://assets/passengers/worker/arm/forearm.png" id="45_i4pit"]
+[ext_resource type="Texture2D" uid="uid://gjept5skwwb" path="res://assets/passengers/worker/arm/hand.png" id="46_7dptd"]
+[ext_resource type="Texture2D" uid="uid://dwoantgi3oyon" path="res://assets/passengers/worker/head.png" id="47_typlr"]
+[ext_resource type="Texture2D" uid="uid://nd01r7wrqqt7" path="res://assets/passengers/buff/b_arm/b_upperarm.png" id="48_y5j2w"]
+[ext_resource type="Texture2D" uid="uid://451w3h1r06fu" path="res://assets/passengers/buff/b_arm/b_forearm.png" id="49_383x4"]
+[ext_resource type="Texture2D" uid="uid://b7lnqtc8q1x1k" path="res://assets/passengers/buff/b_arm/b_hand.png" id="50_sxrky"]
+[ext_resource type="Texture2D" uid="uid://bypup6uyr8q2p" path="res://assets/passengers/buff/b_leg/b_foot.png" id="51_8r4ae"]
+[ext_resource type="Texture2D" uid="uid://dkxrn8t8pyeya" path="res://assets/passengers/buff/b_leg/b_leg.png" id="52_ckvue"]
+[ext_resource type="Texture2D" uid="uid://c5iby7hs85vcf" path="res://assets/passengers/buff/leg/foot.png" id="53_pguhy"]
+[ext_resource type="Texture2D" uid="uid://cio8osw052brt" path="res://assets/passengers/buff/torso.png" id="54_4ov8i"]
+[ext_resource type="Texture2D" uid="uid://dfnwxny1yk8hn" path="res://assets/passengers/buff/leg/leg.png" id="54_ur2da"]
+[ext_resource type="Texture2D" uid="uid://cdvcykhb7meo8" path="res://assets/passengers/buff/arm/upperarm.png" id="55_1bm1r"]
+[ext_resource type="Texture2D" uid="uid://cmxxgm4kdvuto" path="res://assets/passengers/buff/arm/forearm.png" id="56_httib"]
+[ext_resource type="Texture2D" uid="uid://d0tm0ox06c65i" path="res://assets/passengers/buff/head.png" id="57_nrhcp"]
+[ext_resource type="Texture2D" uid="uid://dtn4ndcaj7vq1" path="res://assets/passengers/buff/arm/hand.png" id="58_v06et"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mq7un"]
 load_path = "res://.godot/imported/Shadow.png-61d7b9db74850b1fff710392eeb336df.ctex"
@@ -188,7 +212,7 @@ z_index = 2
 texture_filter = 1
 position = Vector2(0, -69)
 script = ExtResource("1_gypv7")
-skins = Array[Array]([[ExtResource("2_bup0g"), ExtResource("3_gexsf"), ExtResource("15_w64gj"), ExtResource("5_yeav5"), ExtResource("6_hv0sc"), ExtResource("7_ajafr"), ExtResource("8_4foxe"), ExtResource("9_3sat6"), ExtResource("2_nhyl5"), ExtResource("3_lmj74"), ExtResource("12_rwnhp"), ExtResource("13_pm3nm")], [ExtResource("15_853xx"), ExtResource("15_2k43g"), ExtResource("15_w64gj"), ExtResource("15_5tmr5"), ExtResource("15_pljdr"), ExtResource("15_v3d3f"), ExtResource("15_tuyg0"), ExtResource("15_2hebv"), ExtResource("15_msexb"), ExtResource("3_lmj74"), ExtResource("15_wayk5"), ExtResource("15_unqun")], [ExtResource("24_xxs15"), ExtResource("25_6f1pl"), ExtResource("26_ngh02"), ExtResource("27_jmdlg"), ExtResource("28_g167v"), ExtResource("29_8ag0s"), ExtResource("30_v1nkk"), ExtResource("31_gtmds"), ExtResource("32_e4ccn"), ExtResource("33_wyto5"), ExtResource("34_u3dkt"), ExtResource("35_jvjcv")]])
+skins = Array[Array]([[ExtResource("2_bup0g"), ExtResource("3_gexsf"), ExtResource("15_w64gj"), ExtResource("5_yeav5"), ExtResource("6_hv0sc"), ExtResource("7_ajafr"), ExtResource("8_4foxe"), ExtResource("9_3sat6"), ExtResource("2_nhyl5"), ExtResource("3_lmj74"), ExtResource("12_rwnhp"), ExtResource("13_pm3nm")], [ExtResource("15_853xx"), ExtResource("15_2k43g"), ExtResource("15_w64gj"), ExtResource("15_5tmr5"), ExtResource("15_pljdr"), ExtResource("15_v3d3f"), ExtResource("15_tuyg0"), ExtResource("15_2hebv"), ExtResource("15_msexb"), ExtResource("3_lmj74"), ExtResource("15_wayk5"), ExtResource("15_unqun")], [ExtResource("24_xxs15"), ExtResource("25_6f1pl"), ExtResource("26_ngh02"), ExtResource("27_jmdlg"), ExtResource("28_g167v"), ExtResource("29_8ag0s"), ExtResource("30_v1nkk"), ExtResource("31_gtmds"), ExtResource("32_e4ccn"), ExtResource("33_wyto5"), ExtResource("34_u3dkt"), ExtResource("35_jvjcv")], [ExtResource("36_uhcg7"), ExtResource("37_01i4m"), ExtResource("38_3qorw"), ExtResource("39_deqqu"), ExtResource("40_152ww"), ExtResource("41_0lsck"), ExtResource("42_ugyrk"), ExtResource("43_dk5qa"), ExtResource("44_1rc5m"), ExtResource("45_i4pit"), ExtResource("46_7dptd"), ExtResource("47_typlr")], [ExtResource("48_y5j2w"), ExtResource("49_383x4"), ExtResource("50_sxrky"), ExtResource("51_8r4ae"), ExtResource("52_ckvue"), ExtResource("53_pguhy"), ExtResource("54_ur2da"), ExtResource("54_4ov8i"), ExtResource("55_1bm1r"), ExtResource("56_httib"), ExtResource("58_v06et"), ExtResource("57_nrhcp")]])
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1

@@ -10,7 +10,7 @@ extends Control
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
-var sec = 30
+var sec = 100
 @onready var paused_menu = $Pause
 var paused = false
 
@@ -37,6 +37,7 @@ func _ready():
 	connect("enable_anti_gravity", GameManager.anti_gravity_on)
 	connect("game_is_paused", GameManager.game_paused)
 	connect("game_not_paused", GameManager.game_unpaused)
+	Reset_Timer()
 
 func _process(delta):
 	update_score()
@@ -64,6 +65,7 @@ func _process(delta):
 			
 	if Input.is_action_just_pressed("Pause"):
 		pause_menu()
+		GameManager.stop_time()
 		
 func update_progress_bar(delta):
 	progress_bar.max_value = GameManager.spawn_count
@@ -76,7 +78,6 @@ func update_score():
 
 func open_lose_screen():
 	get_tree().change_scene_to_packed(lose_screen)
-
 
 func restart_scene():
 	get_tree().reload_current_scene()
@@ -93,7 +94,6 @@ func _on_anti_gravity_pressed():
 	emit_signal("enable_anti_gravity")
 	ag_button.disabled = true
 	ag_cooldown.start()
-
 
 func _on_pk_cooldown_timeout():
 	pk_button.disabled = false
@@ -142,5 +142,3 @@ func pause_menu():
 func restarted():
 	ag_cooldown.start()
 	pk_cooldown.start()
-
-		

@@ -66,6 +66,12 @@ func get_available_types():
 			available_types.append(2)
 			available_types.append(3)
 			available_types.append(4)
+		
+	if GameManager.score > 4:
+		available_types.append(1)
+		available_types.append(2)
+		available_types.append(3)
+		available_types.append(4)
 	
 	print_debug(available_types)
 	return available_types
