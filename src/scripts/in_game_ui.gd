@@ -105,9 +105,10 @@ func _on_power_kick_pressed():
 	pk_button.disabled = true
 	pk_cooldown.start()
 	
+var new_sec = sec
 func Reset_Timer():
 	$RoundTime.paused = false
-	sec = sec - (GameManager.score * 5)
+	sec = new_sec - (GameManager.score * 5)
 	if sec < 20:
 		sec = 20
 	else:
