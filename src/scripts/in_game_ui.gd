@@ -5,7 +5,7 @@ extends Control
 @onready var anti_gravity = $AntiGravity
 @onready var power_kick = $PowerKick
 @onready var round_timer = $RoundTime
-@onready var round_time = $Round_TIME
+@onready var round_time = $RoundTime/Round_TIME
 @onready var lose_screen = preload("res://scenes/UI/lose_screen.tscn") as PackedScene
 
 
