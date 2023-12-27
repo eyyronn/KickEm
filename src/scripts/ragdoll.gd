@@ -147,16 +147,16 @@ func correct_rotation(limb, delta):
 	var current_angle = limb.rotation;
 	limb.angular_velocity = lerp_angle(current_angle, limb.desired_angle, (limb.force) * delta);
 	
-#	var heading_vector = Vector2.ZERO;
-#	heading_vector.x = cos(limb.desired_angle);
-#	heading_vector.y = sin(limb.desired_angle);
-#
-#	var current_vector = Vector2.ZERO;
-#	current_vector.x = cos(current_angle);
-#	current_vector.y = sin(current_angle);
-#
-#	var magnitude = current_vector.distance_to(heading_vector);
-#	var applied_force = limb.force;
+	var heading_vector = Vector2.ZERO;
+	heading_vector.x = cos(limb.desired_angle);
+	heading_vector.y = sin(limb.desired_angle);
+
+	var current_vector = Vector2.ZERO;
+	current_vector.x = cos(current_angle);
+	current_vector.y = sin(current_angle);
+
+	var magnitude = current_vector.distance_to(heading_vector);
+	var applied_force = limb.force;
 
 	
 		

@@ -193,6 +193,10 @@ func game_activation():
 	emit_signal("round_done")
 	
 	
+#	await get_tree().create_timer(0.0000001).timeout # DO NOT REMOVE !!!!! MESSIAH
+#	pause_on_restart()
+	
+	
 #	pause_on_restart()
 	
 func game_paused():
