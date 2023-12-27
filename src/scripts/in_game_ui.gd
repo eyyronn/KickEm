@@ -8,10 +8,9 @@ extends Control
 @onready var round_time = $RoundTime/Round_TIME
 @onready var lose_screen = preload("res://scenes/UI/lose_screen.tscn") as PackedScene
 
-
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
-var sec = 45
+var sec = 30
 @onready var paused_menu = $Pause
 var paused = false
 
@@ -109,11 +108,9 @@ var new_sec = sec
 
 func Reset_Timer():
 	$RoundTime.paused = false
-	sec = new_sec - (GameManager.score * 5)
-	if sec < 20:
-		sec = 20
-	else:
-		sec = sec
+	sec = new_sec + (GameManager.score * 5)
+	sec = min(sec, 60)
+	
 	Round_Timer()
 	$RoundTime.start()
 	
