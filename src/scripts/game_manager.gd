@@ -31,6 +31,7 @@ const blob_scene = preload("res://scenes/blob.tscn")
 signal on_lose
 signal on_restart
 signal round_done
+signal pause_timer
 
 func _ready():
 	add_child(kick)
@@ -119,6 +120,7 @@ func round_complete():
 #	if game_active:
 	score += 1
 	delete_blob()
+	emit_signal("pause_timer")
 	print("Next Round!")
 
 func hit_stop(impact):
@@ -140,39 +142,29 @@ func power_kick_on():
 	await get_tree().create_timer(3).timeout
 	power_kick_enabled = false
 
-func restart_game():
-	if active_bus != null:
-		active_bus.queue_free()
-		active_bus = null
+func delete_entities():
+	if game_active:
+		if active_bus != null:
+			active_bus.queue_free()
+			active_bus = null
 	
-	if active_blob != null:
-		active_blob.queue_free()
-		active_blob = null
+		if active_blob != null:
+			active_blob.queue_free()
+			active_blob = null
 		
-	for i in all_passengers.size():
-		all_passengers[i].queue_free()
-		all_passengers[i] = null
-	
+		for passenger in all_passengers:
+			if passenger != null:
+				passenger.queue_free()
+				passenger = null
+		
+func restart_game():
 	all_passengers.clear()
 	spawn_count = 5
 	current_passenger_count = spawn_count
-	emit_signal("on_restart")
+	score = 0
+	#emit_signal("on_restart")
 	spawn_bus()
 	
-func delete_entities():
-	if active_bus != null:
-		active_bus.queue_free()
-		active_bus = null
-	
-	if active_blob != null:
-		active_blob.queue_free()
-		active_blob = null
-		
-	for passenger in all_passengers:
-		if passenger != null:
-			passenger.queue_free()
-			passenger = null
-		
 func delete_bus(bus):
 	bus.queue_free()
 	active_bus = null
@@ -187,3 +179,5 @@ func delete_blob():
 func game_activation():
 	game_active = true
 	print(game_active)
+
+	

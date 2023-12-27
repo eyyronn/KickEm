@@ -196,3 +196,4 @@ alignment = 0
 [connection signal="timeout" from="AntiGravity/AG_Cooldown" to="." method="_on_ag_cooldown_timeout"]
 [connection signal="pressed" from="PowerKick/PowerKick" to="." method="_on_power_kick_pressed"]
 [connection signal="timeout" from="PowerKick/PK_Cooldown" to="." method="_on_pk_cooldown_timeout"]
+[connection signal="timeout" from="RoundTime" to="." method="_on_round_time_timeout"]
