@@ -47,6 +47,7 @@ func _process(delta):
 		
 		if Input.is_action_just_pressed("Restart"):
 			restart_game()
+			emit_signal("restarted")
 #			emit_signal("on_restart")
 #			get_tree().reload_current_scene()
 #			delete_entities()
