@@ -186,11 +186,12 @@ func delete_blob():
 	
 func game_activation():
 #	emit_signal("on_restart")
-	emit_signal("round_done")
-	start()
-#	await get_tree().create_timer(0.0000001).timeout # DO NOT REMOVE !!!!! MESSIAH
-#	pause_on_restart()
 	game_active = true
+	start()
+	await get_tree().create_timer(0.0000001).timeout # DO NOT REMOVE !!!!! MESSIAH
+	pause_on_restart()
+	emit_signal("round_done")
+	
 	
 #	pause_on_restart()
 	
