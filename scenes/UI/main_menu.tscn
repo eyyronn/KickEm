@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8dfdpxcoc2se"]
+[gd_scene load_steps=16 format=3 uid="uid://b8dfdpxcoc2se"]
 
 [ext_resource type="Script" path="res://src/scripts/main_menu.gd" id="1_nacx2"]
 [ext_resource type="Texture2D" uid="uid://x5osypa1s42h" path="res://assets/background/background_warm.png" id="2_dyxfr"]
 [ext_resource type="Texture2D" uid="uid://dr38c8qag2iui" path="res://assets/background/background_cool.png" id="3_43s3y"]
 [ext_resource type="AudioStream" uid="uid://b41qt0bx0sjmt" path="res://assets/audio/noise.wav" id="4_dgn8y"]
 [ext_resource type="AudioStream" uid="uid://dxdsqa100t6d4" path="res://assets/audio/background_song.wav" id="5_4wi70"]
+[ext_resource type="Texture2D" uid="uid://bh5x554gep1md" path="res://assets/main_menu/Kick 'Em.png" id="6_gu6ar"]
 [ext_resource type="Texture2D" uid="uid://d14ttsmio0cua" path="res://assets/main_menu/signage.png" id="6_vvppi"]
 [ext_resource type="Texture2D" uid="uid://wq2p0p2hwdis" path="res://assets/main_menu/play.png" id="7_w6jva"]
 [ext_resource type="Texture2D" uid="uid://bkdut3dcadilc" path="res://assets/main_menu/no_settings2123123.png" id="8_sur8e"]
@@ -67,7 +68,6 @@ script = ExtResource("1_nacx2")
 z_index = -2
 
 [node name="Warm Background" type="TextureRect" parent="Environment"]
-visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("2_dyxfr")
@@ -87,6 +87,12 @@ autoplay = true
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Environment"]
 stream = ExtResource("5_4wi70")
 autoplay = true
+
+[node name="Kick\'em" type="Sprite2D" parent="Environment"]
+modulate = Color(1, 1, 1, 0.862745)
+position = Vector2(872, 183)
+rotation = 0.0814852
+texture = ExtResource("6_gu6ar")
 
 [node name="TemperatureChange" type="AnimationPlayer" parent="."]
 autoplay = "Temperature Change"
