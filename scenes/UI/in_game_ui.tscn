@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bv6pf8w44mmr4" path="res://assets/skills/Anti-Gravity-Skill.png" id="4_ytf7y"]
 [ext_resource type="Texture2D" uid="uid://nfjsv3pf66dc" path="res://assets/skills/Power-Kick-Skill-Icon-Under (2).png" id="5_d5n7q"]
 [ext_resource type="Texture2D" uid="uid://crsfnno7cisk6" path="res://assets/skills/Power-Kick-Skill.png" id="6_llg1s"]
-[ext_resource type="PackedScene" uid="uid://ddg2wjc6sn8ju" path="res://scenes/UI/pause.tscn" id="7_oh1ii"]
+[ext_resource type="PackedScene" uid="uid://b67lhqxcvu8o6" path="res://scenes/UI/pause.tscn" id="7_oh1ii"]
 [ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="7_oicbc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ho8y"]

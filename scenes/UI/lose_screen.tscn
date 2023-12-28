@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/scripts/lose_screen.gd" id="1_5fhd5"]
 [ext_resource type="Texture2D" uid="uid://dr38c8qag2iui" path="res://assets/background/background_cool.png" id="2_afwud"]
 [ext_resource type="Theme" uid="uid://cms61kldfd47s" path="res://assets/theme.tres" id="3_e50mh"]
-[ext_resource type="AudioStream" uid="uid://bmly3x2xbnqhu" path="res://assets/audio/game_over.wav" id="4_57rqv"]
+[ext_resource type="AudioStream" path="res://assets/audio/game_over.wav" id="4_57rqv"]
 
 [sub_resource type="Gradient" id="Gradient_d16n3"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)

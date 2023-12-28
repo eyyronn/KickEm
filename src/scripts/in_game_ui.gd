@@ -13,7 +13,7 @@ extends Control
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
-var sec = 60
+var sec = 3
 var paused = false
 var new_sec = sec
 
