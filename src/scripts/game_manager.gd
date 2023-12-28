@@ -154,9 +154,10 @@ func delete_bus(bus):
 	active_bus = null
 
 func delete_blob():
-	active_blob.queue_free()
-	active_blob = null
-	current_passenger_count = spawn_count
+	if active_blob:
+		active_blob.queue_free()
+		active_blob = null
+		current_passenger_count = spawn_count
 	
 func activate_game():
 	game_active = true

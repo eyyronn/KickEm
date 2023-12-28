@@ -95,7 +95,7 @@ func _on_power_kick_pressed():
 func reset_timer():
 	round_timer.paused = false
 	sec = new_sec + (GameManager.score * 5)
-	sec = min(sec, 60)
+	sec = min(sec, 45)
 	
 	set_timer()
 	round_timer.start()

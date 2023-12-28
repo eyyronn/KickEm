@@ -14,9 +14,6 @@ var is_charging : bool
 var released : bool
 var force : float = 0
 var impact : int
-
-func _ready():
-	pass
 	
 func _process(delta):
 	
@@ -84,7 +81,7 @@ func success_hit() -> Object:
 		return collider
 	
 	return null
-	
+
 func kick_blob():
 	raycast.set_collision_mask_value(6, false)
 	GameManager.active_blob.anim.play("Hurt")
@@ -101,4 +98,3 @@ func kick_limb():
 	impact_sound.volume_db = randf_range(0, 1)
 	impact_sound.pitch_scale = randf_range(0.8, 1.6)
 	impact_sound.play()
-	

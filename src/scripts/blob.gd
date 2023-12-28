@@ -23,7 +23,7 @@ func _process(delta):
 			sound.volume_db = randf_range(-2, 2)
 			sound.play()
 			# if player kicked blob at its smallest size and all the passengers are in the bus, complete round
-			if size < 1 and GameManager.all_passengers.size() == 0:
+			if size < 1 and GameManager.all_passengers.size() == 0 and GameManager.game_active:
 				active = false
 				push_to_bus()
 				await get_tree().create_timer(1.4).timeout
