@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8dfdpxcoc2se"]
+[gd_scene load_steps=17 format=3 uid="uid://b8dfdpxcoc2se"]
 
 [ext_resource type="Script" path="res://src/scripts/main_menu.gd" id="1_nacx2"]
 [ext_resource type="Texture2D" uid="uid://x5osypa1s42h" path="res://assets/background/background_warm.png" id="2_dyxfr"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bh5x554gep1md" path="res://assets/main_menu/Kick 'Em.png" id="6_gu6ar"]
 [ext_resource type="Texture2D" uid="uid://d14ttsmio0cua" path="res://assets/main_menu/signage.png" id="6_vvppi"]
 [ext_resource type="Texture2D" uid="uid://wq2p0p2hwdis" path="res://assets/main_menu/play.png" id="7_w6jva"]
-[ext_resource type="Texture2D" uid="uid://bkdut3dcadilc" path="res://assets/main_menu/no_settings2123123.png" id="8_sur8e"]
 [ext_resource type="Texture2D" uid="uid://dv0egg8x4u0op" path="res://assets/main_menu/quit.png" id="9_2jrtt"]
+[ext_resource type="Texture2D" uid="uid://bkdut3dcadilc" path="res://assets/main_menu/x.png" id="9_hxxyr"]
+[ext_resource type="Texture2D" uid="uid://bb8p2e32sd85o" path="res://assets/main_menu/icon.png" id="15_envsa"]
 
 [sub_resource type="Animation" id="Animation_xbfkm"]
 length = 0.001
@@ -126,7 +127,7 @@ offset_right = 389.0
 offset_bottom = 383.0
 pivot_offset = Vector2(162, 115)
 disabled = true
-texture_normal = ExtResource("8_sur8e")
+texture_normal = ExtResource("9_hxxyr")
 ignore_texture_size = true
 stretch_mode = 3
 
@@ -146,6 +147,12 @@ range_z_max = 10
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_sjhxx")
 texture_scale = 50.0
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(746, 477)
+scale = Vector2(5.5843, 5.62109)
+texture = ExtResource("15_envsa")
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Underworks" to="." method="_on_settings_pressed"]

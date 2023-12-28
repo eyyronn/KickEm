@@ -54,10 +54,9 @@ func _process(delta):
 func _physics_process(delta):
 	if game_active && all_passengers.size() > 0:
 		for passenger in all_passengers:
-			if anti_gravity_enabled:
-				passenger.gravity_scale = 0
-			else:
-				passenger.gravity_scale = 2.5
+			for limb in passenger.limbs:
+				if anti_gravity_enabled:
+					limb.gravity_scale = 0
 			
 		if hit_stop_enabled:
 			if kick.success_hit() is Limb and kick.impact > 2:
@@ -192,6 +191,7 @@ func deactivate_game():
 		remove_child(passenger)
 		passenger = null
 	remove_child(kick)
+	clouds.play()
 	game_is_paused = false
 	game_active = false
 	

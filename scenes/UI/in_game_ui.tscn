@@ -95,7 +95,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AGCooldown" type="Timer" parent="AntiGravity"]
 process_callback = 0
-wait_time = 30.0
+wait_time = 60.0
 one_shot = true
 autostart = true
 
@@ -130,7 +130,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PKCooldown" type="Timer" parent="PowerKick"]
 process_callback = 0
-wait_time = 30.0
+wait_time = 60.0
 one_shot = true
 autostart = true
 
