@@ -1,14 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbjaopan444x4"]
+[gd_scene load_steps=15 format=3 uid="uid://cbjaopan444x4"]
 
-[ext_resource type="Texture2D" uid="uid://x5osypa1s42h" path="res://assets/background/background_warm.png" id="1_3ihaa"]
-[ext_resource type="Script" path="res://src/scripts/main_menu.gd" id="1_04j43"]
-[ext_resource type="Texture2D" uid="uid://dr38c8qag2iui" path="res://assets/background/background_cool.png" id="2_2qrj4"]
-[ext_resource type="AudioStream" uid="uid://b41qt0bx0sjmt" path="res://assets/audio/noise.wav" id="3_4aja0"]
-[ext_resource type="AudioStream" uid="uid://dxdsqa100t6d4" path="res://assets/audio/background_song.wav" id="4_kkmay"]
-[ext_resource type="Texture2D" uid="uid://d14ttsmio0cua" path="res://assets/main_menu/signage.png" id="5_p8nbx"]
-[ext_resource type="Texture2D" uid="uid://wq2p0p2hwdis" path="res://assets/main_menu/play.png" id="6_l2rhi"]
-[ext_resource type="Texture2D" uid="uid://dbm0pii5rac7w" path="res://assets/main_menu/settings.png" id="8_ljg0w"]
-[ext_resource type="Texture2D" uid="uid://dv0egg8x4u0op" path="res://assets/main_menu/quit.png" id="9_nedbi"]
+[ext_resource type="Script" path="res://src/scripts/main_menu.gd" id="1_nacx2"]
+[ext_resource type="Texture2D" uid="uid://x5osypa1s42h" path="res://assets/background/background_warm.png" id="2_dyxfr"]
+[ext_resource type="Texture2D" uid="uid://dr38c8qag2iui" path="res://assets/background/background_cool.png" id="3_43s3y"]
+[ext_resource type="AudioStream" uid="uid://b41qt0bx0sjmt" path="res://assets/audio/noise.wav" id="4_dgn8y"]
+[ext_resource type="AudioStream" uid="uid://dxdsqa100t6d4" path="res://assets/audio/background_song.wav" id="5_4wi70"]
+[ext_resource type="Texture2D" uid="uid://d14ttsmio0cua" path="res://assets/main_menu/signage.png" id="6_vvppi"]
+[ext_resource type="Texture2D" uid="uid://wq2p0p2hwdis" path="res://assets/main_menu/play.png" id="7_w6jva"]
+[ext_resource type="Texture2D" uid="uid://dbm0pii5rac7w" path="res://assets/main_menu/settings.png" id="8_1yfn7"]
+[ext_resource type="Texture2D" uid="uid://dv0egg8x4u0op" path="res://assets/main_menu/quit.png" id="9_2jrtt"]
 
 [sub_resource type="Animation" id="Animation_xbfkm"]
 length = 0.001
@@ -48,6 +48,12 @@ _data = {
 "Temperature Change": SubResource("Animation_lauyy")
 }
 
+[sub_resource type="Gradient" id="Gradient_sqfmh"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sjhxx"]
+gradient = SubResource("Gradient_sqfmh")
+
 [node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -55,30 +61,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_04j43")
+script = ExtResource("1_nacx2")
 
 [node name="Environment" type="Node2D" parent="."]
 z_index = -2
 
 [node name="Warm Background" type="TextureRect" parent="Environment"]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("1_3ihaa")
+texture = ExtResource("2_dyxfr")
 metadata/_edit_use_anchors_ = true
 
 [node name="Cool Background" type="TextureRect" parent="Environment"]
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("2_2qrj4")
+texture = ExtResource("3_43s3y")
 metadata/_edit_use_anchors_ = true
 
 [node name="Ambience" type="AudioStreamPlayer2D" parent="Environment"]
-stream = ExtResource("3_4aja0")
+stream = ExtResource("4_dgn8y")
 volume_db = 5.0
 autoplay = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Environment"]
-stream = ExtResource("4_kkmay")
+stream = ExtResource("5_4wi70")
 autoplay = true
 
 [node name="TemperatureChange" type="AnimationPlayer" parent="."]
@@ -94,7 +101,7 @@ offset_left = 178.0
 offset_top = 170.0
 offset_right = 501.0
 offset_bottom = 649.0
-texture = ExtResource("5_p8nbx")
+texture = ExtResource("6_vvppi")
 
 [node name="Play" type="TextureButton" parent="."]
 layout_mode = 0
@@ -102,7 +109,7 @@ offset_left = 178.0
 offset_top = 144.0
 offset_right = 501.0
 offset_bottom = 344.0
-texture_hover = ExtResource("6_l2rhi")
+texture_hover = ExtResource("7_w6jva")
 
 [node name="Settings" type="TextureButton" parent="."]
 layout_mode = 0
@@ -110,7 +117,7 @@ offset_left = 152.0
 offset_top = 253.0
 offset_right = 475.0
 offset_bottom = 453.0
-texture_hover = ExtResource("8_ljg0w")
+texture_hover = ExtResource("8_1yfn7")
 
 [node name="Quit" type="TextureButton" parent="."]
 layout_mode = 0
@@ -118,7 +125,15 @@ offset_left = 185.0
 offset_top = 357.0
 offset_right = 508.0
 offset_bottom = 557.0
-texture_hover = ExtResource("9_nedbi")
+texture_hover = ExtResource("9_2jrtt")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.6, 0, 1)
+energy = 0.8
+range_z_max = 10
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_sjhxx")
+texture_scale = 50.0
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]

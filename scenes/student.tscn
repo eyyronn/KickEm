@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://rdxnihxmy1lb"]
+[gd_scene load_steps=2 format=3 uid="uid://cldxjr1k1ph8l"]
 
 [ext_resource type="PackedScene" uid="uid://dtdrdlrakqwex" path="res://scenes/passenger.tscn" id="1_uylnr"]
 
@@ -16,13 +16,7 @@ collision_layer = 8
 [node name="BFoot" parent="." index="4"]
 collision_layer = 8
 
-[node name="BLegs" parent="." index="5"]
-collision_layer = 8
-
 [node name="Foot" parent="." index="6"]
-collision_layer = 8
-
-[node name="Legs" parent="." index="7"]
 collision_layer = 8
 
 [node name="Torso" parent="." index="8"]

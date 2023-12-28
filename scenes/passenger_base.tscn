@@ -1,19 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://g4jxcnr8810c"]
+[gd_scene load_steps=7 format=3 uid="uid://2mershsyof8u"]
 
 [ext_resource type="Script" path="res://src/scripts/ragdoll.gd" id="1_6jbfu"]
 [ext_resource type="Script" path="res://src/scripts/limb.gd" id="2_qkpxy"]
-[ext_resource type="Texture2D" uid="uid://culb14del4425" path="res://assets/passengers/base_rig/b_forearm.png" id="3_3ut0u"]
-[ext_resource type="Texture2D" uid="uid://b3d35l4s6n068" path="res://assets/passengers/base_rig/b_upperarm.png" id="4_l1750"]
-[ext_resource type="Texture2D" uid="uid://c2glx1k64j8cr" path="res://assets/passengers/base_rig/b_hand.png" id="5_86we0"]
-[ext_resource type="Texture2D" uid="uid://bx3c57snxjqy2" path="res://assets/passengers/base_rig/b_foot.png" id="6_puoqm"]
-[ext_resource type="Texture2D" uid="uid://df0g0ddh4d3y4" path="res://assets/passengers/base_rig/b_legs.png" id="7_odg1h"]
-[ext_resource type="Texture2D" uid="uid://cp4h8edu8rv34" path="res://assets/passengers/base_rig/foot.png" id="8_u3bvr"]
-[ext_resource type="Texture2D" uid="uid://dtsipx3uhb5s7" path="res://assets/passengers/base_rig/legs.png" id="9_psp3e"]
-[ext_resource type="Texture2D" uid="uid://dj8f1jcpr6026" path="res://assets/passengers/base_rig/torso.png" id="10_1vn47"]
-[ext_resource type="Texture2D" uid="uid://qoc7ehgw0xyl" path="res://assets/passengers/base_rig/upperarm.png" id="11_q6j3c"]
-[ext_resource type="Texture2D" uid="uid://wdbd3yc25rre" path="res://assets/passengers/base_rig/forearm.png" id="12_rwxpr"]
-[ext_resource type="Texture2D" uid="uid://jfhgabsqb076" path="res://assets/passengers/base_rig/hand.png" id="13_67ug5"]
-[ext_resource type="Texture2D" uid="uid://wokr42qmd7vo" path="res://assets/passengers/base_rig/head.png" id="14_lx8ry"]
 
 [sub_resource type="GDScript" id="GDScript_8tg4r"]
 script/source = "extends Node2D
@@ -80,7 +68,6 @@ self_modulate = Color(0.74, 0.74, 0.74, 1)
 position = Vector2(-1, 3)
 rotation = -1.5708
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("3_3ut0u")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BForearm"]
 position = Vector2(-16, -31)
@@ -102,7 +89,6 @@ script = ExtResource("2_qkpxy")
 self_modulate = Color(0.74, 0.74, 0.74, 1)
 rotation = -1.5708
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("4_l1750")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BUpperarm"]
 position = Vector2(135, 23)
@@ -125,7 +111,6 @@ self_modulate = Color(0.74, 0.74, 0.74, 1)
 position = Vector2(-1.52588e-05, 7.62939e-06)
 rotation = -1.5708
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("5_86we0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BHand"]
 position = Vector2(-41, -30)
@@ -144,7 +129,6 @@ script = ExtResource("2_qkpxy")
 [node name="BFoot" type="Sprite2D" parent="BFoot"]
 self_modulate = Color(0.74, 0.74, 0.74, 1)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("6_puoqm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BFoot"]
 scale = Vector2(3.75, 3.75)
@@ -161,7 +145,6 @@ script = ExtResource("2_qkpxy")
 [node name="BLegs" type="Sprite2D" parent="BLegs"]
 self_modulate = Color(0.74, 0.74, 0.74, 1)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("7_odg1h")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BLegs"]
 scale = Vector2(3.75, 3.75)
@@ -177,7 +160,6 @@ script = ExtResource("2_qkpxy")
 
 [node name="Foot" type="Sprite2D" parent="Foot"]
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("8_u3bvr")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Foot"]
 position = Vector2(-15, 0)
@@ -194,7 +176,6 @@ script = ExtResource("2_qkpxy")
 
 [node name="Legs" type="Sprite2D" parent="Legs"]
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("9_psp3e")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Legs"]
 position = Vector2(-15, 0)
@@ -214,7 +195,6 @@ script = ExtResource("2_qkpxy")
 
 [node name="Torso" type="Sprite2D" parent="Torso"]
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("10_1vn47")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
 scale = Vector2(3.75, 3.75)
@@ -232,7 +212,6 @@ script = ExtResource("2_qkpxy")
 [node name="Upperarm" type="Sprite2D" parent="Upperarm"]
 position = Vector2(-35, 0)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("11_q6j3c")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Upperarm"]
 position = Vector2(-35, 0)
@@ -250,7 +229,6 @@ script = ExtResource("2_qkpxy")
 [node name="Forearm" type="Sprite2D" parent="Forearm"]
 position = Vector2(-35, 0)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("12_rwxpr")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Forearm"]
 position = Vector2(-35, 0)
@@ -268,7 +246,6 @@ script = ExtResource("2_qkpxy")
 [node name="Hand" type="Sprite2D" parent="Hand"]
 position = Vector2(-36, -0.340004)
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("13_67ug5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand"]
 position = Vector2(-36, -0.3)
@@ -286,7 +263,6 @@ script = ExtResource("2_qkpxy")
 
 [node name="Head" type="Sprite2D" parent="Head"]
 scale = Vector2(3.75, 3.75)
-texture = ExtResource("14_lx8ry")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head"]
 scale = Vector2(3.75, 3.75)

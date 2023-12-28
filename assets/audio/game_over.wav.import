@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bgb7ubaiaypwn"
-path="res://.godot/imported/DoorOpen.wav-ec4d87606a17de0928011c150d92ce37.sample"
+uid="uid://bmly3x2xbnqhu"
+path="res://.godot/imported/game_over.wav-3891a8851d721aeadbe060101aeb53c3.sample"
 
 [deps]
 
-source_file="res://scenes/DoorOpen.wav"
-dest_files=["res://.godot/imported/DoorOpen.wav-ec4d87606a17de0928011c150d92ce37.sample"]
+source_file="res://assets/audio/game_over.wav"
+dest_files=["res://.godot/imported/game_over.wav-3891a8851d721aeadbe060101aeb53c3.sample"]
 
 [params]
 

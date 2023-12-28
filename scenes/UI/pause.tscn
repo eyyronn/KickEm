@@ -13,76 +13,62 @@ grow_vertical = 2
 script = ExtResource("1_84ool")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 20
 layout_mode = 0
-offset_left = -13.0
-offset_right = 427.0
-offset_bottom = 725.0
+offset_top = 82.0
+offset_right = 433.0
+offset_bottom = 404.0
 theme = ExtResource("1_spvme")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("1_spvme")
 
 [node name="TopMargin" type="Panel" parent="PanelContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 
 [node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("1_spvme")
-text = "           Resume            "
+text = "             RESUME              "
 icon_alignment = 1
 vertical_icon_alignment = 0
 
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("1_spvme")
-text = "           Restart            "
-icon_alignment = 1
-vertical_icon_alignment = 0
-
-[node name="Settings" type="Button" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-size_flags_stretch_ratio = 2.0
-theme = ExtResource("1_spvme")
-text = "           Settings           "
+text = "             RESTART              "
 icon_alignment = 1
 vertical_icon_alignment = 0
 
 [node name="MainMenu" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("1_spvme")
-text = "          Main Menu          "
+text = "          BACK TO MENU          "
 icon_alignment = 1
 vertical_icon_alignment = 0
 
 [node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("1_spvme")
-text = "             Quit              "
+text = "               QUIT                "
 icon_alignment = 1
 vertical_icon_alignment = 0
 
 [node name="BottomMargin" type="Panel" parent="PanelContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 190)
 layout_mode = 2
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

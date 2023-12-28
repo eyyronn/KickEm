@@ -4,45 +4,46 @@ extends Control
 @onready var score_label = $Score
 @onready var anti_gravity = $AntiGravity
 @onready var power_kick = $PowerKick
-@onready var round_timer = $RoundTime
-@onready var round_time = $RoundTime/Round_TIME
+@onready var round_timer = $RoundTimer
+@onready var round_timer_label = $RoundTimer/RoundTimerLabel
+@onready var blur = $Blur
+@onready var shade = $ColorRect
 @onready var lose_screen = preload("res://scenes/UI/lose_screen.tscn") as PackedScene
+@onready var pause = $Pause
 
 var progress_bar_speed = 4.0
 var smooth_val = 0.0
-var sec = 100
-@onready var paused_menu = $Pause
+var sec = 60
 var paused = false
+var new_sec = sec
 
-@onready var ag_cooldown = $AntiGravity/AG_Cooldown
+@onready var ag_cooldown = $AntiGravity/AGCooldown
 @onready var ag_cooldown_percentage
 @onready var ag_button = $AntiGravity/AntiGravity
-@onready var pk_cooldown = $PowerKick/PK_Cooldown
+@onready var pk_cooldown = $PowerKick/PKCooldown
 @onready var pk_cooldown_percentage
 @onready var pk_button = $PowerKick/PowerKick
 
 signal enable_anti_gravity
 signal enable_power_kick
-signal game_is_paused
-signal game_not_paused
+signal on_game_pause
+signal on_game_unpause
 
 func _ready():
-	GameManager.connect("pause_timer", Timer_pause)
-	GameManager.connect("round_done", Reset_Timer)
-	GameManager.connect("on_lose", open_lose_screen)
-	GameManager.connect("on_restart", restart_scene)
-	GameManager.connect("on_resume", pause_menu)
-	GameManager.connect("restarted", restarted)
+	GameManager.connect("on_round_complete", pause_timer)
+	GameManager.connect("on_round_end", reset_timer)
+	GameManager.connect("on_resume", toggle_pause_menu)
+	GameManager.connect("on_reset_ui", reset_ui)
 	connect("enable_power_kick", GameManager.power_kick_on)
 	connect("enable_anti_gravity", GameManager.anti_gravity_on)
-	connect("game_is_paused", GameManager.game_paused)
-	connect("game_not_paused", GameManager.game_unpaused)
-	Reset_Timer()
+	connect("on_game_pause", GameManager.pause_game)
+	connect("on_game_unpause", GameManager.unpause_game)
+	reset_timer()
 
 func _process(delta):
 	update_score()
 	update_progress_bar(delta)
-	Round_Timer()
+	set_timer()
 	if ag_cooldown.time_left > 0:
 		ag_cooldown_percentage = (
 			(1 - ag_cooldown.time_left / ag_cooldown.wait_time) * 100
@@ -63,10 +64,6 @@ func _process(delta):
 		else:
 			pk_cooldown.paused = false
 			
-	if Input.is_action_just_pressed("Pause"):
-		pause_menu()
-		GameManager.stop_time()
-		
 func update_progress_bar(delta):
 	progress_bar.max_value = GameManager.spawn_count
 	smooth_val = lerp(smooth_val, GameManager.spawn_count - GameManager.current_passenger_count, delta * progress_bar_speed)
@@ -79,18 +76,10 @@ func update_score():
 func open_lose_screen():
 	get_tree().change_scene_to_packed(lose_screen)
 
-func restart_scene():
-	get_tree().reload_current_scene()
-
-#func _on_power_kick_pressed():
-#	print("s")
-#	emit_signal("enable_power_kick")
-
 func _on_ag_cooldown_timeout():
 	ag_button.disabled = false
 
 func _on_anti_gravity_pressed():
-#	print("ag")
 	emit_signal("enable_anti_gravity")
 	ag_button.disabled = true
 	ag_cooldown.start()
@@ -99,46 +88,58 @@ func _on_pk_cooldown_timeout():
 	pk_button.disabled = false
 
 func _on_power_kick_pressed():
-#	print("ag")
 	emit_signal("enable_power_kick")
 	pk_button.disabled = true
 	pk_cooldown.start()
-	
-var new_sec = sec
 
-func Reset_Timer():
-	$RoundTime.paused = false
+func reset_timer():
+	round_timer.paused = false
 	sec = new_sec + (GameManager.score * 5)
 	sec = min(sec, 60)
 	
-	Round_Timer()
-	$RoundTime.start()
+	set_timer()
+	round_timer.start()
 	
-func Round_Timer():
-	$RoundTime.set_wait_time(sec)
-	$RoundTime/Round_TIME.text = str(round($RoundTime.time_left))
+func set_timer():
+	round_timer.set_wait_time(sec)
+	round_timer_label.text = str(round(round_timer.time_left))
 
 func _on_round_time_timeout() -> void:
 	if progress_bar.value != GameManager.spawn_count or GameManager.active_blob != null:
 		open_lose_screen()
 
-func Timer_pause():
-	$RoundTime.paused = true
+func pause_timer():
+	round_timer.paused = true
 	
-func pause_menu():
+func toggle_pause_menu():
 	if paused:
-		paused_menu.hide()
+		blur.hide()
+		shade.hide()
+		pause.hide()
 #		Engine.time_scale = 1
-		$RoundTime.paused = false
-		emit_signal("game_not_paused")
+		round_timer.paused = false
+		emit_signal("on_game_unpause")
 	else:
-		paused_menu.show()
+		blur.show()
+		shade.show()
+		pause.show()
 #		Engine.time_scale = 0.01
-		$RoundTime.paused = true
-		emit_signal("game_is_paused")
+		round_timer.paused = true
+		emit_signal("on_game_pause")
 		
 	paused = !paused
 	
-func restarted():
+func reset_ui():
 	ag_cooldown.start()
 	pk_cooldown.start()
+
+func _on_pause_button_button_down():
+	toggle_pause_menu()
+	var tween = get_tree().create_tween().set_parallel()
+	tween.tween_method(set_blur, 0.0, 2.5, 0.5)
+	tween.tween_property(shade, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
+	tween.tween_property(pause, "position", Vector2(-577, -236), 0.5).from(Vector2(-1025, -236)).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN_OUT)
+	GameManager.stop_time()
+
+func set_blur(value : float):
+	blur.material.set_shader_parameter("lod", value)

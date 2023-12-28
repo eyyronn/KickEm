@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://tn51vycgy3xn"]
+[gd_scene load_steps=11 format=3 uid="uid://tn51vycgy3xn"]
 
 [ext_resource type="Script" path="res://src/scripts/in_game_ui.gd" id="1_hdrbt"]
 [ext_resource type="Theme" uid="uid://cms61kldfd47s" path="res://assets/theme.tres" id="2_w1x45"]
@@ -6,7 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://bv6pf8w44mmr4" path="res://assets/skills/Anti-Gravity-Skill.png" id="4_ytf7y"]
 [ext_resource type="Texture2D" uid="uid://nfjsv3pf66dc" path="res://assets/skills/Power-Kick-Skill-Icon-Under (2).png" id="5_d5n7q"]
 [ext_resource type="Texture2D" uid="uid://crsfnno7cisk6" path="res://assets/skills/Power-Kick-Skill.png" id="6_llg1s"]
-[ext_resource type="PackedScene" uid="uid://ddg2wjc6sn8ju" path="res://scenes/pause.tscn" id="7_oh1ii"]
+[ext_resource type="PackedScene" uid="uid://ddg2wjc6sn8ju" path="res://scenes/UI/pause.tscn" id="7_oh1ii"]
+[ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="7_oicbc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ho8y"]
+bg_color = Color(1, 0.784314, 0.129412, 1)
+border_width_top = 4
+border_color = Color(1, 0.415686, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ba05"]
+shader = ExtResource("7_oicbc")
+shader_parameter/lod = 3.0
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -22,34 +36,18 @@ script = ExtResource("1_hdrbt")
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = 15
+z_as_relative = false
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -189.0
-offset_top = -267.0
-offset_right = 190.0
-offset_bottom = -227.0
-grow_horizontal = 2
+offset_left = -202.0
+offset_top = -263.0
+offset_right = 198.0
+offset_bottom = -214.0
 theme = ExtResource("2_w1x45")
 value = 50.0
 
-[node name="Label" type="Label" parent="ProgressBar"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -1.055
-anchor_top = -0.925
-anchor_right = -1.055
-anchor_bottom = -0.925
-offset_left = 399.845
-offset_top = 37.0
-offset_right = 439.845
-offset_bottom = 60.0
-text = "50
-"
-
 [node name="Score" type="Label" parent="."]
+z_index = 15
 texture_filter = 1
 layout_mode = 2
 offset_left = -107.5
@@ -63,8 +61,11 @@ text = "Buses packed: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+metadata/_edit_use_anchors_ = true
 
 [node name="AntiGravity" type="TextureProgressBar" parent="."]
+z_index = 15
+z_as_relative = false
 layout_mode = 1
 offset_left = -561.0
 offset_top = -308.0
@@ -74,8 +75,11 @@ scale = Vector2(0.3, 0.3)
 fill_mode = 4
 texture_under = ExtResource("3_vsmlo")
 texture_progress = ExtResource("4_ytf7y")
+metadata/_edit_use_anchors_ = true
 
 [node name="AntiGravity" type="TextureButton" parent="AntiGravity"]
+z_index = 15
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,14 +91,17 @@ offset_bottom = -57.0
 grow_horizontal = 2
 grow_vertical = 2
 disabled = true
+metadata/_edit_use_anchors_ = true
 
-[node name="AG_Cooldown" type="Timer" parent="AntiGravity"]
+[node name="AGCooldown" type="Timer" parent="AntiGravity"]
 process_callback = 0
 wait_time = 30.0
 one_shot = true
 autostart = true
 
 [node name="PowerKick" type="TextureProgressBar" parent="."]
+z_index = 15
+z_as_relative = false
 layout_mode = 1
 offset_left = -428.0
 offset_top = -308.0
@@ -104,8 +111,11 @@ scale = Vector2(0.3, 0.3)
 fill_mode = 4
 texture_under = ExtResource("5_d5n7q")
 texture_progress = ExtResource("6_llg1s")
+metadata/_edit_use_anchors_ = true
 
 [node name="PowerKick" type="TextureButton" parent="PowerKick"]
+z_index = 15
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,98 +126,81 @@ offset_right = -27.0
 offset_bottom = -57.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="PK_Cooldown" type="Timer" parent="PowerKick"]
+[node name="PKCooldown" type="Timer" parent="PowerKick"]
 process_callback = 0
 wait_time = 30.0
 one_shot = true
 autostart = true
 
-[node name="RoundTime" type="Timer" parent="."]
+[node name="RoundTimer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 45.0
 
-[node name="Round_TIME" type="Label" parent="RoundTime"]
+[node name="RoundTimerLabel" type="Label" parent="RoundTimer"]
+z_index = 15
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -89.0
-offset_top = 101.0
-offset_right = 138.0
-offset_bottom = 145.0
+offset_top = 121.0
+offset_right = 30.0
+offset_bottom = 165.0
 grow_horizontal = 2
 theme = ExtResource("2_w1x45")
 text = "0"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PauseButton" type="Button" parent="."]
+z_index = 15
+layout_mode = 0
+offset_left = 453.0
+offset_top = -275.0
+offset_right = 518.0
+offset_bottom = -211.0
+theme = ExtResource("2_w1x45")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ho8y")
+text = "ll"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
 visible = false
+z_index = 20
+layout_mode = 0
+offset_left = -651.0
+offset_top = -396.0
+offset_right = 653.0
+offset_bottom = 388.0
+color = Color(0, 0, 0, 0.392157)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 1160.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 0.313726)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 438.0
-offset_bottom = 648.0
-size_flags_horizontal = 0
-
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_w1x45")
-text = "RESUME"
-alignment = 0
-
-[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_w1x45")
-text = "BACK TO MENU
-"
-alignment = 0
-
-[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_w1x45")
-text = "SETTINGS
-"
-alignment = 0
-
-[node name="Button4" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_w1x45")
-text = "QUIT
-"
-alignment = 0
-
-[node name="Button5" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_w1x45")
-text = "QUIT
-"
-alignment = 0
-
-[node name="Button6" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_w1x45")
-text = "QUIT
-"
-alignment = 0
+[node name="Blur" type="ColorRect" parent="."]
+visible = false
+z_index = 16
+material = SubResource("ShaderMaterial_6ba05")
+layout_mode = 0
+offset_left = -623.0
+offset_top = -396.0
+offset_right = -324.0
+offset_bottom = -229.0
+scale = Vector2(4.41303, 4.74215)
 
 [node name="Pause" parent="." instance=ExtResource("7_oh1ii")]
 visible = false
+z_index = 20
 layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -587.0
-offset_top = -324.0
-offset_right = -587.0
-offset_bottom = -324.0
+offset_left = -577.0
+offset_top = -236.0
+offset_right = -577.0
+offset_bottom = -236.0
 grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="pressed" from="AntiGravity/AntiGravity" to="." method="_on_anti_gravity_pressed"]
-[connection signal="timeout" from="AntiGravity/AG_Cooldown" to="." method="_on_ag_cooldown_timeout"]
+[connection signal="timeout" from="AntiGravity/AGCooldown" to="." method="_on_ag_cooldown_timeout"]
 [connection signal="pressed" from="PowerKick/PowerKick" to="." method="_on_power_kick_pressed"]
-[connection signal="timeout" from="PowerKick/PK_Cooldown" to="." method="_on_pk_cooldown_timeout"]
-[connection signal="timeout" from="RoundTime" to="." method="_on_round_time_timeout"]
+[connection signal="timeout" from="PowerKick/PKCooldown" to="." method="_on_pk_cooldown_timeout"]
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_time_timeout"]
+[connection signal="button_down" from="PauseButton" to="." method="_on_pause_button_button_down"]

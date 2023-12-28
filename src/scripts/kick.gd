@@ -8,8 +8,6 @@ class_name Kick
 @onready var hit_box = $HitBox
 @onready var raycast = $RayCast
 
-#@export var constant_linear_velocity := Vector2(800, 0)
-#@export var strength  := constant_linear_velocity
 @export var force_multiplier := Vector2(500, 500)
 
 var is_charging : bool
@@ -22,7 +20,7 @@ func _ready():
 	
 func _process(delta):
 	
-	if GameManager.is_player_lost:
+	if GameManager.game_is_paused:
 		return
 
 	var direction = global_transform.origin.direction_to(get_global_mouse_position())
@@ -48,7 +46,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 	
-	if GameManager.is_player_lost:
+	if GameManager.game_is_paused:
 		return
 	
 	if Input.is_action_just_pressed("Click"):
