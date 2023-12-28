@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6axu3udp3xpt"]
+[gd_scene load_steps=20 format=3 uid="uid://b6axu3udp3xpt"]
 
 [ext_resource type="Texture2D" uid="uid://dr38c8qag2iui" path="res://assets/background/background_cool.png" id="1_404tk"]
 [ext_resource type="AudioStream" uid="uid://b41qt0bx0sjmt" path="res://assets/audio/noise.wav" id="3_ss1b5"]
+[ext_resource type="Texture2D" uid="uid://x5osypa1s42h" path="res://assets/background/background_warm.png" id="5_nsqkt"]
 [ext_resource type="PackedScene" uid="uid://tn51vycgy3xn" path="res://scenes/UI/in_game_ui.tscn" id="5_y38gy"]
 [ext_resource type="AudioStream" uid="uid://dxdsqa100t6d4" path="res://assets/audio/background_song.wav" id="6_lmrek"]
 
@@ -48,6 +49,12 @@ z_index = -2
 offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("1_404tk")
+
+[node name="Background2" type="TextureRect" parent="Environment"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("5_nsqkt")
 
 [node name="Ambience" type="AudioStreamPlayer2D" parent="Environment"]
 stream = ExtResource("3_ss1b5")

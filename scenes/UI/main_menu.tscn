@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://cbjaopan444x4"]
 
-[ext_resource type="Script" path="res://src/scripts/main_menu.gd" id="1_nacx2"]
-[ext_resource type="Texture2D" uid="uid://x5osypa1s42h" path="res://assets/background/background_warm.png" id="2_dyxfr"]
-[ext_resource type="Texture2D" uid="uid://dr38c8qag2iui" path="res://assets/background/background_cool.png" id="3_43s3y"]
-[ext_resource type="AudioStream" uid="uid://b41qt0bx0sjmt" path="res://assets/audio/noise.wav" id="4_dgn8y"]
-[ext_resource type="AudioStream" uid="uid://dxdsqa100t6d4" path="res://assets/audio/background_song.wav" id="5_4wi70"]
-[ext_resource type="Texture2D" uid="uid://d14ttsmio0cua" path="res://assets/main_menu/signage.png" id="6_vvppi"]
-[ext_resource type="Texture2D" uid="uid://wq2p0p2hwdis" path="res://assets/main_menu/play.png" id="7_w6jva"]
-[ext_resource type="Texture2D" uid="uid://dbm0pii5rac7w" path="res://assets/main_menu/settings.png" id="8_1yfn7"]
-[ext_resource type="Texture2D" uid="uid://dv0egg8x4u0op" path="res://assets/main_menu/quit.png" id="9_2jrtt"]
+[ext_resource type="Texture2D" uid="uid://x5osypa1s42h" path="res://assets/background/background_warm.png" id="1_3ihaa"]
+[ext_resource type="Script" path="res://src/scripts/main_menu.gd" id="1_04j43"]
+[ext_resource type="Texture2D" uid="uid://dr38c8qag2iui" path="res://assets/background/background_cool.png" id="2_2qrj4"]
+[ext_resource type="AudioStream" uid="uid://b41qt0bx0sjmt" path="res://assets/audio/noise.wav" id="3_4aja0"]
+[ext_resource type="AudioStream" uid="uid://dxdsqa100t6d4" path="res://assets/audio/background_song.wav" id="4_kkmay"]
+[ext_resource type="Texture2D" uid="uid://d14ttsmio0cua" path="res://assets/main_menu/signage.png" id="5_p8nbx"]
+[ext_resource type="Texture2D" uid="uid://wq2p0p2hwdis" path="res://assets/main_menu/play.png" id="6_l2rhi"]
+[ext_resource type="Texture2D" uid="uid://bkdut3dcadilc" path="res://assets/main_menu/no_settings2123123.png" id="8_sx4jt"]
+[ext_resource type="Texture2D" uid="uid://dv0egg8x4u0op" path="res://assets/main_menu/quit.png" id="9_nedbi"]
 
 [sub_resource type="Animation" id="Animation_xbfkm"]
 length = 0.001
@@ -111,13 +111,16 @@ offset_right = 501.0
 offset_bottom = 344.0
 texture_hover = ExtResource("7_w6jva")
 
-[node name="Settings" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 152.0
-offset_top = 253.0
-offset_right = 475.0
-offset_bottom = 453.0
-texture_hover = ExtResource("8_1yfn7")
+[node name="UnderWorks" type="TextureButton" parent="."]
+modulate = Color(0.741176, 0.741176, 0.741176, 1)
+layout_mode = 2
+offset_left = 220.0
+offset_top = 308.0
+offset_right = 436.0
+offset_bottom = 385.0
+disabled = true
+texture_disabled = ExtResource("8_sx4jt")
+stretch_mode = 3
 
 [node name="Quit" type="TextureButton" parent="."]
 layout_mode = 0
@@ -134,7 +137,9 @@ range_z_max = 10
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_sjhxx")
 texture_scale = 50.0
+texture_hover = ExtResource("9_nedbi")
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="UnderWorks" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
